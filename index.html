@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORDER OF THE CROW — Official</title>
+  <meta name="description" content="Order of the Crow — official site. Dead Man out now. Cryptic. Classified. Enter." />
+
+  <!-- Fonts: Rajdhani = wide techy HUD display (Alan Walker feel) / Share Tech Mono = terminal labels / Inter = body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV (HUD notched frame — Alan Walker) ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__frame" aria-hidden="true"></div>
+    <a href="#hero" class="nav__item nav__join" data-placeholder="join">◈ JOIN</a>
+    <a href="#hero" class="nav__logo">✦</a>
+    <button class="nav__item nav__menu" id="navToggle" aria-label="Menu">MENU ≡</button>
+    <nav class="nav__links" id="navLinks">
+      <a href="#music">Music</a>
+      <a href="#merch">Merch</a>
+      <a href="#community">Inner Circle</a>
+      <a href="#about">About</a>
+      <a href="#signup">Join</a>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO (single-line glitch title over album art) ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero__media" aria-hidden="true"></div>
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__stars" aria-hidden="true"></div>
+    <div class="hero__scanlines" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow mono">// TRANSMISSION 001 — DEAD MAN</p>
+      <h1 class="hero__title glitch" data-text="ORDER OF THE CROW">ORDER OF THE CROW</h1>
+      <p class="hero__sub mono">CL4SSIFIED · CRYPTIC · OUT N0W</p>
+      <div class="hero__cta">
+        <!-- PLACEHOLDER: real streaming / buy link -->
+        <a href="#music" class="btn btn--primary">▶ ENTER</a>
+        <a href="#signup" class="btn btn--ghost">GET THE ALBUM →</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll mono" aria-hidden="true">
+      SCROLL TO DECRYPT
+      <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ===================== MUSIC ===================== -->
+  <section class="section" id="music">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / THE MUSIC</p>
+      <div class="split scale-in">
+        <div class="split__media">
+          <img src="assets/dead-man-album-art.jpg" alt="Dead Man — Order of the Crow" />
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </div>
+        <div class="split__text">
+          <p class="mono accent">LATEST RELEASE</p>
+          <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
+          <p class="lead">The debut transmission from Order of the Crow. A cryptic descent — classic and modern, celestial and grounded.</p>
+          <div class="pills">
+            <!-- PLACEHOLDER LINKS: swap # for real URLs -->
+            <a href="#" class="pill" data-placeholder="spotify">SPOTIFY</a>
+            <a href="#" class="pill" data-placeholder="apple">APPLE MUSIC</a>
+            <a href="#" class="pill" data-placeholder="youtube">YOUTUBE</a>
+            <a href="#" class="pill pill--solid" data-placeholder="buy">BUY DIGITAL</a>
+          </div>
+          <p class="placeholder-note mono">// placeholder — streaming &amp; buy links pending</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MERCH ===================== -->
+  <section class="section" id="merch">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / THE MERCH</p>
+      <h2 class="section__title glitch scale-in" data-text="WEAR THE MARK">WEAR THE MARK</h2>
+      <div class="merch__grid">
+        <!-- PLACEHOLDER products -->
+        <article class="card scale-in">
+          <div class="card__img card__img--ph">T-SHIRT</div>
+          <h3 class="card__name">“DEAD MAN” TEE</h3>
+          <p class="card__price mono">$30.00</p>
+          <a href="#" class="btn btn--small" data-placeholder="product">VIEW</a>
+        </article>
+        <article class="card scale-in">
+          <div class="card__img card__img--ph">VINYL / CD</div>
+          <h3 class="card__name">DEAD MAN — PHYSICAL</h3>
+          <p class="card__price mono">$15.00</p>
+          <a href="#" class="btn btn--small" data-placeholder="product">VIEW</a>
+        </article>
+        <article class="card scale-in">
+          <div class="card__img card__img--ph">DIGITAL</div>
+          <h3 class="card__name">DEAD MAN — DIGITAL</h3>
+          <p class="card__price mono">$10.00</p>
+          <a href="#" class="btn btn--small" data-placeholder="product">VIEW</a>
+        </article>
+      </div>
+      <p class="placeholder-note mono scale-in">// placeholder store — connect Shopify / Snipcart</p>
+    </div>
+  </section>
+
+  <!-- ===================== COMMUNITY / INNER CIRCLE ===================== -->
+  <section class="section" id="community">
+    <div class="section__inner community scale-in">
+      <p class="dossier"><span class="dossier__dot"></span> 03 / THE INNER CIRCLE</p>
+      <h2 class="section__title glitch" data-text="YOU ARE NOT ALONE">YOU ARE NOT ALONE</h2>
+      <p class="lead lead--center">A private world for the devoted. Unreleased transmissions, behind-the-veil content, early access, and direct contact with the Order. Hidden clues for the observant.</p>
+      <ul class="perks">
+        <li>Exclusive tracks &amp; demos</li>
+        <li>Private livestreams</li>
+        <li>Early merch &amp; tickets</li>
+        <li>Members-only lore</li>
+      </ul>
+      <!-- PLACEHOLDER: community platform -->
+      <a href="#" class="btn btn--primary" data-placeholder="community">ENTER THE INNER CIRCLE →</a>
+      <p class="placeholder-note mono">// placeholder — community platform to be connected</p>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT / LORE ===================== -->
+  <section class="section" id="about">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 04 / THE ORDER</p>
+      <div class="split split--reverse scale-in">
+        <div class="split__media split__media--ph">
+          <span class="ph-label mono">ARTIST IMAGE</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </div>
+        <div class="split__text">
+          <h2 class="glitch glitch--sm" data-text="THE ORDER">THE ORDER</h2>
+          <p class="lead">[Placeholder bio] Order of the Crow moves between worlds — classic songcraft wrapped in something stranger. Cryptic, quasi-psychedelic, and unafraid of the dark. Replace this text with the artist’s true story.</p>
+          <p class="placeholder-note mono">// placeholder bio &amp; artist image</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EMAIL SIGNUP (near bottom — Green Day) ===================== -->
+  <section class="section signup" id="signup">
+    <div class="section__inner signup__inner scale-in">
+      <p class="dossier"><span class="dossier__dot"></span> 05 / DECRYPT THE ALBUM</p>
+      <h2 class="section__title glitch" data-text="GET DEAD MAN — FREE">GET DEAD MAN — FREE</h2>
+      <p class="lead lead--center">Join the list. The album transmits straight to your inbox.</p>
+      <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
+      <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+        <input type="text" name="name" placeholder="NAME" aria-label="Name" />
+        <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
+        <select name="country" aria-label="Country">
+          <option value="">COUNTRY</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn btn--primary">TRANSMIT →</button>
+      </form>
+      <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
+      <nav class="footer__social mono">
+        <!-- PLACEHOLDER social links -->
+        <a href="#" data-placeholder="instagram">INSTAGRAM</a>
+        <a href="#" data-placeholder="tiktok">TIKTOK</a>
+        <a href="#" data-placeholder="youtube">YOUTUBE</a>
+        <a href="#" data-placeholder="spotify">SPOTIFY</a>
+      </nav>
+      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · ALL RIGHTS RESERVED</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
