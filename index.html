@@ -30,12 +30,13 @@
     </nav>
   </header>
 
-  <!-- ===================== HERO (single-line glitch title over album art) ===================== -->
+  <!-- ===================== HERO (WebGL liquid-displacement over album art — Linkin Park) ===================== -->
   <section class="hero" id="hero">
-    <div class="hero__media" aria-hidden="true"></div>
+    <canvas class="hero__canvas" id="liquidHero" aria-hidden="true"></canvas>
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="hero__stars" aria-hidden="true"></div>
     <div class="hero__scanlines" aria-hidden="true"></div>
+    <p class="hero__hint mono" aria-hidden="true">◈ DRAG THROUGH THE VOID</p>
 
     <div class="hero__content">
       <p class="hero__eyebrow mono">// TRANSMISSION 001 — DEAD MAN</p>
@@ -186,6 +187,7 @@
     </div>
   </footer>
 
+  <script src="js/liquid-hero.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
