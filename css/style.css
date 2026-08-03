@@ -244,6 +244,103 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 .pill:hover { border-color: var(--glow); color: var(--glow); }
 .pill--solid { background: var(--glow); color: var(--black); border-color: var(--glow); }
 
+/* ---------- Hero countdown (to DEAD MAN — 10 Aug 2026) ---------- */
+.countdown {
+  display: flex; justify-content: center; gap: clamp(.8rem, 3vw, 2.2rem);
+  margin-top: 2rem; pointer-events: none;
+}
+.countdown__unit {
+  min-width: clamp(56px, 12vw, 84px);
+  padding: .6rem .4rem;
+  border: 1px solid var(--line);
+  background: rgba(4,6,13,.5);
+  backdrop-filter: blur(4px);
+  clip-path: polygon(0 0, 100% 0, 100% 76%, calc(100% - 10px) 100%, 0 100%);
+}
+.countdown__num {
+  display: block; font-size: clamp(1.1rem, 3.4vw, 1.9rem);
+  color: var(--white); line-height: 1; text-shadow: 0 0 18px rgba(79,139,255,.5);
+}
+.countdown__label { display: block; font-size: .6rem; letter-spacing: .28em; color: var(--muted); margin-top: .4rem; }
+.countdown.is-live .countdown__num { color: var(--glow); }
+
+/* ---------- Credits line ---------- */
+.credits { margin-top: 1.4rem; font-size: .68rem; color: var(--muted); letter-spacing: .12em; line-height: 1.8; }
+
+/* ---------- Spotify player ---------- */
+.player { margin-top: clamp(3rem, 7vw, 5rem); }
+.dossier--mini { font-size: .7rem; margin-bottom: 1rem; }
+.player__frame {
+  display: block; width: 100%; border: 1px solid var(--line);
+  box-shadow: 0 30px 70px -40px var(--glow);
+}
+
+/* ---------- Discography ---------- */
+.disco__heading {
+  font-size: clamp(1.3rem, 3.4vw, 2rem); font-weight: 700; text-align: center;
+  margin: clamp(3.5rem, 8vw, 6rem) 0 2.4rem;
+}
+.disco { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.release { text-align: center; }
+.release__art {
+  position: relative; display: block; overflow: hidden;
+  border: 1px solid var(--line);
+  clip-path: polygon(0 0, 100% 0, 100% 92%, calc(100% - 16px) 100%, 0 100%);
+  transition: border-color .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease);
+}
+.release__art img {
+  width: 100%; aspect-ratio: 1; object-fit: cover;
+  filter: grayscale(.2) contrast(1.05) brightness(.95);
+  transition: filter .5s var(--ease), transform .6s var(--ease);
+}
+.release__art::after {
+  /* blue veil that lifts on hover */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(15,27,64,.25), rgba(4,6,13,.4));
+  transition: opacity .5s var(--ease);
+}
+.release__play {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-size: 2rem; color: var(--white); opacity: 0;
+  text-shadow: 0 0 24px var(--glow);
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+  transform: scale(.7);
+}
+.release__art:hover { border-color: var(--glow); box-shadow: 0 26px 60px -30px var(--glow); transform: translateY(-4px); }
+.release__art:hover img { filter: grayscale(0) contrast(1.05) brightness(1); transform: scale(1.06); }
+.release__art:hover::after { opacity: .25; }
+.release__art:hover .release__play { opacity: 1; transform: scale(1); }
+.release--feature .release__art { border-color: rgba(79,139,255,.5); }
+.release__title {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase; letter-spacing: .12em;
+  font-size: .95rem; font-weight: 600; margin: 1rem 0 .25rem;
+}
+.release__meta { font-size: .66rem; color: var(--muted); letter-spacing: .2em; }
+.release__links { display: flex; justify-content: center; gap: 1rem; margin-top: .7rem; }
+.release__links a { font-size: .66rem; letter-spacing: .18em; color: var(--muted); transition: color .3s; }
+.release__links a:hover { color: var(--glow); }
+
+/* ---------- About fact list ---------- */
+.facts { margin-top: 1.6rem; display: grid; gap: .55rem; }
+.facts > div { display: grid; grid-template-columns: 84px 1fr; gap: 1rem; align-items: baseline; }
+.facts dt { font-size: .64rem; letter-spacing: .22em; color: var(--glow); }
+.facts dd { font-size: .82rem; color: var(--muted); letter-spacing: .04em; }
+
+/* ---------- Contact ---------- */
+#contact { background: var(--deep); text-align: center; }
+.contact { max-width: 900px; margin: 0 auto; }
+.contact__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2.4rem; }
+.contact__card {
+  position: relative; display: flex; flex-direction: column; gap: .5rem;
+  padding: 1.5rem 1.2rem;
+  border: 1px solid var(--line); background: rgba(15,27,64,.25);
+  clip-path: polygon(0 0, 100% 0, 100% 86%, calc(100% - 16px) 100%, 0 100%);
+  transition: transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+.contact__card:hover { transform: translateY(-4px); border-color: var(--glow); box-shadow: 0 22px 50px -26px var(--glow); }
+.contact__label { font-size: .64rem; letter-spacing: .28em; color: var(--glow); }
+.contact__value { font-size: .95rem; color: var(--white); word-break: break-word; }
+
 /* ---------- Merch cards ---------- */
 .merch__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
 .card {
@@ -280,6 +377,9 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 .footer__social { display: flex; gap: 1.6rem; flex-wrap: wrap; justify-content: center; }
 .footer__social a { color: var(--muted); font-size: .8rem; transition: color .3s; }
 .footer__social a:hover { color: var(--glow); }
+.footer__contact { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center; font-size: .78rem; color: var(--muted); }
+.footer__contact a { color: var(--muted); transition: color .3s; }
+.footer__contact a:hover { color: var(--glow); }
 .footer__copy { color: var(--muted); font-size: .72rem; }
 
 /* ---------- Placeholder note ---------- */
@@ -301,6 +401,10 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
   .lead { margin-left: auto; margin-right: auto; }
   .pills { justify-content: center; }
   .merch__grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .disco { grid-template-columns: repeat(2, 1fr); }
+  .contact__grid { grid-template-columns: 1fr; }
+  .facts { justify-items: center; }
+  .facts > div { grid-template-columns: 1fr; gap: .1rem; text-align: center; }
   .nav__frame { display: none; }
   .nav.open .nav__links {
     display: flex; flex-direction: column; gap: 1.1rem; position: absolute; top: 100%; left: 0; right: 0;

@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ORDER OF THE CROW — Official</title>
-  <meta name="description" content="Order of the Crow — official site. Dead Man out now. Cryptic. Classified. Enter." />
+  <title>ORDER OF THE CROW — Official Site of Chris Kreutz</title>
+  <meta name="description" content="Official site of Chris Kreutz and Order of the Crow — Seattle. Raw power, haunting melody, dark energy from the underground. Debut album DEAD MAN out 10 August 2026." />
+  <meta property="og:title" content="ORDER OF THE CROW" />
+  <meta property="og:description" content="Where fire meets shadow and the riffs never die. Debut album DEAD MAN — 10 August 2026." />
+  <meta property="og:image" content="assets/dead-man-album-art.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Tab icon: the Order's four-point mark, luminous blue on near-black -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Cpath d='M16 4 L18.6 13.4 L28 16 L18.6 18.6 L16 28 L13.4 18.6 L4 16 L13.4 13.4 Z' fill='%234f8bff'/%3E%3C/svg%3E" />
 
   <!-- Fonts: Rajdhani = wide techy HUD display (Alan Walker feel) / Share Tech Mono = terminal labels / Inter = body -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,7 +25,7 @@
   <!-- ===================== NAV (HUD notched frame — Alan Walker) ===================== -->
   <header class="nav" id="nav">
     <div class="nav__frame" aria-hidden="true"></div>
-    <a href="#hero" class="nav__item nav__join" data-placeholder="join">◈ JOIN</a>
+    <a href="#signup" class="nav__item nav__join">◈ JOIN</a>
     <a href="#hero" class="nav__logo">✦</a>
     <button class="nav__item nav__menu" id="navToggle" aria-label="Menu">MENU ≡</button>
     <nav class="nav__links" id="navLinks">
@@ -26,6 +33,7 @@
       <a href="#merch">Merch</a>
       <a href="#community">Inner Circle</a>
       <a href="#about">About</a>
+      <a href="#contact">Contact</a>
       <a href="#signup">Join</a>
     </nav>
   </header>
@@ -39,13 +47,21 @@
     <p class="hero__hint mono" aria-hidden="true">◈ DRAG THROUGH THE VOID</p>
 
     <div class="hero__content">
-      <p class="hero__eyebrow mono">// TRANSMISSION 001 — DEAD MAN</p>
+      <p class="hero__eyebrow mono">// TRANSMISSION 001 — “DEAD MAN” LP · 08.10.2026</p>
       <h1 class="hero__title glitch" data-text="ORDER OF THE CROW">ORDER OF THE CROW</h1>
-      <p class="hero__sub mono">CL4SSIFIED · CRYPTIC · OUT N0W</p>
+      <p class="hero__sub mono">SEATTLE · FIRE MEETS SHADOW · THE RIFFS NEVER DIE</p>
+
+      <!-- Countdown to the DEAD MAN album release — 10 Aug 2026 -->
+      <div class="countdown mono" id="countdown" data-release="2026-08-10T00:00:00Z" aria-label="Time until Dead Man releases">
+        <div class="countdown__unit"><span class="countdown__num" data-cd="days">--</span><span class="countdown__label">DAYS</span></div>
+        <div class="countdown__unit"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__label">HRS</span></div>
+        <div class="countdown__unit"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__label">MIN</span></div>
+        <div class="countdown__unit"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__label">SEC</span></div>
+      </div>
+
       <div class="hero__cta">
-        <!-- PLACEHOLDER: real streaming / buy link -->
-        <a href="#music" class="btn btn--primary">▶ ENTER</a>
-        <a href="#signup" class="btn btn--ghost">GET THE ALBUM →</a>
+        <a href="#music" class="btn btn--primary">▶ LISTEN NOW</a>
+        <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="btn btn--ghost" target="_blank" rel="noopener">PRE-ORDER “DEAD MAN” →</a>
       </div>
     </div>
 
@@ -66,18 +82,114 @@
           <span class="frame-corner bl"></span><span class="frame-corner br"></span>
         </div>
         <div class="split__text">
-          <p class="mono accent">LATEST RELEASE</p>
+          <p class="mono accent">THE ALBUM — OUT 10 AUGUST 2026</p>
           <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
-          <p class="lead">The debut transmission from Order of the Crow. A cryptic descent — classic and modern, celestial and grounded.</p>
+          <p class="lead">The debut full-length from Order of the Crow. Raw power, haunting melody and dark energy from the underground — Seattle grit welded to something stranger.</p>
           <div class="pills">
-            <!-- PLACEHOLDER LINKS: swap # for real URLs -->
-            <a href="#" class="pill" data-placeholder="spotify">SPOTIFY</a>
-            <a href="#" class="pill" data-placeholder="apple">APPLE MUSIC</a>
-            <a href="#" class="pill" data-placeholder="youtube">YOUTUBE</a>
-            <a href="#" class="pill pill--solid" data-placeholder="buy">BUY DIGITAL</a>
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" class="pill" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" class="pill" target="_blank" rel="noopener">APPLE MUSIC</a>
+            <a href="https://www.youtube.com/@chriskreutz1442" class="pill" target="_blank" rel="noopener">YOUTUBE</a>
+            <a href="https://orderofthecrow.bandcamp.com/music" class="pill" target="_blank" rel="noopener">BANDCAMP</a>
+            <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="pill pill--solid" target="_blank" rel="noopener">PRE-ORDER</a>
           </div>
-          <p class="placeholder-note mono">// placeholder — streaming &amp; buy links pending</p>
+          <p class="credits mono">PRODUCED BY CHRIS KREUTZ, JULIO SOTO &amp; JAKUB ŠTEFKOVIČ · DARKBLUE RECORDS</p>
         </div>
+      </div>
+
+      <!-- ---------- Live Spotify player ---------- -->
+      <div class="player scale-in">
+        <p class="dossier dossier--mini"><span class="dossier__dot"></span> LIVE FEED — PRESS PLAY</p>
+        <iframe
+          class="player__frame"
+          src="https://open.spotify.com/embed/artist/657ETkYc49BzLTSOCnd9Es?utm_source=generator"
+          title="Order of the Crow on Spotify"
+          width="100%" height="152" frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+
+      <!-- ---------- Discography ---------- -->
+      <h3 class="disco__heading glitch glitch--sm scale-in" data-text="THE SINGLES">THE SINGLES</h3>
+      <div class="disco">
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/start-a-fever" target="_blank" rel="noopener">
+            <img src="assets/releases/start-a-fever.jpg" alt="Start a Fever — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h4 class="release__title">START A FEVER</h4>
+          <p class="release__meta mono">SINGLE · 2025</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/start-a-fever-single/1849142381" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/scarecrows" target="_blank" rel="noopener">
+            <img src="assets/releases/scarecrows.jpg" alt="Scarecrows — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h4 class="release__title">SCARECROWS</h4>
+          <p class="release__meta mono">SINGLE · 2025</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/scarecrows-single/1812987449" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/crystal-mirrors" target="_blank" rel="noopener">
+            <img src="assets/releases/crystal-mirrors.jpg" alt="Crystal Mirrors — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h4 class="release__title">CRYSTAL MIRRORS</h4>
+          <p class="release__meta mono">SINGLE · 2025</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/crystal-mirrors-single/1799644056" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release release--feature scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/dead-man" target="_blank" rel="noopener">
+            <img src="assets/releases/dead-man.jpg" alt="Dead Man — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h4 class="release__title">DEAD MAN</h4>
+          <p class="release__meta mono">SINGLE · 2025 · MOST PLAYED</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/dead-man-single/1792117364" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/my-love-is-lightning" target="_blank" rel="noopener">
+            <img src="assets/releases/my-love-is-lightning.jpg" alt="My Love Is Lightning — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h4 class="release__title">MY LOVE IS LIGHTNING</h4>
+          <p class="release__meta mono">SINGLE · 2024</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/my-love-is-lightning-single/1781254125" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://music.apple.com/us/album/the-fall-single/1723590535" target="_blank" rel="noopener">
+            <img src="assets/releases/the-fall.jpg" alt="The Fall — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h4 class="release__title">THE FALL</h4>
+          <p class="release__meta mono">SINGLE · 2024 · THE FIRST</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/the-fall-single/1723590535" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -141,9 +253,17 @@
           <span class="frame-corner bl"></span><span class="frame-corner br"></span>
         </div>
         <div class="split__text">
+          <p class="mono accent">CHRIS KREUTZ · SEATTLE, WA</p>
           <h2 class="glitch glitch--sm" data-text="THE ORDER">THE ORDER</h2>
-          <p class="lead">[Placeholder bio] Order of the Crow moves between worlds — classic songcraft wrapped in something stranger. Cryptic, quasi-psychedelic, and unafraid of the dark. Replace this text with the artist’s true story.</p>
-          <p class="placeholder-note mono">// placeholder bio &amp; artist image</p>
+          <p class="lead">Unleashing raw power, haunting melody and dark energy from the underground. Order of the Crow is the sonic identity of Seattle artist <strong>Chris Kreutz</strong> — where fire meets shadow and the riffs never die.</p>
+          <p class="lead">Six singles deep since 2024, with the debut full-length <em>Dead Man</em> landing 10 August 2026 on Darkblue Records.</p>
+          <dl class="facts mono">
+            <div><dt>BASED</dt><dd>Seattle, Washington</dd></div>
+            <div><dt>LABEL</dt><dd>Darkblue Records</dd></div>
+            <div><dt>GUITARS</dt><dd>Chris Kreutz · Julio Soto · Jakub Štefkovič</dd></div>
+            <div><dt>MIX</dt><dd>Julio Soto</dd></div>
+          </dl>
+          <p class="placeholder-note mono">// artist photo still needed — send one and it drops straight in</p>
         </div>
       </div>
     </div>
@@ -153,8 +273,8 @@
   <section class="section signup" id="signup">
     <div class="section__inner signup__inner scale-in">
       <p class="dossier"><span class="dossier__dot"></span> 05 / DECRYPT THE ALBUM</p>
-      <h2 class="section__title glitch" data-text="GET DEAD MAN — FREE">GET DEAD MAN — FREE</h2>
-      <p class="lead lead--center">Join the list. The album transmits straight to your inbox.</p>
+      <h2 class="section__title glitch" data-text="FIRST ACCESS TO DEAD MAN">FIRST ACCESS TO DEAD MAN</h2>
+      <p class="lead lead--center">Join the list before 10 August. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
       <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
       <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
         <input type="text" name="name" placeholder="NAME" aria-label="Name" />
@@ -172,18 +292,64 @@
     </div>
   </section>
 
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section" id="contact">
+    <div class="section__inner contact scale-in">
+      <p class="dossier"><span class="dossier__dot"></span> 06 / OPEN A CHANNEL</p>
+      <h2 class="section__title glitch" data-text="CONTACT">CONTACT</h2>
+      <p class="lead lead--center">Booking, press, features and everything else — reach the Order directly.</p>
+
+      <div class="contact__grid">
+        <a class="contact__card" href="mailto:phoenix012888@gmail.com">
+          <span class="contact__label mono">EMAIL</span>
+          <span class="contact__value">phoenix012888@gmail.com</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </a>
+        <a class="contact__card" href="tel:+14253295204">
+          <span class="contact__label mono">PHONE</span>
+          <span class="contact__value">(425) 329-5204</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </a>
+        <a class="contact__card" href="https://wa.me/14253295204" target="_blank" rel="noopener">
+          <span class="contact__label mono">WHATSAPP</span>
+          <span class="contact__value">(425) 329-5204</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </a>
+        <a class="contact__card" href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">
+          <span class="contact__label mono">ALL LINKS</span>
+          <span class="contact__value">linktr.ee/Orderofthecrow</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </a>
+      </div>
+
+      <p class="placeholder-note mono">// full contact page to be built after homepage sign-off</p>
+    </div>
+  </section>
+
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
     <div class="footer__inner">
       <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
       <nav class="footer__social mono">
-        <!-- PLACEHOLDER social links -->
-        <a href="#" data-placeholder="instagram">INSTAGRAM</a>
-        <a href="#" data-placeholder="tiktok">TIKTOK</a>
-        <a href="#" data-placeholder="youtube">YOUTUBE</a>
-        <a href="#" data-placeholder="spotify">SPOTIFY</a>
+        <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">INSTAGRAM</a>
+        <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">YOUTUBE</a>
+        <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+        <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">APPLE MUSIC</a>
+        <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">BANDCAMP</a>
+        <a href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">LINKTREE</a>
+        <!-- NEEDS URL: client gave the Facebook page as a name only — "Chris Kreutz (Order of the Crow)" -->
+        <a href="#" data-placeholder="facebook" title="Facebook URL still needed">FACEBOOK</a>
       </nav>
-      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · ALL RIGHTS RESERVED</p>
+      <p class="footer__contact mono">
+        <a href="mailto:phoenix012888@gmail.com">phoenix012888@gmail.com</a>
+        <span aria-hidden="true">·</span>
+        <a href="tel:+14253295204">(425) 329-5204</a>
+      </p>
+      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
     </div>
   </footer>
 

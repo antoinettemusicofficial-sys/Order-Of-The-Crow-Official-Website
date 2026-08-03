@@ -13,6 +13,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---- Countdown to the DEAD MAN album release ---- */
+  const cd = document.getElementById('countdown');
+  if (cd) {
+    const target = new Date(cd.dataset.release).getTime();
+    const fields = {
+      days:  cd.querySelector('[data-cd="days"]'),
+      hours: cd.querySelector('[data-cd="hours"]'),
+      mins:  cd.querySelector('[data-cd="mins"]'),
+      secs:  cd.querySelector('[data-cd="secs"]'),
+    };
+    const pad = (n) => String(n).padStart(2, '0');
+
+    const tickCountdown = () => {
+      let diff = target - Date.now();
+
+      if (diff <= 0) {
+        // Release day has arrived — show a static "OUT NOW" state.
+        cd.classList.add('is-live');
+        fields.days.textContent = fields.hours.textContent =
+        fields.mins.textContent = fields.secs.textContent = '00';
+        return false;
+      }
+
+      const secs = Math.floor(diff / 1000);
+      fields.days.textContent  = pad(Math.floor(secs / 86400));
+      fields.hours.textContent = pad(Math.floor(secs / 3600) % 24);
+      fields.mins.textContent  = pad(Math.floor(secs / 60) % 60);
+      fields.secs.textContent  = pad(secs % 60);
+      return true;
+    };
+
+    if (tickCountdown()) {
+      const timer = setInterval(() => {
+        if (!tickCountdown()) clearInterval(timer);
+      }, 1000);
+    }
+  }
+
   /* ---- Scroll-scale (grow from bottom to center) ---- */
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const items = Array.from(document.querySelectorAll('.scale-in'));
