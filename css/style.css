@@ -270,9 +270,12 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 /* ---------- Spotify player ---------- */
 .player { margin-top: clamp(3rem, 7vw, 5rem); }
 .dossier--mini { font-size: .7rem; margin-bottom: 1rem; }
+/* Spotify draws its own rounded card, so no border of ours — just match its
+   radius so the glow follows the card shape instead of a square around it. */
 .player__frame {
-  display: block; width: 100%; border: 1px solid var(--line);
-  box-shadow: 0 30px 70px -40px var(--glow);
+  display: block; width: 100%; border: 0;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px -34px var(--glow);
 }
 
 /* ---------- Discography ---------- */
