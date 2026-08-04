@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUSIC — ORDER OF THE CROW</title>
+  <meta name="description" content="DEAD MAN — the debut album from Order of the Crow. A sonic exploration of the fragile line between enlightenment and madness. Out 23 October 2026 on Darkblue Records. Plus every single, and where to listen." />
+  <meta property="og:title" content="MUSIC — ORDER OF THE CROW" />
+  <meta property="og:description" content="DEAD MAN — a sonic exploration of the fragile line between enlightenment and madness. Out 23 October 2026." />
+  <meta property="og:image" content="assets/dead-man-album-art.jpg" />
+  <meta property="og:type" content="music.album" />
+
+  <!-- Tab icon: the Order's four-point mark, luminous blue on near-black -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Cpath d='M16 4 L18.6 13.4 L28 16 L18.6 18.6 L16 28 L13.4 18.6 L4 16 L13.4 13.4 Z' fill='%234f8bff'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Rajdhani = wide techy HUD display / Share Tech Mono = terminal labels / Inter = body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV =====================
+       Same bar on every page — no hamburger at ANY width.
+       On inner pages the ✦ logo goes home instead of to #hero, and the
+       current page carries .is-current so the glow marks where you are.
+  ================================================== -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo" aria-label="Order of the Crow — home">✦</a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html#video">Video</a>
+      <a href="music.html" class="is-current" aria-current="page">Music</a>
+      <a href="index.html#merch">Merch</a>
+      <a href="index.html#community">Inner Circle</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <a href="#signup" class="nav__join">◈ JOIN</a>
+  </header>
+
+  <!-- ===================== PAGE HEAD ===================== -->
+  <section class="pagehead">
+    <div class="pagehead__bg" aria-hidden="true"></div>
+    <div class="pagehead__veil" aria-hidden="true"></div>
+    <div class="hero__stars" aria-hidden="true"></div>
+    <div class="hero__scanlines" aria-hidden="true"></div>
+
+    <div class="pagehead__content">
+      <p class="dossier"><span class="dossier__dot"></span> ARCHIVE / THE RECORDINGS</p>
+      <h1 class="pagehead__title glitch" data-text="THE MUSIC">THE MUSIC</h1>
+      <p class="pagehead__sub mono">ONE ALBUM · FIVE SINGLES · ONE PORTAL</p>
+    </div>
+  </section>
+
+  <!-- ===================== THE ALBUM ===================== -->
+  <section class="section section--fade" id="album">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / THE ALBUM</p>
+
+      <div class="split scale-in">
+        <div class="split__media">
+          <img src="assets/dead-man-album-art.jpg" alt="Dead Man — the debut album by Order of the Crow. Two crows, one white and one black, flank a black hole ringed by the body of a guitar." />
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </div>
+        <div class="split__text">
+          <p class="mono accent">DEBUT ALBUM — OUT 23 OCTOBER 2026</p>
+          <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
+          <p class="lead">A sonic exploration of the fragile line between enlightenment and madness.</p>
+          <p class="lead">A sprawling, deeply atmospheric journey through the human psyche — refusing to be boxed into a single genre, shifting between the visceral heavy energy of grunge rock and the haunting, stripped-down intimacy of mysterious acoustic arrangements.</p>
+          <div class="pills">
+            <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="pill pill--solid" target="_blank" rel="noopener">PRE-ORDER</a>
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" class="pill" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" class="pill" target="_blank" rel="noopener">APPLE MUSIC</a>
+          </div>
+
+          <!-- Countdown to the DEAD MAN release — 23 Oct 2026.
+               CHANGING THE DATE: edit data-release here AND on index.html,
+               plus the visible dates in the copy on both pages. -->
+          <div class="countdown mono" id="countdown" data-release="2026-10-23T00:00:00Z" aria-label="Time until Dead Man releases">
+            <div class="countdown__unit"><span class="countdown__num" data-cd="days">--</span><span class="countdown__label">DAYS</span></div>
+            <div class="countdown__unit"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__label">HRS</span></div>
+            <div class="countdown__unit"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__label">MIN</span></div>
+            <div class="countdown__unit"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__label">SEC</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE CONCEPT =====================
+       Copy on this page is the artist's own, from the DEAD MAN
+       Bandcamp release notes. Keep his wording if you edit it.
+  ================================================== -->
+  <section class="section section--deep section--center" id="concept">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / THE CONCEPT</p>
+
+      <p class="pullquote scale-in">A record built on raw contrast</p>
+
+      <div class="prose scale-in">
+        <p>At its core, <em>Dead Man</em> is a reflection on the duality of the human condition. As people, we are constantly walking a razor-thin path between the light and the dark.</p>
+        <p>The tracks delve into the chaotic, often disorienting process of a soul awakening — a transformative journey where finding your true self sometimes means losing your mind along the way.</p>
+        <p>It is a record designed to mirror the turbulent experience of spiritual and emotional evolution.</p>
+      </div>
+
+      <ul class="themes scale-in">
+        <li><span>DUALITY</span></li>
+        <li><span>SOUL AWAKENING</span></li>
+        <li><span>THE VOID</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== THE SYMBOLISM ===================== -->
+  <section class="section section--rise section--center" id="symbolism">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 03 / THE SYMBOLISM</p>
+      <h2 class="section__title glitch scale-in" data-text="READ THE COVER">READ THE COVER</h2>
+
+      <div class="prose scale-in">
+        <p>The struggle is encapsulated in the album's visual identity. Two crows — one stark white, the other pitch black — stand watch on either side of a massive black hole. These sentinels represent the opposing forces of our nature, while the black hole itself serves as the ultimate portal between light and darkness.</p>
+        <p><strong>It is the inescapable void we all must cross to find balance.</strong></p>
+      </div>
+
+      <div class="duality scale-in">
+        <div class="duality__cell duality__cell--light">
+          <span class="duality__mark" aria-hidden="true">◐</span>
+          <h3 class="duality__name">The White Sentinel</h3>
+          <p class="duality__desc">The light half of our nature. Keeping watch on one side of the crossing.</p>
+        </div>
+        <div class="duality__cell duality__cell--void">
+          <span class="duality__mark" aria-hidden="true">◉</span>
+          <h3 class="duality__name">The Void</h3>
+          <p class="duality__desc">The portal between light and darkness — the crossing itself, and the one thing nobody gets to walk around.</p>
+        </div>
+        <div class="duality__cell duality__cell--dark">
+          <span class="duality__mark" aria-hidden="true">◑</span>
+          <h3 class="duality__name">The Black Sentinel</h3>
+          <p class="duality__desc">The dark half. The opposing force, standing exactly as close.</p>
+        </div>
+      </div>
+
+      <div class="cta-row scale-in">
+        <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="btn btn--primary" target="_blank" rel="noopener">STEP INTO THE PORTAL →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRACKLIST + CREDITS ===================== -->
+  <section class="section section--black" id="tracklist">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 04 / THE FILE</p>
+
+      <!-- PLACEHOLDER: the tracklist is not public yet. When the client
+           releases it, swap this panel for a real ordered list. -->
+      <div class="sealed scale-in">
+        <span class="sealed__glyph" aria-hidden="true">✦</span>
+        <h2 class="sealed__title">Tracklist Sealed</h2>
+        <p class="mono" style="font-size:.72rem; letter-spacing:.2em; color:var(--muted)">// UNSEALS ON RELEASE — 23.10.2026</p>
+        <div class="sealed__rows" aria-hidden="true">
+          <div class="sealed__row"><span class="sealed__n">01</span><span class="sealed__bar"></span></div>
+          <div class="sealed__row"><span class="sealed__n">02</span><span class="sealed__bar"></span></div>
+          <div class="sealed__row"><span class="sealed__n">03</span><span class="sealed__bar"></span></div>
+          <div class="sealed__row"><span class="sealed__n">04</span><span class="sealed__bar"></span></div>
+          <div class="sealed__row"><span class="sealed__n">05</span><span class="sealed__bar"></span></div>
+        </div>
+        <p class="sealed__note">THE INNER CIRCLE HEARS IT FIRST — <a href="#signup" style="color:var(--glow)">GET THE KEY →</a></p>
+      </div>
+
+      <div class="prose scale-in" style="margin-top:3.5rem; text-align:center">
+        <p class="mono accent" style="font-size:.7rem; letter-spacing:.28em; margin-bottom:1.2rem">CREDITS</p>
+        <p class="credits mono" style="margin-top:0">
+          WRITTEN &amp; PERFORMED BY ORDER OF THE CROW<br />
+          LEAD VOCALS — CHRIS KREUTZ<br />
+          GUITARS — CHRIS KREUTZ · JULIO SOTO · JAKUB ŠTEFKOVIČ<br />
+          PRODUCTION — CHRIS KREUTZ, JULIO SOTO &amp; JAKUB ŠTEFKOVIČ (DARKBLUE RECORDS)<br />
+          MIX — JULIO SOTO (DARKBLUE RECORDS)<br />
+          MASTER — JAKUB ŠTEFKOVIČ (DARKBLUE RECORDS)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE SINGLES ===================== -->
+  <section class="section section--fade" id="singles">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 05 / THE SINGLES</p>
+      <h2 class="section__title glitch scale-in" data-text="WHAT CAME BEFORE">WHAT CAME BEFORE</h2>
+      <p class="lead lead--center scale-in">Five singles laid the road to <em>Dead Man</em>. Every one of them is still out there.</p>
+
+      <!-- ---------- Live Spotify player ---------- -->
+      <div class="player scale-in" style="margin-top:2.4rem">
+        <p class="dossier dossier--mini"><span class="dossier__dot"></span> LIVE FEED — PRESS PLAY</p>
+        <iframe
+          class="player__frame"
+          src="https://open.spotify.com/embed/artist/657ETkYc49BzLTSOCnd9Es?utm_source=generator"
+          title="Order of the Crow on Spotify"
+          width="100%" height="80" frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+
+      <div class="disco" style="margin-top:clamp(3rem,7vw,4.5rem)">
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/start-a-fever" target="_blank" rel="noopener">
+            <img src="assets/releases/start-a-fever.jpg" alt="Start a Fever — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h3 class="release__title">START A FEVER</h3>
+          <p class="release__meta mono">SINGLE · 2025</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/start-a-fever-single/1849142381" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/scarecrows" target="_blank" rel="noopener">
+            <img src="assets/releases/scarecrows.jpg" alt="Scarecrows — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h3 class="release__title">SCARECROWS</h3>
+          <p class="release__meta mono">SINGLE · 2025</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/scarecrows-single/1812987449" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/crystal-mirrors" target="_blank" rel="noopener">
+            <img src="assets/releases/crystal-mirrors.jpg" alt="Crystal Mirrors — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h3 class="release__title">CRYSTAL MIRRORS</h3>
+          <p class="release__meta mono">SINGLE · 2025</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/crystal-mirrors-single/1799644056" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release release--feature scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/dead-man" target="_blank" rel="noopener">
+            <img src="assets/releases/dead-man.jpg" alt="Dead Man (single) — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h3 class="release__title">DEAD MAN</h3>
+          <p class="release__meta mono">SINGLE · 2025 · MOST PLAYED</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/dead-man-single/1792117364" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <article class="release scale-in">
+          <a class="release__art" href="https://orderofthecrow.bandcamp.com/track/my-love-is-lightning" target="_blank" rel="noopener">
+            <img src="assets/releases/my-love-is-lightning.jpg" alt="My Love Is Lightning — Order of the Crow" loading="lazy" />
+            <span class="release__play" aria-hidden="true">▶</span>
+          </a>
+          <h3 class="release__title">MY LOVE IS LIGHTNING</h3>
+          <p class="release__meta mono">SINGLE · 2024</p>
+          <div class="release__links mono">
+            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+            <a href="https://music.apple.com/us/album/my-love-is-lightning-single/1781254125" target="_blank" rel="noopener">APPLE</a>
+          </div>
+        </article>
+
+        <!-- "The Fall" (2024) removed at client request 2026-08-03.
+             Art still lives at assets/releases/the-fall.jpg if it ever comes back. -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHERE TO LISTEN ===================== -->
+  <section class="section section--deep section--center" id="listen">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 06 / EVERYWHERE ELSE</p>
+      <h2 class="section__title glitch scale-in" data-text="OPEN A CHANNEL">OPEN A CHANNEL</h2>
+
+      <div class="listen scale-in">
+        <a class="listen__card" href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">
+          <span class="listen__name">Spotify</span>
+          <span class="listen__sub mono">STREAM</span>
+        </a>
+        <a class="listen__card" href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">
+          <span class="listen__name">Apple Music</span>
+          <span class="listen__sub mono">STREAM</span>
+        </a>
+        <a class="listen__card" href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">
+          <span class="listen__name">Bandcamp</span>
+          <span class="listen__sub mono">BUY · PRE-ORDER</span>
+        </a>
+        <a class="listen__card" href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">
+          <span class="listen__name">YouTube</span>
+          <span class="listen__sub mono">WATCH</span>
+        </a>
+        <a class="listen__card" href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">
+          <span class="listen__name">All Links</span>
+          <span class="listen__sub mono">LINKTREE</span>
+        </a>
+      </div>
+
+      <!-- PLACEHOLDER: physical CDs. Per TuneCore, the only linkable CD
+           destination will be an Amazon On Demand product page once the
+           album is live. Bandcamp carries the pre-order until then. -->
+      <p class="placeholder-note mono scale-in">// physical CD link to be added once the album is live</p>
+    </div>
+  </section>
+
+  <!-- ===================== EMAIL SIGNUP ===================== -->
+  <section class="section signup" id="signup">
+    <div class="section__inner signup__inner scale-in">
+      <p class="dossier"><span class="dossier__dot"></span> 07 / DECRYPT THE ALBUM</p>
+      <h2 class="section__title glitch" data-text="HEAR IT FIRST">HEAR IT FIRST</h2>
+      <p class="lead lead--center">Join the list before 23 October. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
+      <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
+      <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+        <input type="text" name="name" placeholder="NAME" aria-label="Name" />
+        <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
+        <select name="country" aria-label="Country">
+          <option value="">COUNTRY</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn btn--primary">TRANSMIT →</button>
+      </form>
+      <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
+      <nav class="footer__social mono">
+        <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">INSTAGRAM</a>
+        <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">YOUTUBE</a>
+        <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+        <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">APPLE MUSIC</a>
+        <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">BANDCAMP</a>
+        <a href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">LINKTREE</a>
+        <!-- NEEDS URL: client gave the Facebook page as a name only — "Chris Kreutz (Order of the Crow)" -->
+        <a href="#" data-placeholder="facebook" title="Facebook URL still needed">FACEBOOK</a>
+      </nav>
+      <p class="footer__contact mono">
+        <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
+      </p>
+      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
