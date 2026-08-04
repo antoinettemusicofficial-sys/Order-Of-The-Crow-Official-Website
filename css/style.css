@@ -481,10 +481,19 @@ h1.glitch, h2.glitch { display: block; }
   user-select: none; pointer-events: none;
 }
 .merch__veil {
-  position: absolute; inset: 0; z-index: 2;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem;
-  text-align: center; padding: 1rem;
+  position: absolute; inset: 0; z-index: 2; padding: 1rem;
   background: radial-gradient(ellipse at 50% 50%, rgba(4,6,13,.45), rgba(4,6,13,.8) 80%);
+}
+/* The message STICKS. A six-slot grid is taller than the screen, so a
+   plain centred veil leaves you scrolling past blurred product with the
+   "coming soon" message parked off-screen in the middle — it reads as a
+   broken store rather than a locked one. Sticky keeps it in view for the
+   whole length of the grid, and still centres when the grid is short. */
+.merch__veil-inner {
+  position: sticky; top: 4.5rem;
+  min-height: min(100%, 58vh);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem;
+  text-align: center;
 }
 .merch__veil-title {
   font-family: "Rajdhani", sans-serif; text-transform: uppercase;
