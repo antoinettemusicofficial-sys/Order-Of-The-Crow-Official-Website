@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MERCH — ORDER OF THE CROW</title>
+  <meta name="description" content="Order of the Crow merch — apparel and physical music. The first drop is being forged. Pre-order the debut album DEAD MAN now." />
+  <meta property="og:title" content="MERCH — ORDER OF THE CROW" />
+  <meta property="og:description" content="Wear the mark. The first Order of the Crow drop is coming — and DEAD MAN is available to pre-order now." />
+  <meta property="og:image" content="assets/dead-man-album-art.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Tab icon: plain luminous-blue disc on near-black (no star glyphs anywhere) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%234f8bff'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Rajdhani = wide techy HUD display / Share Tech Mono = terminal labels / Inter = body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV =====================
+       Same bar on every page — no hamburger at ANY width.
+       On inner pages the HOME link goes to index.html instead of #hero, and the
+       current page carries .is-current so the glow marks where you are.
+  ================================================== -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">HOME</a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html#video">Video</a>
+      <a href="music.html">Music</a>
+      <a href="merch.html" class="is-current" aria-current="page">Merch</a>
+      <a href="index.html#community" class="nav__cta">Inner Circle</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===================== PAGE HEAD ===================== -->
+  <section class="pagehead">
+    <div class="pagehead__bg" aria-hidden="true"></div>
+    <div class="pagehead__veil" aria-hidden="true"></div>
+    <div class="hero__stars" aria-hidden="true"></div>
+    <div class="hero__scanlines" aria-hidden="true"></div>
+
+    <div class="pagehead__content">
+      <p class="dossier"><span class="dossier__dot"></span> SUPPLY / THE MARK</p>
+      <h1 class="pagehead__title glitch" data-text="WEAR THE MARK">WEAR THE MARK</h1>
+      <p class="pagehead__sub mono">APPAREL · PHYSICAL MUSIC · FIRST ACCESS</p>
+    </div>
+  </section>
+
+  <!-- ===================== THE DROP =====================
+       PLACEHOLDER — the store is not live yet.
+
+       The client sells through SPRING (spri.ng). Spring publishes no
+       embeddable store widget and no public API, so this page can only ever
+       LINK OUT to the store — it cannot host a cart. The tidy version is a
+       Spring custom subdomain (e.g. shop.orderofthecrow.com) so the branding
+       stays continuous.
+
+       TO GO LIVE: delete the .merch--locked class and the .merch__veil block,
+       then replace each .slot with a real product card — photo, name, price,
+       and a link straight to that product on Spring.
+
+       The slots below carry NO prices and NO product names on purpose. They
+       are structural placeholders, not mock listings.
+  ================================================== -->
+  <section class="section section--fade" id="drop">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / THE DROP</p>
+
+      <div class="merch__wrap merch--locked scale-in">
+        <div class="merch__grid" aria-hidden="true">
+          <article class="slot">
+            <div class="slot__frame"><span class="slot__kind">TEE</span></div>
+            <p class="slot__name">Awaiting artwork</p>
+          </article>
+          <article class="slot">
+            <div class="slot__frame"><span class="slot__kind">HOODIE</span></div>
+            <p class="slot__name">Awaiting artwork</p>
+          </article>
+          <article class="slot">
+            <div class="slot__frame"><span class="slot__kind">HEADWEAR</span></div>
+            <p class="slot__name">Awaiting artwork</p>
+          </article>
+          <article class="slot">
+            <div class="slot__frame"><span class="slot__kind">LONG SLEEVE</span></div>
+            <p class="slot__name">Awaiting artwork</p>
+          </article>
+          <article class="slot">
+            <div class="slot__frame"><span class="slot__kind">PRINT</span></div>
+            <p class="slot__name">Awaiting artwork</p>
+          </article>
+          <article class="slot">
+            <div class="slot__frame"><span class="slot__kind">ACCESSORY</span></div>
+            <p class="slot__name">Awaiting artwork</p>
+          </article>
+        </div>
+
+        <div class="merch__veil">
+          <p class="merch__veil-title glitch glitch--sm" data-text="MERCH COMING SOON">MERCH COMING SOON</p>
+          <p class="merch__veil-sub mono">// THE MARK IS BEING FORGED</p>
+          <a href="#signup" class="btn btn--primary btn--small">GET FIRST ACCESS →</a>
+        </div>
+      </div>
+
+      <!-- NEEDS URL: the client's Spring store. Until it exists this link is
+           guarded by the placeholder handler in main.js. -->
+      <p class="placeholder-note mono scale-in">// store to be connected — Spring (spri.ng) · <a href="#" data-placeholder="spring-store" style="color:var(--glow)">store link pending</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== PHYSICAL MUSIC =====================
+       The one thing on this page that is genuinely buyable today.
+  ================================================== -->
+  <section class="section section--deep" id="physical">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / PHYSICAL MUSIC</p>
+
+      <div class="split scale-in">
+        <div class="split__media">
+          <img src="assets/dead-man-album-art.jpg" alt="Dead Man — the debut album by Order of the Crow" />
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </div>
+        <div class="split__text">
+          <p class="mono accent">OUT 23 OCTOBER 2026</p>
+          <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
+          <p class="lead">The debut album. Available to pre-order now on Bandcamp — the earliest way to own it, and the one that puts the most back into the next record.</p>
+          <div class="pills">
+            <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="pill pill--solid" target="_blank" rel="noopener">PRE-ORDER ON BANDCAMP</a>
+            <a href="music.html" class="pill">HEAR IT FIRST</a>
+          </div>
+          <!-- PLACEHOLDER: CDs. The client distributes through TuneCore, which
+               is digital-only — physical CDs are manufactured per order through
+               Amazon On Demand. That means the only linkable CD destination is
+               an Amazon product page, and it won't exist until the album is
+               live. Bandcamp carries the physical pre-order until then. -->
+          <p class="placeholder-note mono">// CD link to be added once the album is live — pressed to order via Amazon</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FIRST ACCESS ===================== -->
+  <section class="section signup" id="signup">
+    <div class="section__inner signup__inner scale-in">
+      <p class="dossier"><span class="dossier__dot"></span> 03 / FIRST ACCESS</p>
+      <h2 class="section__title glitch" data-text="BEFORE IT SELLS OUT">BEFORE IT SELLS OUT</h2>
+      <p class="lead lead--center">Drops are small and they go fast. Get on the list and you'll hear about the first one before anyone else — plus new tracks, behind-the-scenes chaos and exclusive content.</p>
+      <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
+      <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+        <input type="text" name="name" placeholder="NAME" aria-label="Name" />
+        <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
+        <select name="country" aria-label="Country">
+          <option value="">COUNTRY</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn btn--primary">TRANSMIT →</button>
+      </form>
+      <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
+      <nav class="footer__social mono">
+        <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">INSTAGRAM</a>
+        <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">YOUTUBE</a>
+        <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+        <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">APPLE MUSIC</a>
+        <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">BANDCAMP</a>
+        <a href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">LINKTREE</a>
+        <!-- NEEDS URL: client gave the Facebook page as a name only — "Chris Kreutz (Order of the Crow)" -->
+        <a href="#" data-placeholder="facebook" title="Facebook URL still needed">FACEBOOK</a>
+      </nav>
+      <p class="footer__contact mono">
+        <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
+      </p>
+      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

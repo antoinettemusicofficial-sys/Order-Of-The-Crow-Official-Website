@@ -504,6 +504,26 @@ h1.glitch, h2.glitch { display: block; }
 .card__name { font-size: 1.05rem; font-weight: 600; margin-bottom: .3rem; }
 .card__price { color: var(--glow); margin-bottom: 1rem; }
 
+/* ---------- Merch page: product-slot cards ----------
+   Deliberately NO prices and no invented product names — these are
+   structural slots waiting on real product, not mock listings. */
+.slot { text-align: center; }
+.slot__frame {
+  position: relative; aspect-ratio: 1; display: grid; place-items: center;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--blue), var(--black) 75%);
+  clip-path: polygon(0 0, 100% 0, 100% 92%, calc(100% - 18px) 100%, 0 100%);
+}
+.slot__kind {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-weight: 600; letter-spacing: .24em; font-size: .8rem; color: var(--muted);
+}
+.slot__name {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-weight: 600; letter-spacing: .14em; font-size: .85rem;
+  color: var(--muted); margin-top: .9rem;
+}
+
 /* ---------- Community ---------- */
 .community { max-width: 780px; margin: 0 auto; }
 .perks { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin: 0 auto 2.4rem; }
