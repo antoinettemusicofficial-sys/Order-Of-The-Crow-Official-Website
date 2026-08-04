@@ -10,6 +10,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
+  /* ---- Shared cipher resolve ----
+     Scrambles `plain` and resolves it left to right over `ms`. Driven off
+     the frame clock rather than a tick count, so it takes the same time on
+     every machine. `onFrame` gets each intermediate string; `onDone` fires
+     once the text has fully resolved. */
+  const CIPHER_NOISE = '█▓▒░#%&@*+=<>/\\|01';
+  const noiseChar = () => CIPHER_NOISE[Math.floor(Math.random() * CIPHER_NOISE.length)];
+  const scramble = (s) => s.replace(/\S/g, noiseChar);
+
+  const cipherResolve = (plain, ms, onFrame, onDone) => {
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - start) / ms);
+      const cut = Math.round(p * plain.length);
+      onFrame(plain.slice(0, cut) + scramble(plain.slice(cut)));
+
+      if (p < 1) { requestAnimationFrame(step); return; }
+      onFrame(plain);
+      if (onDone) onDone();
+    };
+    requestAnimationFrame(step);
+  };
+
   /* ---- Footer year ---- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -105,8 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (vault && vaultLock) {
     const PLAIN = 'ORDER OF THE CROW';
-    const NOISE = '█▓▒░#%&@*+=<>/\\|01';
-    const rand = () => NOISE[Math.floor(Math.random() * NOISE.length)];
 
     const mountVideo = () => {
       const stage = document.getElementById('vaultStage');
@@ -137,44 +158,80 @@ document.addEventListener('DOMContentLoaded', () => {
       vaultLock.disabled = true;
       if (action) action.textContent = 'DECRYPTING…';
 
-      // Resolve the cipher left to right. Driven off the frame clock rather
-      // than a tick count so the reveal takes the same ~1.4s on every machine.
-      const DURATION = 1400;
-      const start = performance.now();
-
-      const step = (now) => {
-        const done = Math.min(
-          PLAIN.length,
-          Math.round(((now - start) / DURATION) * PLAIN.length)
-        );
-        vaultCipher.textContent =
-          PLAIN.slice(0, done) + PLAIN.slice(done).replace(/\S/g, rand);
-
-        if (done < PLAIN.length) { requestAnimationFrame(step); return; }
-
-        vaultCipher.textContent = PLAIN;
-        if (action) action.textContent = 'DECRYPTED';
-        vault.classList.remove('is-decrypting');
-        vault.classList.add('is-open');
-        mountVideo();
-      };
-
-      requestAnimationFrame(step);
+      cipherResolve(PLAIN, 1400,
+        (txt) => { vaultCipher.textContent = txt; },
+        () => {
+          if (action) action.textContent = 'DECRYPTED';
+          vault.classList.remove('is-decrypting');
+          vault.classList.add('is-open');
+          mountVideo();
+        });
     };
 
     vaultLock.addEventListener('click', decrypt);
   }
 
+  /* ---- Encrypted panel (the DEAD MAN block on music.html) ----
+     The panel arrives locked: art blurred out, title showing as noise. It
+     resolves itself when it reaches the middle of the viewport — art
+     unblurs behind a scan sweep, the title decodes character by character,
+     the copy staggers in. The DECRYPT button above just triggers it early.
+
+     The markup ships the REAL title, so with JS off (or reduced motion on)
+     the panel simply renders normally and never locks. */
+  const panel = document.getElementById('albumPanel');
+  let revealPanel = () => {};
+
+  if (panel) {
+    const title = panel.querySelector('[data-cipher]');
+    const plainTitle = title ? title.textContent.trim() : '';
+
+    if (reduceMotion) {
+      panel.classList.remove('enc');
+    } else {
+      if (title) {
+        const noise = scramble(plainTitle);
+        title.textContent = noise;
+        title.dataset.text = noise;   // the glitch ghosts read from data-text
+      }
+
+      let spent = false;
+      revealPanel = () => {
+        if (spent) return;
+        spent = true;
+
+        panel.querySelectorAll('.enc__fade').forEach((el, i) => {
+          el.style.transitionDelay = `${220 + i * 90}ms`;
+        });
+        panel.classList.add('is-decrypting');
+        panel.classList.remove('enc');
+
+        if (title) {
+          cipherResolve(plainTitle, 1000, (txt) => {
+            title.textContent = txt;
+            title.dataset.text = txt;
+          });
+        }
+        setTimeout(() => panel.classList.remove('is-decrypting'), 1400);
+      };
+
+      // rootMargin rather than a threshold: the panel is taller than the
+      // viewport on phones, where a ratio threshold may never be reached.
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) { revealPanel(); io.disconnect(); }
+      }, { rootMargin: '-15% 0px -15% 0px' });
+      io.observe(panel);
+    }
+  }
+
   /* ---- Decrypt-and-scroll buttons ----
      Same cipher language as the video vault, but as a way IN to a section:
      the label scrambles for a beat, resolves, then the page glides down to
-     the target. The element is a real anchor, so with JS off (or with
-     reduced motion on) the browser just jumps there normally. */
+     the target and sets it decrypting. A real anchor underneath, so with JS
+     off (or reduced motion on) the browser just jumps there normally. */
   document.querySelectorAll('[data-decrypt-to]').forEach((btn) => {
     const label = btn.querySelector('.decrypt__label') || btn;
     const PLAIN = label.textContent;
-    const NOISE = '█▓▒░#%&@*+=<>/\\|01';
-    const rand = () => NOISE[Math.floor(Math.random() * NOISE.length)];
 
     btn.addEventListener('click', (e) => {
       const target = document.querySelector(btn.dataset.decryptTo);
@@ -182,22 +239,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       btn.dataset.busy = '1';
 
-      const DURATION = 700;
-      const start = performance.now();
-
-      const step = (now) => {
-        const p = Math.min(1, (now - start) / DURATION);
-        const done = Math.round(p * PLAIN.length);
-        label.textContent = PLAIN.slice(0, done) + PLAIN.slice(done).replace(/\S/g, rand);
-
-        if (p < 1) { requestAnimationFrame(step); return; }
-
-        label.textContent = PLAIN;
-        delete btn.dataset.busy;
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      };
-
-      requestAnimationFrame(step);
+      cipherResolve(PLAIN, 700,
+        (txt) => { label.textContent = txt; },
+        () => {
+          delete btn.dataset.busy;
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Let the scroll get underway before the panel starts resolving,
+          // so the reveal happens in front of you rather than off-screen.
+          setTimeout(revealPanel, 450);
+        });
     });
   });
 

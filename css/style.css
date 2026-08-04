@@ -128,18 +128,21 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 .nav__links a:hover { color: var(--glow); }
 .nav__links a:hover::after { transform: scaleX(1); }
 
-.nav__join {
-  flex: none;
-  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
-  font-weight: 700; font-size: clamp(.68rem, 1.15vw, .82rem); letter-spacing: .18em;
+/* The one highlighted destination in the bar. This replaced a separate JOIN
+   button that used to sit on the right — both pointed at the same funnel,
+   so the bar carries a single filled CTA sitting in the link row instead. */
+.nav__links a.nav__cta {
   color: var(--black); background: var(--glow);
-  padding: .5rem clamp(.7rem, 1.6vw, 1.3rem);
-  white-space: nowrap;
+  font-weight: 700;
+  padding: .5rem clamp(.75rem, 1.6vw, 1.25rem);
   clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - 10px) 100%, 0 100%);
   box-shadow: 0 0 22px -8px var(--glow);
   transition: transform .3s var(--ease), box-shadow .3s var(--ease);
 }
-.nav__join:hover { transform: translateY(-2px); box-shadow: 0 0 34px -6px var(--glow); }
+.nav__links a.nav__cta::after { display: none; }   /* no underline sweep on the filled pill */
+.nav__links a.nav__cta:hover {
+  color: var(--black); transform: translateY(-2px); box-shadow: 0 0 34px -6px var(--glow);
+}
 
 /* ---------- Hero ---------- */
 .hero {
@@ -585,6 +588,34 @@ h1.glitch, h2.glitch { display: block; }
 .section--center { text-align: center; }
 .section--center .dossier { margin-left: auto; margin-right: auto; }
 
+/* ---------- Encrypted panel ----------
+   A section that arrives locked and resolves itself (see main.js). The
+   .enc class is the LOCKED state and JS removes it; anything without JS
+   never gets the class removed... so the base rules are the UNLOCKED look
+   and .enc is what obscures them. Fail-open by design. */
+.enc__img { transition: filter 1.2s var(--ease), transform 1.2s var(--ease); }
+.enc .enc__img { filter: blur(18px) grayscale(.7) brightness(.3) contrast(1.2); transform: scale(1.07); }
+
+.enc__fade { transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.enc .enc__fade { opacity: 0; transform: translateY(14px); }
+
+/* the scan bar that sweeps the artwork while it resolves */
+.enc__scan {
+  position: absolute; left: 0; right: 0; top: 0; height: 2px; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--glow), transparent);
+  box-shadow: 0 0 22px var(--glow);
+  pointer-events: none; z-index: 2;
+}
+.is-decrypting .enc__scan { animation: encScan 1.2s var(--ease); }
+@keyframes encScan {
+  0%   { top: 0;    opacity: 0; }
+  12%  {            opacity: 1; }
+  88%  {            opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+/* the frame corners pulse while the panel is working */
+.is-decrypting .frame-corner { animation: blink .18s steps(1) infinite; }
+
 /* ---------- Pull quote (the album's opening line, in the artist's words) ---------- */
 .pullquote {
   position: relative; max-width: 30ch; margin: 0 auto;
@@ -714,8 +745,7 @@ h1.glitch, h2.glitch { display: block; }
 @media (max-width: 560px) {
   .nav { flex-wrap: wrap; row-gap: .5rem; padding-bottom: .5rem; }
   .nav__logo { order: 1; }
-  .nav__join { order: 2; margin-left: auto; }
-  .nav__links { order: 3; flex-basis: 100%; }
+  .nav__links { order: 2; flex-basis: 100%; }
   .hero__hint { top: 7.4rem; }
   .disco { grid-template-columns: 1fr; }
   .disco > .release,

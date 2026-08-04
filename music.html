@@ -34,12 +34,10 @@
       <a href="index.html#video">Video</a>
       <a href="music.html" class="is-current" aria-current="page">Music</a>
       <a href="index.html#merch">Merch</a>
-      <a href="index.html#community">Inner Circle</a>
+      <a href="index.html#community" class="nav__cta">Inner Circle</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
     </nav>
-
-    <a href="#signup" class="nav__join">◈ JOIN</a>
   </header>
 
   <!-- ===================== PAGE HEAD ===================== -->
@@ -67,18 +65,22 @@
     <div class="section__inner">
       <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / THE ALBUM</p>
 
-      <div class="split scale-in">
+      <!-- Locked until it resolves — see the "Encrypted panel" block in main.js.
+           .enc is the LOCKED state and JS strips it, so with JS off this just
+           renders as a normal panel. The real title ships in the markup. -->
+      <div class="split scale-in enc" id="albumPanel">
         <div class="split__media">
-          <img src="assets/dead-man-album-art.jpg" alt="Dead Man — the debut album by Order of the Crow. Two crows, one white and one black, flank a black hole ringed by the body of a guitar." />
+          <img class="enc__img" src="assets/dead-man-album-art.jpg" alt="Dead Man — the debut album by Order of the Crow. Two crows, one white and one black, flank a black hole ringed by the body of a guitar." />
+          <span class="enc__scan" aria-hidden="true"></span>
           <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
           <span class="frame-corner bl"></span><span class="frame-corner br"></span>
         </div>
         <div class="split__text">
-          <p class="mono accent">DEBUT ALBUM — OUT 23 OCTOBER 2026</p>
-          <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
-          <p class="lead">A sonic exploration of the fragile line between enlightenment and madness.</p>
-          <p class="lead">A sprawling, deeply atmospheric journey through the human psyche — refusing to be boxed into a single genre, shifting between the visceral heavy energy of grunge rock and the haunting, stripped-down intimacy of mysterious acoustic arrangements.</p>
-          <div class="pills">
+          <p class="mono accent enc__fade">DEBUT ALBUM — OUT 23 OCTOBER 2026</p>
+          <h2 class="glitch glitch--sm" data-text="DEAD MAN" data-cipher>DEAD MAN</h2>
+          <p class="lead enc__fade">A sonic exploration of the fragile line between enlightenment and madness.</p>
+          <p class="lead enc__fade">A sprawling, deeply atmospheric journey through the human psyche — refusing to be boxed into a single genre, shifting between the visceral heavy energy of grunge rock and the haunting, stripped-down intimacy of mysterious acoustic arrangements.</p>
+          <div class="pills enc__fade">
             <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="pill pill--solid" target="_blank" rel="noopener">PRE-ORDER</a>
             <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" class="pill" target="_blank" rel="noopener">SPOTIFY</a>
             <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" class="pill" target="_blank" rel="noopener">APPLE MUSIC</a>
@@ -87,7 +89,7 @@
           <!-- Countdown to the DEAD MAN release — 23 Oct 2026.
                CHANGING THE DATE: edit data-release here AND on index.html,
                plus the visible dates in the copy on both pages. -->
-          <div class="countdown mono" id="countdown" data-release="2026-10-23T00:00:00Z" aria-label="Time until Dead Man releases">
+          <div class="countdown mono enc__fade" id="countdown" data-release="2026-10-23T00:00:00Z" aria-label="Time until Dead Man releases">
             <div class="countdown__unit"><span class="countdown__num" data-cd="days">--</span><span class="countdown__label">DAYS</span></div>
             <div class="countdown__unit"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__label">HRS</span></div>
             <div class="countdown__unit"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__label">MIN</span></div>
