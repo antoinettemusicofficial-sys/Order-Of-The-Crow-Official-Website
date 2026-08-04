@@ -573,6 +573,13 @@ h1.glitch, h2.glitch { display: block; }
 /* current page marker in the nav */
 .nav__links a.is-current { color: var(--glow); }
 .nav__links a.is-current::after { transform: scaleX(1); }
+/* ...but the filled CTA already has a glow BACKGROUND, so the glow text
+   colour above renders it invisible. Put the dark text back, and mark the
+   current state with a ring instead. (Same trap as .btn--primary.btn--small.) */
+.nav__links a.nav__cta.is-current {
+  color: var(--black);
+  box-shadow: 0 0 0 1px var(--black), 0 0 0 3px var(--glow), 0 0 26px -6px var(--glow);
+}
 
 /* ---------- Page head (compact hero for inner pages) ---------- */
 .pagehead {
@@ -684,6 +691,95 @@ h1.glitch, h2.glitch { display: block; }
 }
 .duality__desc { font-size: .82rem; color: var(--muted); line-height: 1.7; }
 
+/* =========================================================
+   THE GATE (community.html)
+   A classified-file lock over the whole page. The page arrives blurred,
+   the gate demands access, and clicking it runs a decryption sequence
+   before the content resolves.
+
+   FAIL-OPEN: the gate is display:none and the content is unblurred until
+   JS adds .is-gated to <body>. No JS, no lock.
+   ========================================================= */
+.gate { display: none; }
+body.is-gated { overflow: hidden; }
+body.is-gated .gate {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center; padding: 1.5rem;
+  background: radial-gradient(ellipse at 50% 45%, rgba(15,27,64,.55), rgba(4,6,13,.95) 70%);
+  transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease);
+}
+body.is-gated .gate.is-open { opacity: 0; transform: scale(1.18); filter: blur(16px); pointer-events: none; }
+
+/* the page underneath. NOTE: the nav deliberately sits OUTSIDE this element —
+   a CSS filter creates a containing block for fixed children, which would
+   break the fixed nav. The gate covers the nav anyway. */
+.gated-content { transition: filter 1s var(--ease), transform 1s var(--ease); }
+body.is-gated .gated-content {
+  filter: blur(20px) saturate(.6) brightness(.45);
+  transform: scale(1.03);
+  pointer-events: none; user-select: none;
+}
+
+.gate__panel {
+  position: relative; width: min(580px, 100%); overflow: hidden;
+  padding: clamp(2.2rem, 6vw, 3.4rem) clamp(1.4rem, 5vw, 2.8rem);
+  text-align: center;
+  border: 1px solid rgba(79,139,255,.45);
+  background: linear-gradient(160deg, rgba(15,27,64,.6), rgba(4,6,13,.94));
+  clip-path: polygon(0 0, 100% 0, 100% 92%, calc(100% - 30px) 100%, 0 100%);
+  box-shadow: 0 50px 130px -60px var(--glow);
+}
+.gate__tag { font-size: .68rem; letter-spacing: .34em; color: var(--muted); margin-bottom: 1.2rem; }
+.gate__title {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase; font-weight: 700;
+  font-size: clamp(2rem, 8vw, 3.6rem); letter-spacing: .12em; line-height: 1;
+}
+.gate__cipher {
+  display: block; margin-top: 1rem; min-height: 1.5em;
+  font-size: clamp(.8rem, 2.6vw, 1.05rem); letter-spacing: .26em; color: var(--glow); opacity: .9;
+}
+.gate__btn { margin-top: 1.8rem; }
+
+/* terminal readout — reserves its height up front so the panel doesn't jump */
+.gate__log {
+  margin-top: 1.6rem; text-align: left; min-height: 7.2em;
+  font-family: "Share Tech Mono", monospace; font-size: .7rem; letter-spacing: .06em;
+}
+.gate__line { display: flex; gap: .5rem; color: var(--muted); line-height: 1.8; opacity: 0; animation: logIn .3s var(--ease) forwards; }
+.gate__line .ok { margin-left: auto; color: var(--glow); }
+.gate__line--grant { color: var(--glow); letter-spacing: .2em; }
+@keyframes logIn { from { opacity: 0; transform: translateX(-6px) } to { opacity: 1; transform: none } }
+
+.gate__bar { height: 3px; margin-top: 1.2rem; background: rgba(79,139,255,.16); overflow: hidden; }
+.gate__bar span { display: block; height: 100%; width: 0; background: var(--glow); box-shadow: 0 0 16px var(--glow); }
+.gate.is-working .gate__bar span { width: 100%; transition: width 2.2s linear; }
+.gate.is-working .gate__panel { animation: gateShake .19s steps(2) infinite; }
+@keyframes gateShake { 0%{transform:translate(0,0)} 50%{transform:translate(-1.5px,1px)} 100%{transform:translate(1.5px,-1px)} }
+
+/* ---------- Inner Circle perks ---------- */
+/* 5 perks in a 3-wide grid: centre the orphan row rather than letting the
+   last card hang off to the left. Same 6-column trick as .disco. */
+.perks-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: clamp(1rem, 3vw, 1.6rem); margin-top: 2.8rem; text-align: left;
+}
+.perks-grid > .perk { grid-column: span 2; }
+.perks-grid > .perk:nth-last-child(2):nth-child(4) { grid-column: 2 / span 2; }
+.perks-grid > .perk:last-child:nth-child(5)        { grid-column: 4 / span 2; }
+.perk {
+  padding: 1.7rem 1.4rem;
+  border: 1px solid var(--line); background: rgba(15,27,64,.22);
+  clip-path: polygon(0 0, 100% 0, 100% 89%, calc(100% - 18px) 100%, 0 100%);
+  transition: border-color .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease);
+}
+.perk:hover { border-color: var(--glow); box-shadow: 0 24px 55px -30px var(--glow); transform: translateY(-4px); }
+.perk__n { font-size: .64rem; letter-spacing: .28em; color: var(--glow); }
+.perk__name {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-weight: 600; letter-spacing: .14em; font-size: 1rem; margin: .6rem 0 .5rem;
+}
+.perk__desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+
 /* ---------- Big statement line ---------- */
 .statement {
   font-family: "Rajdhani", sans-serif; text-transform: uppercase; font-weight: 700;
@@ -777,6 +873,10 @@ h1.glitch, h2.glitch { display: block; }
   .disco > .release { grid-column: span 2; }
   .disco > .release:nth-last-child(2):nth-child(4) { grid-column: auto / span 2; }
   .disco > .release:last-child:nth-child(5) { grid-column: 2 / span 2; }
+  /* perks follow the same 2-across-then-centre pattern */
+  .perks-grid { grid-template-columns: repeat(4, 1fr); }
+  .perks-grid > .perk:nth-last-child(2):nth-child(4) { grid-column: auto / span 2; }
+  .perks-grid > .perk:last-child:nth-child(5) { grid-column: 2 / span 2; }
   .contact__grid { grid-template-columns: 1fr; }
   .duality { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
   .crew { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
@@ -796,10 +896,13 @@ h1.glitch, h2.glitch { display: block; }
   .nav__logo { order: 1; }
   .nav__links { order: 2; flex-basis: 100%; }
   .hero__hint { top: 7.4rem; }
-  .disco { grid-template-columns: 1fr; }
+  .disco, .perks-grid { grid-template-columns: 1fr; }
   .disco > .release,
   .disco > .release:nth-last-child(2):nth-child(4),
-  .disco > .release:last-child:nth-child(5) { grid-column: auto; }
+  .disco > .release:last-child:nth-child(5),
+  .perks-grid > .perk,
+  .perks-grid > .perk:nth-last-child(2):nth-child(4),
+  .perks-grid > .perk:last-child:nth-child(5) { grid-column: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

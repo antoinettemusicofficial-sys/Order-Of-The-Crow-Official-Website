@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE INNER CIRCLE — ORDER OF THE CROW</title>
+  <meta name="description" content="The Inner Circle — a private world for the devoted. Unreleased transmissions, uncut video, first access to drops, and members-only lore. Take the mark." />
+  <meta property="og:title" content="THE INNER CIRCLE — ORDER OF THE CROW" />
+  <meta property="og:description" content="A private world for the devoted. You are not alone." />
+  <meta property="og:image" content="assets/dead-man-album-art.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Tab icon: plain luminous-blue disc on near-black (no star glyphs anywhere) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%234f8bff'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Rajdhani = wide techy HUD display / Share Tech Mono = terminal labels / Inter = body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== THE GATE =====================
+       Shown only once main.js adds .is-gated to <body>, so the page still
+       reads normally with JS off. The nav sits OUTSIDE .gated-content on
+       purpose — a CSS filter would break its fixed positioning — and the
+       gate covers it anyway.
+
+       TO REMOVE THE GATE ENTIRELY: delete this <section> and the
+       .gated-content wrapper. Nothing else depends on it.
+  ================================================== -->
+  <section class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <div class="gate__panel">
+      <span class="hero__scanlines" aria-hidden="true"></span>
+      <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+      <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+
+      <p class="gate__tag mono">// RESTRICTED FILE — LEVEL 03</p>
+      <h1 class="gate__title glitch" id="gateTitle" data-text="CLASSIFIED">CLASSIFIED</h1>
+      <span class="gate__cipher mono" id="gateCipher" aria-hidden="true">████ █████ ██████</span>
+
+      <button type="button" class="btn btn--primary gate__btn" id="gateBtn">CLICK FOR ACCESS</button>
+
+      <div class="gate__bar" aria-hidden="true"><span></span></div>
+      <div class="gate__log" id="gateLog" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">HOME</a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html#video">Video</a>
+      <a href="music.html">Music</a>
+      <a href="merch.html">Merch</a>
+      <a href="community.html" class="nav__cta is-current" aria-current="page">Inner Circle</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="gated-content" id="gatedContent">
+
+    <!-- ===================== PAGE HEAD ===================== -->
+    <section class="pagehead">
+      <div class="pagehead__bg" aria-hidden="true"></div>
+      <div class="pagehead__veil" aria-hidden="true"></div>
+      <div class="hero__stars" aria-hidden="true"></div>
+      <div class="hero__scanlines" aria-hidden="true"></div>
+
+      <div class="pagehead__content">
+        <p class="dossier"><span class="dossier__dot"></span> LEVEL 03 / ACCESS GRANTED</p>
+        <h1 class="pagehead__title glitch" data-text="THE INNER CIRCLE">THE INNER CIRCLE</h1>
+        <p class="pagehead__sub mono">YOU ARE NOT ALONE</p>
+      </div>
+    </section>
+
+    <!-- ===================== WHAT'S INSIDE ===================== -->
+    <section class="section section--fade section--center" id="inside">
+      <div class="section__inner">
+        <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / WHAT'S INSIDE</p>
+        <h2 class="section__title glitch scale-in" data-text="BEHIND THE VEIL">BEHIND THE VEIL</h2>
+        <p class="lead lead--center scale-in">A private world for the devoted — the people who went looking for what's underneath the records, and found each other on the way.</p>
+
+        <!-- PLACEHOLDER: these perks are the ones already agreed for the
+             homepage plus the artist's own YouTube wording ("new tracks,
+             behind-the-scenes chaos, exclusive content"). They still need
+             his sign-off before any of it is promised publicly. -->
+        <div class="perks-grid scale-in">
+          <article class="perk">
+            <p class="perk__n mono">01</p>
+            <h3 class="perk__name">Unreleased Transmissions</h3>
+            <p class="perk__desc">Demos, alternate takes and tracks that never make it out to streaming.</p>
+          </article>
+          <article class="perk">
+            <p class="perk__n mono">02</p>
+            <h3 class="perk__name">The Full Tapes</h3>
+            <p class="perk__desc">Uncut video and behind-the-scenes chaos from inside the process.</p>
+          </article>
+          <article class="perk">
+            <p class="perk__n mono">03</p>
+            <h3 class="perk__name">First Access</h3>
+            <p class="perk__desc">Merch drops and physical pressings before they go public. Small runs, first refusal.</p>
+          </article>
+          <article class="perk">
+            <p class="perk__n mono">04</p>
+            <h3 class="perk__name">Members-Only Lore</h3>
+            <p class="perk__desc">The meaning under the records — the clues, spelled out for the ones who went looking.</p>
+          </article>
+          <article class="perk">
+            <p class="perk__n mono">05</p>
+            <h3 class="perk__name">Early Listens</h3>
+            <p class="perk__desc">New music before release day, while it still belongs to the room.</p>
+          </article>
+        </div>
+
+        <p class="placeholder-note mono scale-in">// perks to be confirmed with the artist before launch</p>
+      </div>
+    </section>
+
+    <!-- ===================== TAKE THE MARK (signup) ===================== -->
+    <section class="section signup" id="signup">
+      <div class="section__inner signup__inner scale-in">
+        <p class="dossier"><span class="dossier__dot"></span> 02 / TAKE THE MARK</p>
+        <h2 class="section__title glitch" data-text="TAKE THE MARK">TAKE THE MARK</h2>
+        <p class="lead lead--center">The doors aren't open yet. Put your name down and you'll be among the first through them — plus new tracks, behind-the-scenes chaos and exclusive content in the meantime.</p>
+        <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit / GoHighLevel -->
+        <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+          <input type="text" name="name" placeholder="NAME" aria-label="Name" />
+          <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
+          <select name="country" aria-label="Country">
+            <option value="">COUNTRY</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>United Kingdom</option>
+            <option>Other</option>
+          </select>
+          <button type="submit" class="btn btn--primary">TRANSMIT →</button>
+        </form>
+        <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit / GoHighLevel</p>
+      </div>
+    </section>
+
+    <!-- ===================== STATUS ===================== -->
+    <section class="section section--black section--center" id="status">
+      <div class="section__inner community">
+        <p class="dossier scale-in"><span class="dossier__dot"></span> 03 / STATUS</p>
+        <p class="community__status mono scale-in">◈ STATUS: DOORS SEALED — OPENING SOON</p>
+        <p class="lead lead--center scale-in">Everyone on the list gets the key the moment they open. Nobody gets in ahead of the list.</p>
+        <!-- PLACEHOLDER: no community platform chosen yet — the client said
+             it's "incoming" and hasn't named one. Until then this page is a
+             waiting list, which is the honest version of it. -->
+        <p class="placeholder-note mono scale-in">// community platform to be connected</p>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
+        <nav class="footer__social mono">
+          <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">INSTAGRAM</a>
+          <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">YOUTUBE</a>
+          <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+          <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">APPLE MUSIC</a>
+          <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">BANDCAMP</a>
+          <a href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">LINKTREE</a>
+          <!-- NEEDS URL: client gave the Facebook page as a name only — "Chris Kreutz (Order of the Crow)" -->
+          <a href="#" data-placeholder="facebook" title="Facebook URL still needed">FACEBOOK</a>
+        </nav>
+        <p class="footer__contact mono">
+          <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
+        </p>
+        <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
+      </div>
+    </footer>
+
+  </div><!-- /.gated-content -->
+
+  <script src="js/main.js"></script>
+</body>
+</html>

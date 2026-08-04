@@ -251,6 +251,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ---- The Gate (community.html) ----
+     The page arrives locked behind a CLASSIFIED panel with the content
+     blurred out. Clicking runs an access sequence — a terminal readout
+     ticking through checks, a progress bar, the title decoding out of
+     noise — and then the gate blows apart and the page resolves.
+
+     Everything here is additive: the lock only exists once JS adds
+     .is-gated, so with JS off the page just renders normally. */
+  const gate = document.getElementById('gate');
+
+  if (gate) {
+    const gateBtn    = document.getElementById('gateBtn');
+    const gateCipher = document.getElementById('gateCipher');
+    const gateLog    = document.getElementById('gateLog');
+    const PLAIN      = 'THE INNER CIRCLE';
+
+    const CHECKS = [
+      'ESTABLISHING SECURE CHANNEL',
+      'VERIFYING THE MARK',
+      'BYPASSING THE OUTER SEAL',
+      'DECRYPTING MANIFEST',
+    ];
+
+    document.body.classList.add('is-gated');
+
+    const unlock = () => {
+      document.body.classList.remove('is-gated');
+      gate.setAttribute('hidden', '');
+    };
+
+    if (reduceMotion) {
+      // No theatrics, but still a deliberate click to get in.
+      gateCipher.textContent = PLAIN;
+      gateBtn.addEventListener('click', unlock, { once: true });
+    } else {
+      // Idle state: the title churns as unreadable noise.
+      gateCipher.textContent = scramble(PLAIN);
+      const churn = setInterval(() => { gateCipher.textContent = scramble(PLAIN); }, 90);
+
+      const addLine = (text, granted) => {
+        const line = document.createElement('p');
+        line.className = 'gate__line' + (granted ? ' gate__line--grant' : '');
+        line.innerHTML = granted
+          ? `&gt; ${text}`
+          : `<span>&gt; ${text}</span><span class="ok">OK</span>`;
+        gateLog.appendChild(line);
+      };
+
+      gateBtn.addEventListener('click', () => {
+        clearInterval(churn);
+        gate.classList.add('is-working');
+        gateBtn.disabled = true;
+        gateBtn.textContent = 'DECRYPTING…';
+
+        const STEP = 420;
+        CHECKS.forEach((check, i) => setTimeout(() => addLine(check), i * STEP));
+
+        // The title resolves while the last checks are still landing.
+        setTimeout(() => {
+          cipherResolve(PLAIN, 900, (txt) => { gateCipher.textContent = txt; });
+        }, CHECKS.length * STEP - 500);
+
+        setTimeout(() => {
+          addLine('ACCESS GRANTED', true);
+          gate.classList.remove('is-working');
+          gateBtn.textContent = 'WELCOME IN';
+        }, CHECKS.length * STEP + 500);
+
+        setTimeout(() => gate.classList.add('is-open'), CHECKS.length * STEP + 1000);
+        setTimeout(unlock, CHECKS.length * STEP + 1800);
+      }, { once: true });
+    }
+
+    gateBtn.focus({ preventScroll: true });
+  }
+
   /* ---- Placeholder link guard ---- */
   document.querySelectorAll('a[data-placeholder]').forEach((a) => {
     a.addEventListener('click', (e) => {
