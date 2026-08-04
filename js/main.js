@@ -2,7 +2,8 @@
    ORDER OF THE CROW — main.js (v2)
    - scroll-scale: elements enter small from the bottom and grow
      to full size as they reach the center of the screen (Alan Walker)
-   - sticky nav, mobile menu, year, placeholder guards, demo form
+   - click-to-decrypt video vault
+   - sticky nav, countdown, year, placeholder guards, demo form
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -94,14 +95,74 @@ document.addEventListener('DOMContentLoaded', () => {
   onNavScroll();
   window.addEventListener('scroll', onNavScroll, { passive: true });
 
-  /* ---- Mobile menu ---- */
-  const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => nav.classList.toggle('open'));
-    if (links) links.querySelectorAll('a').forEach((a) =>
-      a.addEventListener('click', () => nav.classList.remove('open'))
-    );
+  /* ---- Click-to-decrypt video vault ----
+     Click the lock -> the cipher line scrambles for a beat -> the panel
+     "resolves" and whatever video is configured starts playing.
+     Configure via the #vault element's data-youtube or data-src attribute. */
+  const vault = document.getElementById('vault');
+  const vaultLock = document.getElementById('vaultLock');
+  const vaultCipher = document.getElementById('vaultCipher');
+
+  if (vault && vaultLock) {
+    const PLAIN = 'ORDER OF THE CROW';
+    const NOISE = '█▓▒░#%&@*+=<>/\\|01';
+    const rand = () => NOISE[Math.floor(Math.random() * NOISE.length)];
+
+    const mountVideo = () => {
+      const stage = document.getElementById('vaultStage');
+      const yt = vault.dataset.youtube?.trim();
+      const src = vault.dataset.src?.trim();
+      if (!stage || (!yt && !src)) return;   // no video yet — keep the standby panel
+
+      if (yt) {
+        const frame = document.createElement('iframe');
+        frame.src = `https://www.youtube-nocookie.com/embed/${yt}?autoplay=1&rel=0&modestbranding=1`;
+        frame.title = 'Order of the Crow — video';
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        frame.allowFullscreen = true;
+        stage.replaceChildren(frame);
+      } else {
+        const vid = document.createElement('video');
+        vid.src = src;
+        vid.controls = vid.autoplay = vid.playsInline = true;
+        stage.replaceChildren(vid);
+      }
+    };
+
+    const action = vaultLock.querySelector('.vault__action');
+
+    const decrypt = () => {
+      if (vault.classList.contains('is-open')) return;
+      vault.classList.add('is-decrypting');
+      vaultLock.disabled = true;
+      if (action) action.textContent = 'DECRYPTING…';
+
+      // Resolve the cipher left to right. Driven off the frame clock rather
+      // than a tick count so the reveal takes the same ~1.4s on every machine.
+      const DURATION = 1400;
+      const start = performance.now();
+
+      const step = (now) => {
+        const done = Math.min(
+          PLAIN.length,
+          Math.round(((now - start) / DURATION) * PLAIN.length)
+        );
+        vaultCipher.textContent =
+          PLAIN.slice(0, done) + PLAIN.slice(done).replace(/\S/g, rand);
+
+        if (done < PLAIN.length) { requestAnimationFrame(step); return; }
+
+        vaultCipher.textContent = PLAIN;
+        if (action) action.textContent = 'DECRYPTED';
+        vault.classList.remove('is-decrypting');
+        vault.classList.add('is-open');
+        mountVideo();
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    vaultLock.addEventListener('click', decrypt);
   }
 
   /* ---- Placeholder link guard ---- */

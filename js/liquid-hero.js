@@ -223,6 +223,16 @@
   resize();
   window.addEventListener('resize', resize);
 
+  /* Only simulate while the hero is actually on screen. Left running, the
+     sim pegs the main thread for the whole page and visibly starves other
+     timers (the decrypt animation crawled) — plus it cooks laptop battery. */
+  let visible = true;
+  let running = false;
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    if (visible && !running) { running = true; requestAnimationFrame(frame); }
+  }, { threshold: 0 }).observe(hero);
+
   const frame = () => {
     // smoothed velocity from pointer delta
     mouse.vx = (mouse.x - mouse.px);
@@ -261,7 +271,9 @@
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     }
 
-    requestAnimationFrame(frame);
+    if (visible) requestAnimationFrame(frame);
+    else running = false;   // the observer restarts us when the hero returns
   };
+  running = true;
   requestAnimationFrame(frame);
 })();

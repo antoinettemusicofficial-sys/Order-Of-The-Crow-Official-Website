@@ -70,26 +70,72 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 .btn--ghost:hover { border-color: var(--glow); color: var(--glow); }
 .btn--small { padding: .55rem 1.4rem; font-size: .75rem; background: transparent; border-color: var(--line); }
 .btn--small:hover { border-color: var(--glow); color: var(--glow); }
+/* --small is a size modifier, but it also carries the ghost look — so it
+   blanks out --primary when the two are combined. Put the fill back. */
+.btn--primary.btn--small { background: var(--glow); border-color: var(--glow); color: var(--black); }
+.btn--primary.btn--small:hover { color: var(--black); }
 
-/* ---------- Nav (HUD notched frame) ---------- */
+/* ---------- Nav ----------
+   Full horizontal bar at every width — NO hamburger. Client wants every
+   destination visible from the hero. Below 860px the link row scrolls
+   sideways rather than collapsing behind a toggle. */
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 50;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem clamp(1rem, 5vw, 4rem);
-  transition: background .4s var(--ease);
+  display: flex; align-items: center; gap: clamp(.75rem, 2vw, 2rem);
+  padding: .85rem clamp(.9rem, 4vw, 3rem);
+  background: linear-gradient(180deg, rgba(4,6,13,.92), rgba(4,6,13,.35) 70%, transparent);
+  transition: background .4s var(--ease), border-color .4s var(--ease);
+  border-bottom: 1px solid transparent;
 }
-.nav.scrolled { background: rgba(4,6,13,.85); backdrop-filter: blur(10px); }
-.nav__frame {
-  position: absolute; left: 5%; right: 5%; top: 50%; height: 44px; transform: translateY(-50%);
-  border: 1px solid var(--line);
-  /* notched hexagonal HUD bar */
-  clip-path: polygon(0 40%, 6% 40%, 8% 0, 30% 0, 32% 40%, 68% 40%, 70% 0, 92% 0, 94% 40%, 100% 40%, 100% 60%, 94% 60%, 92% 100%, 70% 100%, 68% 60%, 32% 60%, 30% 100%, 8% 100%, 6% 60%, 0 60%);
-  opacity: .5; pointer-events: none;
+.nav.scrolled {
+  background: rgba(4,6,13,.9);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--line);
 }
-.nav__item { position: relative; z-index: 2; font-weight: 600; font-size: .85rem; color: var(--white); background: none; border: none; cursor: pointer; }
-.nav__item:hover { color: var(--glow); }
-.nav__logo { position: relative; z-index: 2; font-size: 1.3rem; color: var(--glow); }
-.nav__links { display: none; }
+.nav__logo {
+  flex: none; font-size: 1.35rem; line-height: 1; color: var(--glow);
+  text-shadow: 0 0 16px var(--glow);
+  transition: transform .3s var(--ease);
+}
+.nav__logo:hover { transform: rotate(90deg); }
+
+.nav__links {
+  flex: 1 1 auto;
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(.6rem, 2.2vw, 2.2rem);
+  min-width: 0;                       /* lets the row shrink before it overflows */
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.nav__links::-webkit-scrollbar { display: none; }
+.nav__links a {
+  position: relative; flex: none; white-space: nowrap;
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-weight: 600; font-size: clamp(.68rem, 1.15vw, .84rem); letter-spacing: .16em;
+  color: var(--white); padding: .35rem 0;
+  transition: color .3s var(--ease);
+}
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+  background: var(--glow); box-shadow: 0 0 10px var(--glow);
+  transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease);
+}
+.nav__links a:hover { color: var(--glow); }
+.nav__links a:hover::after { transform: scaleX(1); }
+
+.nav__join {
+  flex: none;
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-weight: 700; font-size: clamp(.68rem, 1.15vw, .82rem); letter-spacing: .18em;
+  color: var(--black); background: var(--glow);
+  padding: .5rem clamp(.7rem, 1.6vw, 1.3rem);
+  white-space: nowrap;
+  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - 10px) 100%, 0 100%);
+  box-shadow: 0 0 22px -8px var(--glow);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.nav__join:hover { transform: translateY(-2px); box-shadow: 0 0 34px -6px var(--glow); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -206,11 +252,71 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 @keyframes blink { 0%,70%{ opacity:1 } 71%,100%{ opacity:.25 } }
 
 /* alternating section backgrounds for depth */
+#video     { background: var(--black); text-align: center; }
 #music     { background: linear-gradient(180deg, var(--black), var(--deep)); }
 #merch     { background: var(--deep); }
 #community { background: linear-gradient(180deg, var(--deep), var(--black)); text-align: center; }
 #about     { background: var(--black); }
 .signup    { background: linear-gradient(180deg, var(--black), var(--deep)); }
+
+/* ---------- Vault (click-to-decrypt video) ---------- */
+.vault {
+  position: relative; max-width: 900px; margin: 0 auto;
+  aspect-ratio: 16/9; overflow: hidden;
+  background: linear-gradient(135deg, var(--blue), var(--black) 70%);
+  border: 1px solid var(--line);
+  clip-path: polygon(0 0, 100% 0, 100% 94%, calc(100% - 26px) 100%, 0 100%);
+}
+.vault__stage { position: absolute; inset: 0; display: grid; place-items: center; }
+.vault__stage iframe, .vault__stage video { width: 100%; height: 100%; border: 0; display: block; }
+
+/* standby panel shown until a real video is dropped in */
+.vault__standby {
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: var(--muted); letter-spacing: .3em; font-size: .8rem; text-align: center; padding: 1rem;
+}
+.vault__standby-eye { font-size: 2.4rem; color: var(--glow); text-shadow: 0 0 24px var(--glow); animation: heroPulse 3s ease-in-out infinite; }
+.vault__standby-sub { font-size: .65rem; opacity: .6; }
+
+/* the lock that sits on top until it's clicked */
+.vault__lock {
+  position: absolute; inset: 0; z-index: 3;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(15,27,64,.55), rgba(4,6,13,.94) 70%),
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(79,139,255,.07) 3px 4px);
+  border: 0; cursor: pointer; color: var(--white); width: 100%;
+  backdrop-filter: blur(6px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease), filter .5s var(--ease);
+}
+.vault__lock:hover .vault__glyph { transform: scale(1.15); }
+.vault__lock:hover .vault__action { color: var(--glow); letter-spacing: .42em; }
+
+.vault__seal { position: relative; display: grid; place-items: center; width: 84px; height: 84px; }
+.vault__ring {
+  position: absolute; inset: 0; border: 1px solid var(--line); border-radius: 50%;
+  border-top-color: var(--glow); border-right-color: var(--glow);
+  animation: vaultSpin 6s linear infinite;
+}
+.vault__ring--2 { inset: 14px; border-top-color: transparent; border-left-color: var(--cyan); animation-duration: 4s; animation-direction: reverse; }
+@keyframes vaultSpin { to { transform: rotate(360deg); } }
+.vault__glyph { font-size: 1.7rem; color: var(--glow); text-shadow: 0 0 20px var(--glow); transition: transform .35s var(--ease); }
+
+.vault__cipher { font-size: clamp(.75rem, 2.4vw, 1.15rem); letter-spacing: .3em; color: var(--glow); opacity: .85; min-height: 1.4em; }
+.vault__action {
+  font-size: .72rem; letter-spacing: .34em; color: var(--muted);
+  transition: color .3s var(--ease), letter-spacing .3s var(--ease);
+}
+
+/* decrypting + unlocked states (driven by JS) */
+.vault.is-decrypting .vault__lock { animation: vaultShake .16s steps(2) infinite; }
+@keyframes vaultShake { 0%{ transform: translate(0,0) } 50%{ transform: translate(-2px,1px) } 100%{ transform: translate(2px,-1px) } }
+.vault.is-open .vault__lock { opacity: 0; transform: scale(1.08); filter: blur(8px); pointer-events: none; }
+.vault.is-open { border-color: rgba(79,139,255,.55); box-shadow: 0 30px 90px -50px var(--glow); }
+
+.vault__hint { margin-top: 1.6rem; font-size: .78rem; letter-spacing: .22em; color: var(--muted); }
+.vault__hint a { color: var(--glow); border-bottom: 1px solid transparent; transition: border-color .3s; }
+.vault__hint a:hover { border-bottom-color: var(--glow); }
 
 /* ---------- Split (two-column text/media) ---------- */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,4rem); align-items: center; }
@@ -283,7 +389,12 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
   font-size: clamp(1.3rem, 3.4vw, 2rem); font-weight: 700; text-align: center;
   margin: clamp(3.5rem, 8vw, 6rem) 0 2.4rem;
 }
-.disco { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+/* 5 releases in a 3-wide grid: centre the orphan row instead of
+   letting the last two hang off to the left. */
+.disco { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(1.2rem, 3vw, 2rem); }
+.disco > .release { grid-column: span 2; }
+.disco > .release:nth-last-child(2):nth-child(4) { grid-column: 2 / span 2; }
+.disco > .release:last-child:nth-child(5)        { grid-column: 4 / span 2; }
 .release { text-align: center; }
 .release__art {
   position: relative; display: block; overflow: hidden;
@@ -346,6 +457,27 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 
 /* ---------- Merch cards ---------- */
 .merch__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+
+/* Locked state — products visible enough to tease, blurred enough to
+   promise. Remove .merch--locked (and the .merch__veil markup) to go live. */
+.merch__wrap { position: relative; }
+.merch--locked .merch__grid {
+  filter: blur(9px) saturate(.55) brightness(.62);
+  transform: scale(1.015);          /* hides the soft edge the blur leaves */
+  user-select: none; pointer-events: none;
+}
+.merch__veil {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem;
+  text-align: center; padding: 1rem;
+  background: radial-gradient(ellipse at 50% 50%, rgba(4,6,13,.45), rgba(4,6,13,.8) 80%);
+}
+.merch__veil-title {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-size: clamp(1.3rem, 4.4vw, 2.6rem); font-weight: 700; letter-spacing: .14em;
+}
+.merch__veil-sub { font-size: .7rem; letter-spacing: .3em; color: var(--muted); }
+
 .card {
   background: rgba(15,27,64,.3); border: 1px solid var(--line);
   padding: 1.2rem; text-align: center;
@@ -362,6 +494,7 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 .community { max-width: 780px; margin: 0 auto; }
 .perks { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin: 0 auto 2.4rem; }
 .perks li { padding: .55rem 1.2rem; border: 1px solid var(--line); font-size: .85rem; background: rgba(15,27,64,.25); }
+.community__status { font-size: .7rem; letter-spacing: .28em; color: var(--glow); margin-bottom: 1.4rem; opacity: .85; }
 
 /* ---------- Signup ---------- */
 .signup__inner { max-width: 640px; margin: 0 auto; text-align: center; }
@@ -404,16 +537,33 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
   .lead { margin-left: auto; margin-right: auto; }
   .pills { justify-content: center; }
   .merch__grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
-  .disco { grid-template-columns: repeat(2, 1fr); }
+  /* 2-across: 4 tracks = 6/2 columns wide each, orphan centres */
+  .disco { grid-template-columns: repeat(4, 1fr); }
+  .disco > .release { grid-column: span 2; }
+  .disco > .release:nth-last-child(2):nth-child(4) { grid-column: auto / span 2; }
+  .disco > .release:last-child:nth-child(5) { grid-column: 2 / span 2; }
   .contact__grid { grid-template-columns: 1fr; }
   .facts { justify-items: center; }
   .facts > div { grid-template-columns: 1fr; gap: .1rem; text-align: center; }
-  .nav__frame { display: none; }
-  .nav.open .nav__links {
-    display: flex; flex-direction: column; gap: 1.1rem; position: absolute; top: 100%; left: 0; right: 0;
-    background: rgba(4,6,13,.97); padding: 1.4rem; border-bottom: 1px solid var(--line);
-  }
-  .nav.open .nav__links a { font-family: "Rajdhani", sans-serif; text-transform: uppercase; letter-spacing: .12em; }
+
+  /* Nav stays a full bar — it just scrolls sideways. No hamburger. */
+  .nav__links { justify-content: flex-start; gap: 1.25rem; padding: .2rem .25rem; }
+  /* fade the right edge so it reads as "there's more, swipe" */
+  .nav__links { mask-image: linear-gradient(90deg, #000 88%, transparent); }
+}
+
+/* Very narrow phones: drop the links onto their own row under the logo/JOIN
+   so the tap targets stay comfortable, still with no menu button. */
+@media (max-width: 560px) {
+  .nav { flex-wrap: wrap; row-gap: .5rem; padding-bottom: .5rem; }
+  .nav__logo { order: 1; }
+  .nav__join { order: 2; margin-left: auto; }
+  .nav__links { order: 3; flex-basis: 100%; }
+  .hero__hint { top: 7.4rem; }
+  .disco { grid-template-columns: 1fr; }
+  .disco > .release,
+  .disco > .release:nth-last-child(2):nth-child(4),
+  .disco > .release:last-child:nth-child(5) { grid-column: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

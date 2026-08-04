@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ORDER OF THE CROW — Official Site of Chris Kreutz</title>
-  <meta name="description" content="Official site of Chris Kreutz and Order of the Crow — Seattle. Raw power, haunting melody, dark energy from the underground. Debut album DEAD MAN out 10 August 2026." />
+  <meta name="description" content="Official site of Chris Kreutz and Order of the Crow — Seattle. Raw power, haunting melody, dark energy from the underground. Debut album DEAD MAN out 23 October 2026." />
   <meta property="og:title" content="ORDER OF THE CROW" />
-  <meta property="og:description" content="Where fire meets shadow and the riffs never die. Debut album DEAD MAN — 10 August 2026." />
+  <meta property="og:description" content="Where fire meets shadow and the riffs never die. Debut album DEAD MAN — 23 October 2026." />
   <meta property="og:image" content="assets/dead-man-album-art.jpg" />
   <meta property="og:type" content="website" />
 
@@ -22,20 +22,24 @@
 </head>
 <body>
 
-  <!-- ===================== NAV (HUD notched frame — Alan Walker) ===================== -->
+  <!-- ===================== NAV =====================
+       Everything laid across the top — no hamburger at ANY width.
+       On narrow screens the link row scrolls sideways instead of collapsing,
+       so every destination stays one tap away (client request / Sons of Legion).
+  ================================================== -->
   <header class="nav" id="nav">
-    <div class="nav__frame" aria-hidden="true"></div>
-    <a href="#signup" class="nav__item nav__join">◈ JOIN</a>
-    <a href="#hero" class="nav__logo">✦</a>
-    <button class="nav__item nav__menu" id="navToggle" aria-label="Menu">MENU ≡</button>
-    <nav class="nav__links" id="navLinks">
+    <a href="#hero" class="nav__logo" aria-label="Order of the Crow — top of page">✦</a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="#video">Video</a>
       <a href="#music">Music</a>
       <a href="#merch">Merch</a>
       <a href="#community">Inner Circle</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="#signup">Join</a>
     </nav>
+
+    <a href="#signup" class="nav__join">◈ JOIN</a>
   </header>
 
   <!-- ===================== HERO (WebGL liquid-displacement over album art — Linkin Park) ===================== -->
@@ -47,27 +51,73 @@
     <p class="hero__hint mono" aria-hidden="true">◈ DRAG THROUGH THE VOID</p>
 
     <div class="hero__content">
-      <p class="hero__eyebrow mono">// TRANSMISSION 001 — “DEAD MAN” LP · 08.10.2026</p>
+      <p class="hero__eyebrow mono">// TRANSMISSION 001 — “DEAD MAN” LP · 10.23.2026</p>
       <h1 class="hero__title glitch" data-text="ORDER OF THE CROW">ORDER OF THE CROW</h1>
       <p class="hero__sub mono">SEATTLE · FIRE MEETS SHADOW · THE RIFFS NEVER DIE</p>
 
-      <!-- Countdown to the DEAD MAN album release — 10 Aug 2026 -->
-      <div class="countdown mono" id="countdown" data-release="2026-08-10T00:00:00Z" aria-label="Time until Dead Man releases">
+      <!-- Countdown to the DEAD MAN album release — 23 Oct 2026.
+           CHANGING THE DATE: edit data-release below, and the two visible
+           dates in the hero eyebrow above + the Music/About sections. -->
+      <div class="countdown mono" id="countdown" data-release="2026-10-23T00:00:00Z" aria-label="Time until Dead Man releases">
         <div class="countdown__unit"><span class="countdown__num" data-cd="days">--</span><span class="countdown__label">DAYS</span></div>
         <div class="countdown__unit"><span class="countdown__num" data-cd="hours">--</span><span class="countdown__label">HRS</span></div>
         <div class="countdown__unit"><span class="countdown__num" data-cd="mins">--</span><span class="countdown__label">MIN</span></div>
         <div class="countdown__unit"><span class="countdown__num" data-cd="secs">--</span><span class="countdown__label">SEC</span></div>
       </div>
 
+      <!-- The whole funnel sits in the hero: listen, buy, join.
+           Nobody has to scroll to find the thing they came for. -->
       <div class="hero__cta">
         <a href="#music" class="btn btn--primary">▶ LISTEN NOW</a>
         <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="btn btn--ghost" target="_blank" rel="noopener">PRE-ORDER “DEAD MAN” →</a>
+        <a href="#community" class="btn btn--ghost">◈ THE INNER CIRCLE</a>
       </div>
     </div>
 
     <div class="hero__scroll mono" aria-hidden="true">
       SCROLL TO DECRYPT
       <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ===================== VIDEO — CLICK TO DECRYPT =====================
+       The opener. Locked until the visitor clicks, then the panel "decrypts"
+       and the video plays. Doubles as the top of the Inner Circle funnel.
+
+       TO DROP IN THE REAL VIDEO: put the YouTube ID in data-youtube below
+       (e.g. data-youtube="dQw4w9WgXcQ"), or point data-src at a local .mp4.
+       Leave both empty and it shows the standby panel you see now.
+  ===================================================================== -->
+  <section class="section" id="video">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 00 / CLASSIFIED TRANSMISSION</p>
+      <h2 class="section__title glitch scale-in" data-text="DECRYPT THE FILE">DECRYPT THE FILE</h2>
+
+      <div class="vault scale-in" id="vault" data-youtube="" data-src="">
+        <!-- the decrypted content lands here -->
+        <div class="vault__stage" id="vaultStage">
+          <div class="vault__standby mono">
+            <span class="vault__standby-eye">◈</span>
+            <span>TRANSMISSION 001</span>
+            <span class="vault__standby-sub">// VIDEO FILE PENDING UPLOAD</span>
+          </div>
+        </div>
+
+        <!-- locked overlay -->
+        <button class="vault__lock" id="vaultLock" type="button" aria-describedby="vaultHint">
+          <span class="vault__seal" aria-hidden="true">
+            <span class="vault__ring"></span>
+            <span class="vault__ring vault__ring--2"></span>
+            <span class="vault__glyph">✦</span>
+          </span>
+          <span class="vault__cipher mono" id="vaultCipher" aria-hidden="true">████ ██ ████████</span>
+          <span class="vault__action mono">CLICK TO DECRYPT</span>
+        </button>
+      </div>
+
+      <p class="vault__hint mono scale-in" id="vaultHint">
+        FOR MORE, <a href="#community">JOIN THE INNER CIRCLE →</a>
+      </p>
     </div>
   </section>
 
@@ -82,7 +132,7 @@
           <span class="frame-corner bl"></span><span class="frame-corner br"></span>
         </div>
         <div class="split__text">
-          <p class="mono accent">THE ALBUM — OUT 10 AUGUST 2026</p>
+          <p class="mono accent">THE ALBUM — OUT 23 OCTOBER 2026</p>
           <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
           <p class="lead">The debut full-length from Order of the Crow. Raw power, haunting melody and dark energy from the underground — Seattle grit welded to something stranger.</p>
           <div class="pills">
@@ -177,18 +227,8 @@
           </div>
         </article>
 
-        <article class="release scale-in">
-          <a class="release__art" href="https://music.apple.com/us/album/the-fall-single/1723590535" target="_blank" rel="noopener">
-            <img src="assets/releases/the-fall.jpg" alt="The Fall — Order of the Crow" loading="lazy" />
-            <span class="release__play" aria-hidden="true">▶</span>
-          </a>
-          <h4 class="release__title">THE FALL</h4>
-          <p class="release__meta mono">SINGLE · 2024 · THE FIRST</p>
-          <div class="release__links mono">
-            <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
-            <a href="https://music.apple.com/us/album/the-fall-single/1723590535" target="_blank" rel="noopener">APPLE</a>
-          </div>
-        </article>
+        <!-- "The Fall" (2024) removed at client request 2026-08-03.
+             Art still lives at assets/releases/the-fall.jpg if it ever comes back. -->
 
       </div>
     </div>
@@ -199,28 +239,40 @@
     <div class="section__inner">
       <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / THE MERCH</p>
       <h2 class="section__title glitch scale-in" data-text="WEAR THE MARK">WEAR THE MARK</h2>
-      <div class="merch__grid">
-        <!-- PLACEHOLDER products -->
-        <article class="card scale-in">
-          <div class="card__img card__img--ph">T-SHIRT</div>
-          <h3 class="card__name">“DEAD MAN” TEE</h3>
-          <p class="card__price mono">$30.00</p>
-          <a href="#" class="btn btn--small" data-placeholder="product">VIEW</a>
-        </article>
-        <article class="card scale-in">
-          <div class="card__img card__img--ph">VINYL / CD</div>
-          <h3 class="card__name">DEAD MAN — PHYSICAL</h3>
-          <p class="card__price mono">$15.00</p>
-          <a href="#" class="btn btn--small" data-placeholder="product">VIEW</a>
-        </article>
-        <article class="card scale-in">
-          <div class="card__img card__img--ph">DIGITAL</div>
-          <h3 class="card__name">DEAD MAN — DIGITAL</h3>
-          <p class="card__price mono">$10.00</p>
-          <a href="#" class="btn btn--small" data-placeholder="product">VIEW</a>
-        </article>
+
+      <!-- Products are deliberately obscured until the Spring store goes live.
+           Unwrap: delete the .merch--locked class and the .merch__veil block,
+           then swap each .card__img for the real product photo + store link. -->
+      <div class="merch__wrap merch--locked scale-in">
+        <div class="merch__grid" aria-hidden="true">
+          <article class="card">
+            <div class="card__img card__img--ph">T-SHIRT</div>
+            <h3 class="card__name">“DEAD MAN” TEE</h3>
+            <p class="card__price mono">$30.00</p>
+            <span class="btn btn--small">VIEW</span>
+          </article>
+          <article class="card">
+            <div class="card__img card__img--ph">HOODIE</div>
+            <h3 class="card__name">ORDER HOODIE</h3>
+            <p class="card__price mono">$60.00</p>
+            <span class="btn btn--small">VIEW</span>
+          </article>
+          <article class="card">
+            <div class="card__img card__img--ph">HEADWEAR</div>
+            <h3 class="card__name">CROW MARK CAP</h3>
+            <p class="card__price mono">$28.00</p>
+            <span class="btn btn--small">VIEW</span>
+          </article>
+        </div>
+
+        <div class="merch__veil">
+          <p class="merch__veil-title glitch glitch--sm" data-text="MERCH COMING SOON">MERCH COMING SOON</p>
+          <p class="merch__veil-sub mono">// THE MARK IS BEING FORGED</p>
+          <a href="#signup" class="btn btn--primary btn--small">GET FIRST ACCESS →</a>
+        </div>
       </div>
-      <p class="placeholder-note mono scale-in">// placeholder store — connect Shopify / Snipcart</p>
+
+      <p class="placeholder-note mono scale-in">// store to be connected — Spring (spri.ng)</p>
     </div>
   </section>
 
@@ -232,13 +284,15 @@
       <p class="lead lead--center">A private world for the devoted. Unreleased transmissions, behind-the-veil content, early access, and direct contact with the Order. Hidden clues for the observant.</p>
       <ul class="perks">
         <li>Exclusive tracks &amp; demos</li>
-        <li>Private livestreams</li>
-        <li>Early merch &amp; tickets</li>
+        <li>Full uncut videos</li>
+        <li>First access to merch drops</li>
         <li>Members-only lore</li>
       </ul>
-      <!-- PLACEHOLDER: community platform -->
-      <a href="#" class="btn btn--primary" data-placeholder="community">ENTER THE INNER CIRCLE →</a>
-      <p class="placeholder-note mono">// placeholder — community platform to be connected</p>
+      <!-- PLACEHOLDER: community platform. Doors not open yet — the CTA
+           collects emails instead of dead-ending on a "#" link. -->
+      <p class="community__status mono">◈ STATUS: DOORS SEALED — OPENING SOON</p>
+      <a href="#signup" class="btn btn--primary">GET THE KEY WHEN IT DROPS →</a>
+      <p class="placeholder-note mono">// community platform to be connected</p>
     </div>
   </section>
 
@@ -256,7 +310,7 @@
           <p class="mono accent">CHRIS KREUTZ · SEATTLE, WA</p>
           <h2 class="glitch glitch--sm" data-text="THE ORDER">THE ORDER</h2>
           <p class="lead">Unleashing raw power, haunting melody and dark energy from the underground. Order of the Crow is the sonic identity of Seattle artist <strong>Chris Kreutz</strong> — where fire meets shadow and the riffs never die.</p>
-          <p class="lead">Six singles deep since 2024, with the debut full-length <em>Dead Man</em> landing 10 August 2026 on Darkblue Records.</p>
+          <p class="lead">Five singles deep since 2024, with the debut full-length <em>Dead Man</em> landing 23 October 2026 on Darkblue Records.</p>
           <dl class="facts mono">
             <div><dt>BASED</dt><dd>Seattle, Washington</dd></div>
             <div><dt>LABEL</dt><dd>Darkblue Records</dd></div>
@@ -274,7 +328,7 @@
     <div class="section__inner signup__inner scale-in">
       <p class="dossier"><span class="dossier__dot"></span> 05 / DECRYPT THE ALBUM</p>
       <h2 class="section__title glitch" data-text="FIRST ACCESS TO DEAD MAN">FIRST ACCESS TO DEAD MAN</h2>
-      <p class="lead lead--center">Join the list before 10 August. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
+      <p class="lead lead--center">Join the list before 23 October. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
       <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
       <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
         <input type="text" name="name" placeholder="NAME" aria-label="Name" />
