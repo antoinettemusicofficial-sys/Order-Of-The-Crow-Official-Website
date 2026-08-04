@@ -92,12 +92,16 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
   backdrop-filter: blur(12px);
   border-bottom-color: var(--line);
 }
+/* Plain text HOME link. This slot used to hold a ✦ star mark; the client
+   didn't want star glyphs anywhere on the site, so it's a word now. */
 .nav__logo {
-  flex: none; font-size: 1.35rem; line-height: 1; color: var(--glow);
-  text-shadow: 0 0 16px var(--glow);
-  transition: transform .3s var(--ease);
+  flex: none; white-space: nowrap;
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-weight: 700; font-size: clamp(.68rem, 1.15vw, .84rem); letter-spacing: .18em;
+  color: var(--glow); padding: .35rem 0;
+  transition: opacity .3s var(--ease);
 }
-.nav__logo:hover { transform: rotate(90deg); }
+.nav__logo:hover { opacity: .65; }
 
 .nav__links {
   flex: 1 1 auto;
@@ -295,7 +299,6 @@ h1.glitch, h2.glitch { display: block; }
   backdrop-filter: blur(6px);
   transition: opacity .5s var(--ease), transform .5s var(--ease), filter .5s var(--ease);
 }
-.vault__lock:hover .vault__glyph { transform: scale(1.15); }
 .vault__lock:hover .vault__action { color: var(--glow); letter-spacing: .42em; }
 
 .vault__seal { position: relative; display: grid; place-items: center; width: 84px; height: 84px; }
@@ -306,7 +309,6 @@ h1.glitch, h2.glitch { display: block; }
 }
 .vault__ring--2 { inset: 14px; border-top-color: transparent; border-left-color: var(--cyan); animation-duration: 4s; animation-direction: reverse; }
 @keyframes vaultSpin { to { transform: rotate(360deg); } }
-.vault__glyph { font-size: 1.7rem; color: var(--glow); text-shadow: 0 0 20px var(--glow); transition: transform .35s var(--ease); }
 
 .vault__cipher { font-size: clamp(.75rem, 2.4vw, 1.15rem); letter-spacing: .3em; color: var(--glow); opacity: .85; min-height: 1.4em; }
 .vault__action {
@@ -571,6 +573,9 @@ h1.glitch, h2.glitch { display: block; }
   font-size: clamp(.68rem, 1.6vw, .9rem);
 }
 .pagehead .dossier { margin-bottom: 1.6rem; }
+.pagehead__cta { margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+/* Fixed width while the label scrambles, so the button doesn't twitch. */
+.decrypt__label { display: inline-block; min-width: 15ch; text-align: center; }
 
 /* section background rhythm on inner pages (the homepage keys off IDs) */
 .section--black { background: var(--black); }
@@ -635,12 +640,15 @@ h1.glitch, h2.glitch { display: block; }
   max-width: 560px; margin: 3rem auto 0; padding: 2.2rem 1.4rem; text-align: center;
   border: 1px dashed var(--line); background: rgba(4,6,13,.55);
 }
-.sealed__glyph { display: block; font-size: 1.8rem; color: var(--glow); text-shadow: 0 0 22px var(--glow); margin-bottom: .9rem; animation: heroPulse 3s ease-in-out infinite; }
 .sealed__title { font-family: "Rajdhani", sans-serif; text-transform: uppercase; letter-spacing: .22em; font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
 .sealed__rows { display: grid; gap: .5rem; margin: 1.4rem auto 0; max-width: 320px; }
 .sealed__row { display: flex; align-items: center; gap: .8rem; font-family: "Share Tech Mono", monospace; font-size: .78rem; color: var(--muted); }
 .sealed__n { color: var(--glow); opacity: .7; }
 .sealed__bar { flex: 1; height: 8px; background: repeating-linear-gradient(90deg, rgba(79,139,255,.22) 0 6px, transparent 6px 10px); }
+/* Track 01 is public — show it plainly against the redacted bars. */
+.sealed__row--open { color: var(--white); }
+.sealed__row--open .sealed__n { opacity: 1; }
+.sealed__track { flex: 1; text-align: left; letter-spacing: .16em; text-shadow: 0 0 18px rgba(79,139,255,.45); }
 .sealed__note { font-size: .68rem; letter-spacing: .2em; color: var(--muted); opacity: .7; margin-top: 1.4rem; }
 
 /* ---------- "Everywhere else" listen strip ---------- */

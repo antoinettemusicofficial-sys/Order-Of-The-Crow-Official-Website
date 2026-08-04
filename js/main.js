@@ -165,6 +165,42 @@ document.addEventListener('DOMContentLoaded', () => {
     vaultLock.addEventListener('click', decrypt);
   }
 
+  /* ---- Decrypt-and-scroll buttons ----
+     Same cipher language as the video vault, but as a way IN to a section:
+     the label scrambles for a beat, resolves, then the page glides down to
+     the target. The element is a real anchor, so with JS off (or with
+     reduced motion on) the browser just jumps there normally. */
+  document.querySelectorAll('[data-decrypt-to]').forEach((btn) => {
+    const label = btn.querySelector('.decrypt__label') || btn;
+    const PLAIN = label.textContent;
+    const NOISE = '█▓▒░#%&@*+=<>/\\|01';
+    const rand = () => NOISE[Math.floor(Math.random() * NOISE.length)];
+
+    btn.addEventListener('click', (e) => {
+      const target = document.querySelector(btn.dataset.decryptTo);
+      if (!target || reduceMotion || btn.dataset.busy) return;  // let the anchor do it
+      e.preventDefault();
+      btn.dataset.busy = '1';
+
+      const DURATION = 700;
+      const start = performance.now();
+
+      const step = (now) => {
+        const p = Math.min(1, (now - start) / DURATION);
+        const done = Math.round(p * PLAIN.length);
+        label.textContent = PLAIN.slice(0, done) + PLAIN.slice(done).replace(/\S/g, rand);
+
+        if (p < 1) { requestAnimationFrame(step); return; }
+
+        label.textContent = PLAIN;
+        delete btn.dataset.busy;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      requestAnimationFrame(step);
+    });
+  });
+
   /* ---- Placeholder link guard ---- */
   document.querySelectorAll('a[data-placeholder]').forEach((a) => {
     a.addEventListener('click', (e) => {
