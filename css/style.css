@@ -756,7 +756,7 @@ body.is-gated .gated-content {
 .gate.is-working .gate__panel { animation: gateShake .19s steps(2) infinite; }
 @keyframes gateShake { 0%{transform:translate(0,0)} 50%{transform:translate(-1.5px,1px)} 100%{transform:translate(1.5px,-1px)} }
 
-/* ---------- Inner Circle perks ---------- */
+/* ---------- Cult of the Crow perks ---------- */
 /* 5 perks in a 3-wide grid: centre the orphan row rather than letting the
    last card hang off to the left. Same 6-column trick as .disco. */
 .perks-grid {

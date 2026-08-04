@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gateBtn    = document.getElementById('gateBtn');
     const gateCipher = document.getElementById('gateCipher');
     const gateLog    = document.getElementById('gateLog');
-    const PLAIN      = 'THE INNER CIRCLE';
+    const PLAIN      = 'CULT OF THE CROW';
 
     const CHECKS = [
       'ESTABLISHING SECURE CHANNEL',
