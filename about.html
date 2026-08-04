@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABOUT — ORDER OF THE CROW</title>
+  <meta name="description" content="Order of the Crow is the solo project of Seattle artist Chris Kreutz. A soul's journey out of the numbing, through the dark, into the awakening — for anyone who has ever felt outside of normal society." />
+  <meta property="og:title" content="ABOUT — ORDER OF THE CROW" />
+  <meta property="og:description" content="For anyone who has ever felt outside of normal society. The story behind Order of the Crow and Chris Kreutz." />
+  <meta property="og:image" content="assets/dead-man-album-art.jpg" />
+  <meta property="og:type" content="profile" />
+
+  <!-- Tab icon: plain luminous-blue disc on near-black (no star glyphs anywhere) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%234f8bff'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Rajdhani = wide techy HUD display / Share Tech Mono = terminal labels / Inter = body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV =====================
+       Same bar on every page — no hamburger at ANY width.
+       On inner pages the HOME link goes to index.html instead of #hero, and the
+       current page carries .is-current so the glow marks where you are.
+  ================================================== -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">HOME</a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html#video">Video</a>
+      <a href="music.html">Music</a>
+      <a href="index.html#merch">Merch</a>
+      <a href="index.html#community" class="nav__cta">Inner Circle</a>
+      <a href="about.html" class="is-current" aria-current="page">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===================== PAGE HEAD ===================== -->
+  <section class="pagehead">
+    <div class="pagehead__bg" aria-hidden="true"></div>
+    <div class="pagehead__veil" aria-hidden="true"></div>
+    <div class="hero__stars" aria-hidden="true"></div>
+    <div class="hero__scanlines" aria-hidden="true"></div>
+
+    <div class="pagehead__content">
+      <p class="dossier"><span class="dossier__dot"></span> FILE / THE ORDER</p>
+      <h1 class="pagehead__title glitch" data-text="THE ORDER">THE ORDER</h1>
+      <p class="pagehead__sub mono">SEATTLE · FIRE MEETS SHADOW · THE RIFFS NEVER DIE</p>
+    </div>
+  </section>
+
+  <!-- ===================== THE ARTIST ===================== -->
+  <section class="section section--fade" id="artist">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / THE ARTIST</p>
+
+      <div class="split scale-in">
+        <!-- PLACEHOLDER: artist photo. Swap this whole block for
+             <img src="assets/chris-kreutz.jpg" alt="Chris Kreutz" />
+             plus the four frame-corner spans and it drops straight in. -->
+        <div class="split__media split__media--ph">
+          <span class="ph-label mono">ARTIST IMAGE</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </div>
+        <div class="split__text">
+          <p class="mono accent">CHRIS KREUTZ · SEATTLE, WA</p>
+          <h2 class="glitch glitch--sm" data-text="ONE MAN, ONE ORDER">ONE MAN, ONE ORDER</h2>
+          <p class="lead">Order of the Crow is the solo project of Seattle artist <strong>Chris Kreutz</strong>. Unleashing raw power, haunting melody and dark energy from the underground — where fire meets shadow and the riffs never die.</p>
+          <p class="lead">Five singles deep since 2024, with the debut full-length <em>Dead Man</em> landing 23 October 2026 on Darkblue Records.</p>
+          <dl class="facts mono">
+            <div><dt>BASED</dt><dd>Seattle, Washington</dd></div>
+            <div><dt>LABEL</dt><dd>Darkblue Records</dd></div>
+            <div><dt>RELEASES</dt><dd>Five singles · one album incoming</dd></div>
+            <div><dt>SOUND</dt><dd>Grunge rock · dark alternative · mysterious acoustic</dd></div>
+          </dl>
+          <p class="placeholder-note mono">// artist photo still needed — send one and it drops straight in</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE JOURNEY =====================
+       Straight from the client call: Order of the Crow is a soul's journey.
+       You start numbed out and outside the room, you shed skin, you go
+       through the dark and the subconscious, and you come out as yourself.
+       Keep this framing — it's the spine of the whole brand.
+  ================================================== -->
+  <section class="section section--deep section--center" id="journey">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / THE JOURNEY</p>
+      <h2 class="section__title glitch scale-in" data-text="A SOUL'S JOURNEY">A SOUL'S JOURNEY</h2>
+      <p class="lead lead--center scale-in">Order of the Crow isn't a mood. It's a route — and every record is another stretch of it.</p>
+
+      <ol class="journey scale-in">
+        <li class="journey__stage">
+          <span class="journey__node" aria-hidden="true"></span>
+          <p class="journey__num mono">STAGE 01</p>
+          <h3 class="journey__name">The Numbing</h3>
+          <p class="journey__desc">You're a normal person living normal days. Mundane tasks, mundane weeks. Somewhere in there society numbed you out, and you started to notice you don't quite fit the room you were put in.</p>
+        </li>
+        <li class="journey__stage">
+          <span class="journey__node" aria-hidden="true"></span>
+          <p class="journey__num mono">STAGE 02</p>
+          <h3 class="journey__name">The Shedding</h3>
+          <p class="journey__desc">Then the evolution starts. You begin ditching things. Shedding skin. Letting go of who you were told to be, long before you know what's underneath it.</p>
+        </li>
+        <li class="journey__stage">
+          <span class="journey__node" aria-hidden="true"></span>
+          <p class="journey__num mono">STAGE 03</p>
+          <h3 class="journey__name">The Dark</h3>
+          <p class="journey__desc">The way through isn't around. It runs straight through the darkness and down into the subconscious — the part of yourself you were never introduced to. This is where the music gets cryptic, because this is where the journey gets cryptic.</p>
+        </li>
+        <li class="journey__stage">
+          <span class="journey__node" aria-hidden="true"></span>
+          <p class="journey__num mono">STAGE 04</p>
+          <h3 class="journey__name">The Awakening</h3>
+          <p class="journey__desc">A soul awakening. Finding your true self — even when finding it means losing your mind along the way. You cross the void, and you come out the other side as yourself.</p>
+        </li>
+      </ol>
+
+      <div class="cta-row scale-in">
+        <a href="music.html" class="btn btn--ghost">HEAR THE JOURNEY — “DEAD MAN” →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHO IT'S FOR ===================== -->
+  <section class="section section--rise section--center" id="outcasts">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 03 / WHO IT'S FOR</p>
+
+      <h2 class="statement glitch scale-in" data-text="YOU ARE NOT ALONE">YOU ARE NOT ALONE</h2>
+
+      <div class="prose scale-in" style="margin-top:2.4rem">
+        <p>This is music for people who feel outside of normal society. The ones who never fit the room they were put in, and stopped pretending they did.</p>
+        <p>If you've ever gone looking for the meaning underneath a record — the clue behind the lyric, the thing the artwork won't say out loud — this was built for you. The Order gets cryptic on purpose. The people it's for already know why.</p>
+        <p><strong>Strip it all back and that's what this is: a hub of weirdos, uniting.</strong></p>
+      </div>
+
+      <div class="cta-row scale-in">
+        <a href="index.html#community" class="btn btn--primary">◈ JOIN THE INNER CIRCLE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE SOUND ===================== -->
+  <section class="section section--black section--center" id="sound">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 04 / THE SOUND</p>
+      <h2 class="section__title glitch scale-in" data-text="NO SINGLE GENRE">NO SINGLE GENRE</h2>
+
+      <div class="prose scale-in">
+        <p>Order of the Crow refuses to be boxed in. The records shift between the visceral, heavy energy of <strong>grunge rock</strong> and the haunting, stripped-down intimacy of <strong>mysterious acoustic</strong> arrangements — built on raw contrast, because the journey they're describing is built on raw contrast too.</p>
+        <p>Seattle grit welded to something stranger: atmospheric, dark alternative, and cryptic by design.</p>
+      </div>
+
+      <ul class="themes scale-in">
+        <li><span>GRUNGE ROCK</span></li>
+        <li><span>DARK ALTERNATIVE</span></li>
+        <li><span>ATMOSPHERIC</span></li>
+        <li><span>MYSTERIOUS ACOUSTIC</span></li>
+        <li><span>PNW</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== THE CREW ===================== -->
+  <section class="section section--fade section--center" id="crew">
+    <div class="section__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 05 / THE CREW</p>
+      <h2 class="section__title glitch scale-in" data-text="WHO MAKES IT">WHO MAKES IT</h2>
+      <p class="lead lead--center scale-in">Order of the Crow is Chris Kreutz. <em>Dead Man</em> was built with Darkblue Records.</p>
+
+      <div class="crew scale-in">
+        <div class="crew__member">
+          <h3 class="crew__name">Chris Kreutz</h3>
+          <p class="crew__role mono">LEAD VOCALS<br />GUITARS<br />PRODUCTION</p>
+        </div>
+        <div class="crew__member">
+          <h3 class="crew__name">Julio Soto</h3>
+          <p class="crew__role mono">GUITARS<br />PRODUCTION<br />MIX</p>
+        </div>
+        <div class="crew__member">
+          <h3 class="crew__name">Jakub Štefkovič</h3>
+          <p class="crew__role mono">GUITARS<br />PRODUCTION<br />MASTER</p>
+        </div>
+      </div>
+
+      <p class="credits mono scale-in" style="margin-top:2rem">DARKBLUE RECORDS · SEATTLE, WA</p>
+    </div>
+  </section>
+
+  <!-- ===================== EMAIL SIGNUP ===================== -->
+  <section class="section signup" id="signup">
+    <div class="section__inner signup__inner scale-in">
+      <p class="dossier"><span class="dossier__dot"></span> 06 / DECRYPT THE ALBUM</p>
+      <h2 class="section__title glitch" data-text="WALK IT WITH US">WALK IT WITH US</h2>
+      <p class="lead lead--center">Join the list before 23 October. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
+      <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
+      <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+        <input type="text" name="name" placeholder="NAME" aria-label="Name" />
+        <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
+        <select name="country" aria-label="Country">
+          <option value="">COUNTRY</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" class="btn btn--primary">TRANSMIT →</button>
+      </form>
+      <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
+      <nav class="footer__social mono">
+        <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">INSTAGRAM</a>
+        <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">YOUTUBE</a>
+        <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+        <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">APPLE MUSIC</a>
+        <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">BANDCAMP</a>
+        <a href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">LINKTREE</a>
+        <!-- NEEDS URL: client gave the Facebook page as a name only — "Chris Kreutz (Order of the Crow)" -->
+        <a href="#" data-placeholder="facebook" title="Facebook URL still needed">FACEBOOK</a>
+      </nav>
+      <p class="footer__contact mono">
+        <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
+      </p>
+      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -655,6 +655,56 @@ h1.glitch, h2.glitch { display: block; }
 }
 .duality__desc { font-size: .82rem; color: var(--muted); line-height: 1.7; }
 
+/* ---------- The Journey (about.html) ----------
+   The four stages of the soul's journey, hung off a vertical HUD spine.
+   Left-aligned rather than centre-alternating so it reads identically on a
+   phone — the numbering and node markers carry the dossier feel. */
+/* Left-aligned even inside a centred section — centred copy hanging off a
+   left-hand spine reads as a mistake. Note the whole list carries .scale-in
+   as ONE unit: scaling each stage separately drags its node off the spine. */
+.journey {
+  list-style: none; position: relative; text-align: left;
+  max-width: 760px; margin: 3rem auto 0; padding-left: clamp(2rem, 6vw, 3.5rem);
+}
+.journey::before {
+  content: ""; position: absolute; left: 5px; top: .6rem; bottom: .6rem; width: 1px;
+  background: linear-gradient(180deg, transparent, var(--line) 12%, var(--line) 88%, transparent);
+}
+.journey__stage { position: relative; padding-bottom: clamp(2.4rem, 6vw, 3.4rem); }
+.journey__stage:last-child { padding-bottom: 0; }
+.journey__node {
+  position: absolute; left: calc(-1 * clamp(2rem, 6vw, 3.5rem)); top: .45rem;
+  width: 11px; height: 11px; background: var(--black);
+  border: 1px solid var(--glow); transform: rotate(45deg);
+  box-shadow: 0 0 14px -2px var(--glow);
+}
+.journey__stage:hover .journey__node { background: var(--glow); }
+.journey__num { font-size: .66rem; letter-spacing: .28em; color: var(--glow); margin-bottom: .5rem; }
+.journey__name {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase;
+  font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 700; letter-spacing: .14em; margin-bottom: .7rem;
+}
+.journey__desc { color: var(--muted); font-size: 1rem; max-width: 56ch; }
+
+/* ---------- Big statement line ---------- */
+.statement {
+  font-family: "Rajdhani", sans-serif; text-transform: uppercase; font-weight: 700;
+  font-size: clamp(1.6rem, 6vw, 3.6rem); line-height: 1.1; letter-spacing: .06em;
+  max-width: 18ch; margin: 0 auto;
+}
+
+/* ---------- Crew (who makes the record) ---------- */
+.crew { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3vw, 1.6rem); margin-top: 2.6rem; }
+.crew__member {
+  padding: 1.6rem 1.2rem; text-align: center;
+  border: 1px solid var(--line); background: rgba(15,27,64,.22);
+  clip-path: polygon(0 0, 100% 0, 100% 88%, calc(100% - 16px) 100%, 0 100%);
+  transition: border-color .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease);
+}
+.crew__member:hover { border-color: var(--glow); box-shadow: 0 22px 50px -28px var(--glow); transform: translateY(-4px); }
+.crew__name { font-family: "Rajdhani", sans-serif; text-transform: uppercase; font-weight: 600; letter-spacing: .14em; font-size: 1rem; margin-bottom: .5rem; }
+.crew__role { font-size: .68rem; letter-spacing: .2em; color: var(--muted); line-height: 1.9; }
+
 /* ---------- Theme tags ---------- */
 .themes { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; margin-top: 2.4rem; }
 .themes li { list-style: none; }
@@ -731,6 +781,7 @@ h1.glitch, h2.glitch { display: block; }
   .disco > .release:last-child:nth-child(5) { grid-column: 2 / span 2; }
   .contact__grid { grid-template-columns: 1fr; }
   .duality { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
+  .crew { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
   .facts { justify-items: center; }
   .facts > div { grid-template-columns: 1fr; gap: .1rem; text-align: center; }
 
