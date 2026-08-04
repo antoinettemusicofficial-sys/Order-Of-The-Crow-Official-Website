@@ -14,6 +14,7 @@ import base64, os, re, shutil, subprocess, sys, urllib.request
 SITE = "/Users/antoinettegentempo/Desktop/OrderOfTheCrowWebsite"
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "crow-demo.html")
+OUT_STANDALONE = os.path.join(HERE, "crow-demo-standalone.html")
 TMP = os.path.join(HERE, "img")
 
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -84,8 +85,10 @@ def main():
 
     # ---- swap asset paths for data URIs (html, css and the hero's img.src)
     def swap(s):
-        s = s.replace("assets/dead-man-album-art.jpg", album)
+        # Longest path first. The CSS uses "../assets/..."; replacing the bare
+        # "assets/..." first would eat the tail and leave a dangling "../".
         s = s.replace("../assets/dead-man-album-art.jpg", album)
+        s = s.replace("assets/dead-man-album-art.jpg", album)
         for slug, uri in releases.items():
             s = s.replace(f"assets/releases/{slug}.jpg", uri)
         return s
@@ -184,10 +187,40 @@ def main():
     non_ascii = [c for c in page if ord(c) > 127]
     if non_ascii:
         sys.exit(f"payload still has non-ASCII: {set(non_ascii)}")
+
+    # Nothing may reference the network: the Artifact CSP blocks it outright,
+    # and the double-clickable copy has no server to resolve paths against.
+    refs = (re.findall(r'\bsrc\s*=\s*["\']([^"\']+)', page)
+            + re.findall(r'url\(\s*["\']?([^"\')]+)', page)
+            + re.findall(r'@import\s+["\']([^"\']+)', page)
+            + re.findall(r'<link[^>]+href\s*=\s*["\']([^"\']+)', page))
+    dangling = [r for r in refs if not r.startswith("data:")]
+    if dangling:
+        sys.exit("subresources that are not inlined:\n  " +
+                 "\n  ".join(r[:100] for r in dangling))
+    print(f"  self-contained: {len(refs)} subresources, all inline")
     with open(OUT, "w", encoding="utf-8") as f:
         f.write(page)
+    print(f"\nWrote {OUT} — {os.path.getsize(OUT)/1024/1024:.2f} MB  (Artifact body)")
+
+    # Second output: a complete document that works by double-clicking it, with
+    # no server and no account. Same payload, just wrapped in the shell the
+    # Artifact host would otherwise supply.
+    icon = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'"
+            "%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Cpath d='M16 4 L18.6 13.4 "
+            "L28 16 L18.6 18.6 L16 28 L13.4 18.6 L4 16 L13.4 13.4 Z' fill='%234f8bff'/%3E%3C/svg%3E")
+    standalone = (
+        "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n"
+        "<meta charset=\"utf-8\" />\n"
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n"
+        f"<link rel=\"icon\" href=\"{icon}\" />\n"
+        "<style>body{margin:0}</style>\n"
+        f"</head>\n<body>\n{page}\n</body>\n</html>\n"
+    )
+    with open(OUT_STANDALONE, "w", encoding="utf-8") as f:
+        f.write(standalone)
+    print(f"Wrote {OUT_STANDALONE} — {os.path.getsize(OUT_STANDALONE)/1024/1024:.2f} MB  (double-clickable)")
     shutil.rmtree(TMP, ignore_errors=True)
-    print(f"\nWrote {OUT} — {os.path.getsize(OUT)/1024/1024:.2f} MB")
 
 
 main()
