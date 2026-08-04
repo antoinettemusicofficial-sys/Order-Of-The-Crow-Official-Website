@@ -350,7 +350,7 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 .pill:hover { border-color: var(--glow); color: var(--glow); }
 .pill--solid { background: var(--glow); color: var(--black); border-color: var(--glow); }
 
-/* ---------- Hero countdown (to DEAD MAN — 10 Aug 2026) ---------- */
+/* ---------- Hero countdown (to DEAD MAN — 23 Oct 2026) ---------- */
 .countdown {
   display: flex; justify-content: center; gap: clamp(.8rem, 3vw, 2.2rem);
   margin-top: 2rem; pointer-events: none;
