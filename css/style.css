@@ -592,6 +592,23 @@ h1.glitch, h2.glitch { display: block; }
 .form__opt input { flex: none; width: 1rem; height: 1rem; margin-top: .18rem; accent-color: var(--glow); }
 .form__opt:hover { color: var(--white); }
 
+/* ---------- GoHighLevel form embed ----------
+   The mailing-list form on index/music/about/merch/community is a real GHL
+   form served in an IFRAME from leadconnectorhq.com. Nothing in this file can
+   style its interior — the fields, the button and the type inside that frame
+   have to be set in the GHL form builder. These rules only size the box it
+   sits in, matched to the 640px measure the old inline form used.
+
+   The palette to enter in the GHL builder, so it matches this site:
+     field bg #04060D · border #142342 · text #EAF0FF · placeholder #93A1CD
+     focus + button bg #4F8BFF · button text #04060D · radius 0
+     fields "Share Tech Mono" · button "Rajdhani" 600 · label "TRANSMIT →"
+
+   contact.html still carries the old placeholder form — that GHL form has not
+   been built yet, so .signup__form below is still live on that one page. */
+.ghl-form { width: 100%; max-width: 640px; margin: 1.6rem auto 0; }
+.ghl-form iframe { display: block; width: 100%; }
+
 /* ---------- Footer ---------- */
 .footer { background: var(--black); padding: 3rem 1.5rem; border-top: 1px solid var(--line); text-align: center; }
 .footer__inner { max-width: var(--maxw); margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem; align-items: center; }

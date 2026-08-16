@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- PRE-LAUNCH: keep this site out of search results. DEAD MAN is not
-       out until 23 October 2026 and the client's material must not turn up
+       out until 25 October 2026 and the client's material must not turn up
        in Google early. REMOVE THIS LINE (and robots.txt) ON LAUNCH DAY. -->
   <meta name="robots" content="noindex, nofollow" />
   <title>MERCH — ORDER OF THE CROW</title>
@@ -135,7 +135,7 @@
           <span class="frame-corner bl"></span><span class="frame-corner br"></span>
         </div>
         <div class="split__text">
-          <p class="mono accent">OUT 23 OCTOBER 2026</p>
+          <p class="mono accent">OUT 25 OCTOBER 2026</p>
           <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
           <p class="lead">The debut album. Available to pre-order now on Bandcamp — the earliest way to own it, and the one that puts the most back into the next record.</p>
           <div class="pills">
@@ -159,20 +159,28 @@
       <p class="dossier scale-in"><span class="dossier__dot"></span> 03 / FIRST ACCESS</p>
       <h2 class="section__title glitch scale-in" data-text="BEFORE IT SELLS OUT">BEFORE IT SELLS OUT</h2>
       <p class="lead lead--center scale-in">Drops are small and they go fast. Get on the list and you'll hear about the first one before anyone else — plus new tracks, behind-the-scenes chaos and exclusive content.</p>
-      <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
-      <form class="signup__form scale-in" id="signupForm" action="#" method="post" novalidate>
-        <input type="text" name="name" placeholder="NAME" aria-label="Name" />
-        <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
-        <select name="country" aria-label="Country">
-          <option value="">COUNTRY</option>
-          <option>United States</option>
-          <option>Canada</option>
-          <option>United Kingdom</option>
-          <option>Other</option>
-        </select>
-        <button type="submit" class="btn btn--primary">TRANSMIT →</button>
-      </form>
-      <p class="placeholder-note mono scale-in">// placeholder form — connect Mailchimp / ConvertKit</p>
+      <!-- GoHighLevel — "Email List Submission form" (id bHcI16KOWaqUd54CzsEj).
+           STYLING: the form renders in an iframe on leadconnectorhq.com, so no
+           rule in style.css can reach inside it. Its colours and fonts must be
+           set in the GHL form builder itself. .ghl-form only sizes the box.
+           HEIGHT: 610px is GHL's default reservation, not a measured value —
+           if a band of dead space shows under the fields, measure the real
+           height and set BOTH the inline height and data-height to it. -->
+      <div class="ghl-form">
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/bHcI16KOWaqUd54CzsEj"
+          style="width:100%;height:610px;border:none;border-radius:0"
+          id="inline-bHcI16KOWaqUd54CzsEj"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-activation-type="alwaysActivated"
+          data-deactivation-type="neverDeactivate"
+          data-form-name="Email List Submission form"
+          data-height="610"
+          data-layout-iframe-id="inline-bHcI16KOWaqUd54CzsEj"
+          data-form-id="bHcI16KOWaqUd54CzsEj"
+          title="Email List Submission form"></iframe>
+      </div>
     </div>
   </section>
 
@@ -202,6 +210,9 @@
     </div>
   </footer>
 
+  <!-- Resizes the GoHighLevel form iframe to fit its content.
+       One per PAGE, not one per form. -->
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
