@@ -609,6 +609,31 @@ h1.glitch, h2.glitch { display: block; }
 .ghl-form { width: 100%; max-width: 640px; margin: 1.6rem auto 0; }
 .ghl-form iframe { display: block; width: 100%; }
 
+/* ---------- Legal links under a form ----------
+   GoHighLevel's form has its own built-in privacy/terms links; those were
+   switched off in the form builder and these replace them, because links
+   inside the iframe cannot be styled or pointed at our own pages.
+
+   The hrefs are RELATIVE on purpose. They resolve against whatever domain
+   the page is served from, so they keep working unchanged when the site
+   moves from github.io to orderofthecrow.com. Never write these as full
+   https:// addresses — that is what would need maintaining later.
+
+   Deliberately louder than the footer's legal row: this is the consent
+   point, so it has to be seen before someone submits, not hunted for. */
+.form-legal { margin-top: 1.8rem; text-align: center; }
+.form-legal__note {
+  font-size: .7rem; letter-spacing: .24em; color: var(--muted); margin-bottom: 1rem;
+}
+.form-legal__links { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center; }
+/* Brighter than .btn--ghost's default line so they read as real buttons,
+   without competing with the filled submit button inside the form. */
+.form-legal .btn { border-color: rgba(79,139,255,.55); color: var(--white); }
+.form-legal .btn:hover {
+  border-color: var(--glow); color: var(--glow);
+  box-shadow: 0 0 24px -8px var(--glow); transform: translateY(-2px);
+}
+
 /* ---------- Footer ---------- */
 .footer { background: var(--black); padding: 3rem 1.5rem; border-top: 1px solid var(--line); text-align: center; }
 .footer__inner { max-width: var(--maxw); margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem; align-items: center; }
@@ -1022,7 +1047,7 @@ body.is-gated .gated-content {
 .facts dt, .facts dd,
 .merch__veil-sub, .card__img--ph, .slot__kind, .slot__name,
 .perks li, .community__status, .perk__desc,
-.contact__label, .contact__value, .form__opt,
+.contact__label, .contact__value, .form__opt, .form-legal__note,
 .pagehead__sub, .prose p, .duality__desc,
 .gate__tag, .gate__line,
 .crew__role, .sealed__row, .sealed__note, .listen__sub,

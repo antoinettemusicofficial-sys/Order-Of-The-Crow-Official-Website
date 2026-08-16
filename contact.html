@@ -138,6 +138,19 @@
         <button type="submit" class="btn btn--primary">TRANSMIT →</button>
       </form>
 
+      <!-- Legal links, deliberately prominent. GoHighLevel's own in-form
+           privacy/terms links were switched off in the form builder — links
+           inside that iframe can't be styled or pointed at our pages.
+           RELATIVE hrefs: they follow the site to orderofthecrow.com with
+           no edit. Don't turn these into full https:// addresses. -->
+      <div class="form-legal">
+        <p class="form-legal__note mono">BY JOINING YOU AGREE TO THE FOLLOWING</p>
+        <div class="form-legal__links">
+          <a href="privacy.html" class="btn btn--ghost btn--small">PRIVACY POLICY</a>
+          <a href="terms.html" class="btn btn--ghost btn--small">TERMS &amp; CONDITIONS</a>
+        </div>
+      </div>
+
       <p class="placeholder-note mono scale-in">// placeholder form — connect a backend before launch</p>
     </div>
   </section>
