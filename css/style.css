@@ -15,8 +15,24 @@
   --glow:    #4f8bff;   /* luminous blue accent */
   --cyan:    #64e6ff;   /* glitch channel B */
   --white:   #eaf0ff;
-  --muted:   #7f8dba;
+  --muted:   #93a1cd;   /* lifted from #7f8dba — see --ink note below */
   --line:    rgba(79,139,255,.22);
+
+  /* Small blue/grey type sits over the album art, the section gradients and
+     the global grain overlay, where its edges go soft and it reads as washed
+     out. A tight black shadow under it restores the edge without whitening
+     the palette. Client note, 2026-08-06. Applied via the grouped rule at the
+     bottom of this file — add new muted selectors there, not ad hoc. */
+  --ink: 0 1px 2px rgba(0,0,0,.85), 0 0 12px rgba(4,6,13,.75);
+
+  /* Stronger variant for the small type that sits DIRECTLY on the album art
+     (hero + inner-page headers). --ink is tuned for flat dark sections; over
+     the bright gold guitar body and the white crow it isn't enough, because
+     mid-blue text on a near-white background is low contrast no matter how
+     tight the shadow. This pools darkness behind the glyphs instead, the same
+     trick .hero__title already uses to hold its own over the artwork. */
+  --ink-art: 0 1px 2px rgba(0,0,0,.95), 0 0 8px rgba(4,6,13,.95),
+             0 0 24px rgba(4,6,13,.9), 0 0 48px rgba(4,6,13,.7);
 
   --maxw: 1160px;
   --ease: cubic-bezier(.2,.7,.2,1);
@@ -189,6 +205,18 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 
 .hero__content { position: relative; z-index: 4; padding: 6rem 1rem; width: 100%; pointer-events: none; }
 .hero__content .btn { pointer-events: auto; }
+/* Scrim behind the hero copy only. .hero__bg's vignette is transparent through
+   the middle on purpose so the portal stays visible — which left the small blue
+   type sitting on the brightest part of the art (the gold guitar body, the white
+   crow) with nothing behind it. Mid-blue on near-white is low contrast no matter
+   how heavy the text-shadow, so this pools darkness behind the copy block while
+   leaving the artwork clear around it. Client note, 2026-08-06. */
+.hero__content::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 62% 46% at 50% 50%,
+              rgba(4,6,13,.72) 0%, rgba(4,6,13,.5) 45%, transparent 74%);
+}
 .hero__title { text-shadow: 0 2px 40px rgba(4,6,13,.9), 0 0 80px rgba(4,6,13,.7); }
 .hero__eyebrow { color: var(--glow); font-size: clamp(.7rem,1.6vw,.9rem); margin-bottom: 1.2rem; }
 .hero__title {
@@ -458,6 +486,9 @@ h1.glitch, h2.glitch { display: block; }
 #contact { background: var(--deep); text-align: center; }
 .contact { max-width: 900px; margin: 0 auto; }
 .contact__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 2.4rem; }
+/* contact.html lists three routes; the homepage teaser still shows two. Collapses
+   to one column via the .contact__grid rule in the 860px block. */
+.contact__grid--three { grid-template-columns: repeat(3, 1fr); }
 .contact__card {
   position: relative; display: flex; flex-direction: column; gap: .5rem;
   padding: 1.5rem 1.2rem;
@@ -542,12 +573,24 @@ h1.glitch, h2.glitch { display: block; }
 /* ---------- Signup ---------- */
 .signup__inner { max-width: 640px; margin: 0 auto; text-align: center; }
 .signup__form { display: flex; flex-direction: column; gap: .9rem; margin-top: 1.6rem; }
-.signup__form input, .signup__form select {
+.signup__form input, .signup__form select, .signup__form textarea {
   padding: .95rem 1.1rem; background: rgba(4,6,13,.7); border: 1px solid var(--line);
   color: var(--white); font-family: "Share Tech Mono", monospace; letter-spacing: .05em; font-size: .95rem;
 }
-.signup__form input::placeholder { color: var(--muted); }
-.signup__form input:focus, .signup__form select:focus { outline: none; border-color: var(--glow); box-shadow: 0 0 0 3px rgba(79,139,255,.15); }
+.signup__form input::placeholder, .signup__form textarea::placeholder { color: var(--muted); }
+.signup__form input:focus, .signup__form select:focus, .signup__form textarea:focus { outline: none; border-color: var(--glow); box-shadow: 0 0 0 3px rgba(79,139,255,.15); }
+.signup__form textarea { min-height: 9.5rem; resize: vertical; line-height: 1.6; }
+
+/* The contact form carries a message body, so its fields read left-aligned even
+   though .signup__inner centres everything around them. */
+.form--contact { text-align: left; }
+.form__opt {
+  display: flex; align-items: flex-start; gap: .7rem; cursor: pointer;
+  font-family: "Share Tech Mono", monospace;
+  font-size: .74rem; line-height: 1.6; letter-spacing: .04em; color: var(--muted);
+}
+.form__opt input { flex: none; width: 1rem; height: 1rem; margin-top: .18rem; accent-color: var(--glow); }
+.form__opt:hover { color: var(--white); }
 
 /* ---------- Footer ---------- */
 .footer { background: var(--black); padding: 3rem 1.5rem; border-top: 1px solid var(--line); text-align: center; }
@@ -859,6 +902,125 @@ body.is-gated .gated-content {
   will-change: transform, opacity;
 }
 .scale-in.in { transition: opacity .1s linear; } /* JS drives transform via style */
+
+/* ---------- Legal pages (terms / privacy / cookies) ----------
+   The site's voice is deliberately cryptic. These pages are deliberately NOT:
+   vague legal copy is worse than none, so the theming lives entirely in the
+   chrome (nav, pagehead, dossier labels, palette) and the body text stays
+   plain English. Wider measure than .prose because numbered clauses and
+   nested lists need the room.
+
+   Legal sections must NOT carry .section--center — the clause text reads
+   left-aligned; only the pagehead above them is centred. */
+.legal { max-width: 74ch; margin: 0 auto; text-align: left; }
+
+.legal__meta {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.4rem;
+  font-family: "Share Tech Mono", monospace; font-size: .72rem;
+  letter-spacing: .18em; color: var(--muted);
+  padding-bottom: 1.4rem; margin-bottom: 2.2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Jump list. Plain anchors — no JS, so it survives the GHL paste intact. */
+.legal__toc { margin: 0 0 2.8rem; padding: 1.2rem 1.4rem; border: 1px solid var(--line); background: rgba(15,27,64,.22); }
+.legal__toc h2 {
+  font-family: "Share Tech Mono", monospace; font-size: .72rem;
+  letter-spacing: .28em; color: var(--muted); margin-bottom: .9rem; font-weight: 400;
+}
+.legal__toc ol { list-style: none; display: grid; gap: .45rem; counter-reset: toc; }
+.legal__toc li { counter-increment: toc; }
+.legal__toc a { font-size: .86rem; color: var(--muted); transition: color .3s; }
+.legal__toc a::before { content: counter(toc,decimal-leading-zero) " · "; font-family: "Share Tech Mono", monospace; color: var(--glow); opacity: .7; }
+.legal__toc a:hover { color: var(--white); }
+
+/* h2 is the clause heading here (the pagehead h1 is the page title). Numbered
+   automatically so inserting a clause never means renumbering by hand. */
+.legal__body { counter-reset: clause; }
+.legal__body > h2 {
+  counter-increment: clause;
+  font-family: "Rajdhani", sans-serif; font-weight: 600; text-transform: uppercase;
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem); letter-spacing: .1em; color: var(--white);
+  margin: 3rem 0 1.1rem; padding-top: 1.6rem; border-top: 1px solid var(--line);
+}
+.legal__body > h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.legal__body > h2::before {
+  content: counter(clause,decimal-leading-zero);
+  font-family: "Share Tech Mono", monospace; font-size: .8em;
+  color: var(--glow); margin-right: .8rem; opacity: .8;
+}
+.legal h3 {
+  font-family: "Rajdhani", sans-serif; font-weight: 600; text-transform: uppercase;
+  font-size: .92rem; letter-spacing: .14em; color: var(--white); margin: 1.8rem 0 .7rem;
+}
+.legal p { color: var(--muted); font-size: .98rem; line-height: 1.85; margin-bottom: 1.1rem; }
+.legal ul, .legal ol { margin: 0 0 1.2rem 1.3rem; display: grid; gap: .55rem; }
+.legal li { color: var(--muted); font-size: .98rem; line-height: 1.8; }
+.legal strong { color: var(--white); font-weight: 500; }
+.legal a { color: var(--glow); border-bottom: 1px solid transparent; transition: border-color .3s; }
+.legal a:hover { border-bottom-color: var(--glow); }
+.legal__body > p:last-child, .legal__body > ul:last-child { margin-bottom: 0; }
+
+/* Rights/cookie tables. Wrapped in .legal__scroll so a wide table scrolls
+   itself instead of forcing the whole page sideways on a phone. */
+.legal__scroll { overflow-x: auto; margin-bottom: 1.4rem; }
+.legal__table { width: 100%; min-width: 34rem; border-collapse: collapse; font-size: .88rem; }
+.legal__table th, .legal__table td { text-align: left; padding: .75rem .9rem; border: 1px solid var(--line); vertical-align: top; line-height: 1.7; }
+.legal__table th {
+  font-family: "Share Tech Mono", monospace; font-weight: 400;
+  font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--white); background: rgba(15,27,64,.4);
+}
+.legal__table td { color: var(--muted); }
+
+/* UNFILLED PLACEHOLDER — deliberately amber so it clashes with the whole
+   palette and cannot be published by accident. Every one of these is a real
+   fact the client still owes. Grep for "legal__todo" before launch. */
+.legal__todo {
+  display: inline; font-family: "Share Tech Mono", monospace; font-size: .82em;
+  color: #ffb347; border-bottom: 1px dashed #ffb347; padding: 0 .15em;
+  letter-spacing: .04em; white-space: nowrap;
+}
+.legal__warn {
+  border: 1px dashed #ffb347; background: rgba(255,179,71,.06);
+  padding: 1.1rem 1.3rem; margin-bottom: 2.4rem;
+}
+.legal__warn p { color: #ffb347; font-family: "Share Tech Mono", monospace; font-size: .78rem; line-height: 1.75; margin: 0; letter-spacing: .03em; }
+
+/* Footer legal row — sits under the social links on every page. */
+.footer__legal { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; font-size: .72rem; }
+.footer__legal a { color: var(--muted); opacity: .8; transition: color .3s, opacity .3s; }
+.footer__legal a:hover { color: var(--glow); opacity: 1; }
+
+/* ---------- Legibility pass on small blue/grey type ----------
+   One grouped rule so the treatment can never drift between pages the way the
+   reveal timing did. Every selector here is one that sets color: var(--muted)
+   (or a small --glow label). Headings are deliberately excluded: .glitch paints
+   cyan/blue clones in ::before/::after and a black shadow would muddy them. */
+.hero__hint, .hero__sub, .hero__scroll,
+.dossier, .lead, .credits, .placeholder-note,
+.vault__standby, .vault__action, .vault__hint,
+.ph-label, .countdown__label,
+.release__meta, .release__links a,
+.facts dt, .facts dd,
+.merch__veil-sub, .card__img--ph, .slot__kind, .slot__name,
+.perks li, .community__status, .perk__desc,
+.contact__label, .contact__value, .form__opt,
+.pagehead__sub, .prose p, .duality__desc,
+.gate__tag, .gate__line,
+.crew__role, .sealed__row, .sealed__note, .listen__sub,
+.legal p, .legal li, .legal__meta, .legal__toc a, .legal__table td,
+.footer__social a, .footer__contact, .footer__copy, .footer__legal a {
+  text-shadow: var(--ink);
+}
+
+/* Small type sitting directly on the album art needs the heavier pool. Listed
+   after the rule above so it wins on equal specificity. */
+.hero__hint, .hero__eyebrow, .hero__sub, .hero__scroll,
+.hero .countdown__label,
+.pagehead__content .dossier, .pagehead__sub {
+  text-shadow: var(--ink-art);
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {

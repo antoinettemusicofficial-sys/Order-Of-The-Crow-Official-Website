@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PRE-LAUNCH: keep this site out of search results. DEAD MAN is not
+       out until 23 October 2026 and the client's material must not turn up
+       in Google early. REMOVE THIS LINE (and robots.txt) ON LAUNCH DAY. -->
+  <meta name="robots" content="noindex, nofollow" />
   <title>THE CULT OF THE CROW — ORDER OF THE CROW</title>
   <meta name="description" content="The Cult of the Crow — a private world for the devoted. Unreleased transmissions, uncut video, first access to drops, and members-only lore. Take the mark." />
   <meta property="og:title" content="THE CULT OF THE CROW — ORDER OF THE CROW" />
@@ -58,7 +62,7 @@
       <a href="merch.html">Merch</a>
       <a href="community.html" class="nav__cta is-current" aria-current="page">The Cult</a>
       <a href="about.html">About</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -123,12 +127,12 @@
 
     <!-- ===================== TAKE THE MARK (signup) ===================== -->
     <section class="section signup" id="signup">
-      <div class="section__inner signup__inner scale-in">
-        <p class="dossier"><span class="dossier__dot"></span> 02 / TAKE THE MARK</p>
-        <h2 class="section__title glitch" data-text="TAKE THE MARK">TAKE THE MARK</h2>
-        <p class="lead lead--center">The doors aren't open yet. Put your name down and you'll be among the first through them — plus new tracks, behind-the-scenes chaos and exclusive content in the meantime.</p>
+      <div class="section__inner signup__inner">
+        <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / TAKE THE MARK</p>
+        <h2 class="section__title glitch scale-in" data-text="TAKE THE MARK">TAKE THE MARK</h2>
+        <p class="lead lead--center scale-in">The doors aren't open yet. Put your name down and you'll be among the first through them — plus new tracks, behind-the-scenes chaos and exclusive content in the meantime.</p>
         <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit / GoHighLevel -->
-        <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+        <form class="signup__form scale-in" id="signupForm" action="#" method="post" novalidate>
           <input type="text" name="name" placeholder="NAME" aria-label="Name" />
           <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
           <select name="country" aria-label="Country">
@@ -140,7 +144,7 @@
           </select>
           <button type="submit" class="btn btn--primary">TRANSMIT →</button>
         </form>
-        <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit / GoHighLevel</p>
+        <p class="placeholder-note mono scale-in">// placeholder form — connect Mailchimp / ConvertKit / GoHighLevel</p>
       </div>
     </section>
 
@@ -174,6 +178,11 @@
         <p class="footer__contact mono">
           <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
         </p>
+        <nav class="footer__legal mono" aria-label="Legal">
+          <a href="terms.html">TERMS &amp; CONDITIONS</a>
+          <a href="privacy.html">PRIVACY POLICY</a>
+          <a href="cookies.html">COOKIE POLICY</a>
+        </nav>
         <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
       </div>
     </footer>

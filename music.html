@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PRE-LAUNCH: keep this site out of search results. DEAD MAN is not
+       out until 23 October 2026 and the client's material must not turn up
+       in Google early. REMOVE THIS LINE (and robots.txt) ON LAUNCH DAY. -->
+  <meta name="robots" content="noindex, nofollow" />
   <title>MUSIC — ORDER OF THE CROW</title>
   <meta name="description" content="DEAD MAN — the debut album from Order of the Crow. A sonic exploration of the fragile line between enlightenment and madness. Out 23 October 2026. Plus every single, and where to listen." />
   <meta property="og:title" content="MUSIC — ORDER OF THE CROW" />
@@ -36,7 +40,7 @@
       <a href="merch.html">Merch</a>
       <a href="community.html" class="nav__cta">The Cult</a>
       <a href="about.html">About</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -325,12 +329,12 @@
 
   <!-- ===================== EMAIL SIGNUP ===================== -->
   <section class="section signup" id="signup">
-    <div class="section__inner signup__inner scale-in">
-      <p class="dossier"><span class="dossier__dot"></span> 07 / DECRYPT THE ALBUM</p>
-      <h2 class="section__title glitch" data-text="HEAR IT FIRST">HEAR IT FIRST</h2>
-      <p class="lead lead--center">Join the list before 23 October. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
+    <div class="section__inner signup__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 07 / DECRYPT THE ALBUM</p>
+      <h2 class="section__title glitch scale-in" data-text="HEAR IT FIRST">HEAR IT FIRST</h2>
+      <p class="lead lead--center scale-in">Join the list before 23 October. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
       <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
-      <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+      <form class="signup__form scale-in" id="signupForm" action="#" method="post" novalidate>
         <input type="text" name="name" placeholder="NAME" aria-label="Name" />
         <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
         <select name="country" aria-label="Country">
@@ -342,7 +346,7 @@
         </select>
         <button type="submit" class="btn btn--primary">TRANSMIT →</button>
       </form>
-      <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit</p>
+      <p class="placeholder-note mono scale-in">// placeholder form — connect Mailchimp / ConvertKit</p>
     </div>
   </section>
 
@@ -363,6 +367,11 @@
       <p class="footer__contact mono">
         <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
       </p>
+      <nav class="footer__legal mono" aria-label="Legal">
+        <a href="terms.html">TERMS &amp; CONDITIONS</a>
+        <a href="privacy.html">PRIVACY POLICY</a>
+        <a href="cookies.html">COOKIE POLICY</a>
+      </nav>
       <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
     </div>
   </footer>

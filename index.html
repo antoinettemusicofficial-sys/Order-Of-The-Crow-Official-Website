@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PRE-LAUNCH: keep this site out of search results. DEAD MAN is not
+       out until 23 October 2026 and the client's material must not turn up
+       in Google early. REMOVE THIS LINE (and robots.txt) ON LAUNCH DAY. -->
+  <meta name="robots" content="noindex, nofollow" />
   <title>ORDER OF THE CROW — Official Site of Chris Kreutz</title>
   <meta name="description" content="Official site of Chris Kreutz and Order of the Crow — Seattle. Raw power, haunting melody, dark energy from the underground. Debut album DEAD MAN out 23 October 2026." />
   <meta property="og:title" content="ORDER OF THE CROW" />
@@ -36,7 +40,7 @@
       <a href="merch.html">Merch</a>
       <a href="community.html" class="nav__cta">The Cult</a>
       <a href="about.html">About</a>
-      <a href="#contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -160,7 +164,6 @@
       <div class="seeall scale-in">
         <a href="music.html">SEE ALL MUSIC — ALBUM, SINGLES &amp; CREDITS →</a>
       </div>
-      </div>
     </div>
   </section>
 
@@ -214,11 +217,11 @@
 
   <!-- ===================== COMMUNITY / THE CULT OF THE CROW ===================== -->
   <section class="section" id="community">
-    <div class="section__inner community scale-in">
-      <p class="dossier"><span class="dossier__dot"></span> 03 / THE CULT OF THE CROW</p>
-      <h2 class="section__title glitch" data-text="YOU ARE NOT ALONE">YOU ARE NOT ALONE</h2>
-      <p class="lead lead--center">A private world for the devoted. Unreleased transmissions, uncut video, early access, and direct contact with the Order. Hidden clues for the observant.</p>
-      <ul class="perks">
+    <div class="section__inner community">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 03 / THE CULT OF THE CROW</p>
+      <h2 class="section__title glitch scale-in" data-text="YOU ARE NOT ALONE">YOU ARE NOT ALONE</h2>
+      <p class="lead lead--center scale-in">A private world for the devoted. Unreleased transmissions, uncut video, early access, and direct contact with the Order. Hidden clues for the observant.</p>
+      <ul class="perks scale-in">
         <li>Exclusive tracks &amp; demos</li>
         <li>Full uncut videos</li>
         <li>First access to merch drops</li>
@@ -226,9 +229,9 @@
       </ul>
       <!-- PLACEHOLDER: community platform. Doors not open yet — the CTA
            collects emails instead of dead-ending on a "#" link. -->
-      <p class="community__status mono">◈ STATUS: DOORS SEALED — OPENING SOON</p>
-      <a href="community.html" class="btn btn--primary">ENTER THE CULT OF THE CROW →</a>
-      <p class="placeholder-note mono">// community platform to be connected</p>
+      <p class="community__status mono scale-in">◈ STATUS: DOORS SEALED — OPENING SOON</p>
+      <a href="community.html" class="btn btn--primary scale-in">ENTER THE CULT OF THE CROW →</a>
+      <p class="placeholder-note mono scale-in">// community platform to be connected</p>
     </div>
   </section>
 
@@ -266,12 +269,12 @@
 
   <!-- ===================== EMAIL SIGNUP (near bottom — Green Day) ===================== -->
   <section class="section signup" id="signup">
-    <div class="section__inner signup__inner scale-in">
-      <p class="dossier"><span class="dossier__dot"></span> 05 / DECRYPT THE ALBUM</p>
-      <h2 class="section__title glitch" data-text="FIRST ACCESS TO DEAD MAN">FIRST ACCESS TO DEAD MAN</h2>
-      <p class="lead lead--center">Join the list before 23 October. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
+    <div class="section__inner signup__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 05 / DECRYPT THE ALBUM</p>
+      <h2 class="section__title glitch scale-in" data-text="FIRST ACCESS TO DEAD MAN">FIRST ACCESS TO DEAD MAN</h2>
+      <p class="lead lead--center scale-in">Join the list before 23 October. Free track, early listen, and first shot at merch and physical copies — straight to your inbox.</p>
       <!-- PLACEHOLDER form — hook to Mailchimp / ConvertKit -->
-      <form class="signup__form" id="signupForm" action="#" method="post" novalidate>
+      <form class="signup__form scale-in" id="signupForm" action="#" method="post" novalidate>
         <input type="text" name="name" placeholder="NAME" aria-label="Name" />
         <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
         <select name="country" aria-label="Country">
@@ -283,18 +286,18 @@
         </select>
         <button type="submit" class="btn btn--primary">TRANSMIT →</button>
       </form>
-      <p class="placeholder-note mono">// placeholder form — connect Mailchimp / ConvertKit</p>
+      <p class="placeholder-note mono scale-in">// placeholder form — connect Mailchimp / ConvertKit</p>
     </div>
   </section>
 
   <!-- ===================== CONTACT ===================== -->
   <section class="section" id="contact">
-    <div class="section__inner contact scale-in">
-      <p class="dossier"><span class="dossier__dot"></span> 06 / OPEN A CHANNEL</p>
-      <h2 class="section__title glitch" data-text="CONTACT">CONTACT</h2>
-      <p class="lead lead--center">Booking, press, features and everything else — reach the Order directly.</p>
+    <div class="section__inner contact">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 06 / OPEN A CHANNEL</p>
+      <h2 class="section__title glitch scale-in" data-text="CONTACT">CONTACT</h2>
+      <p class="lead lead--center scale-in">Booking, press, features and everything else — reach the Order directly.</p>
 
-      <div class="contact__grid">
+      <div class="contact__grid scale-in">
         <a class="contact__card" href="mailto:Orderofthecrowofficial@gmail.com">
           <span class="contact__label mono">EMAIL</span>
           <span class="contact__value">Orderofthecrowofficial@gmail.com</span>
@@ -309,7 +312,11 @@
         </a>
       </div>
 
-      <p class="placeholder-note mono">// full contact page to be built after homepage sign-off</p>
+      <!-- Booking/press enquiries and the full contact form live on contact.html.
+           The homepage keeps just the two direct routes. -->
+      <div class="seeall scale-in">
+        <a href="contact.html">OPEN A CHANNEL →</a>
+      </div>
     </div>
   </section>
 
@@ -330,6 +337,11 @@
       <p class="footer__contact mono">
         <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
       </p>
+      <nav class="footer__legal mono" aria-label="Legal">
+        <a href="terms.html">TERMS &amp; CONDITIONS</a>
+        <a href="privacy.html">PRIVACY POLICY</a>
+        <a href="cookies.html">COOKIE POLICY</a>
+      </nav>
       <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
     </div>
   </footer>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PRE-LAUNCH: keep this site out of search results. DEAD MAN is not
+       out until 23 October 2026 and the client's material must not turn up
+       in Google early. REMOVE THIS LINE (and robots.txt) ON LAUNCH DAY. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <title>CONTACT — ORDER OF THE CROW</title>
+  <meta name="description" content="Contact Order of the Crow — booking, press, features and everything else. Reach Chris Kreutz directly." />
+  <meta property="og:title" content="CONTACT — ORDER OF THE CROW" />
+  <meta property="og:description" content="Booking, press, features and everything else — reach the Order directly." />
+  <meta property="og:image" content="assets/dead-man-album-art.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Tab icon: plain luminous-blue disc on near-black (no star glyphs anywhere) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%234f8bff'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Rajdhani = wide techy HUD display / Share Tech Mono = terminal labels / Inter = body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV =====================
+       Same bar on every page — no hamburger at ANY width.
+       On inner pages the HOME link goes to index.html instead of #hero, and the
+       current page carries .is-current so the glow marks where you are.
+  ================================================== -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">HOME</a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html#video">Video</a>
+      <a href="music.html">Music</a>
+      <a href="merch.html">Merch</a>
+      <a href="community.html" class="nav__cta">The Cult</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="is-current" aria-current="page">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===================== PAGE HEAD ===================== -->
+  <section class="pagehead">
+    <div class="pagehead__bg" aria-hidden="true"></div>
+    <div class="pagehead__veil" aria-hidden="true"></div>
+    <div class="hero__stars" aria-hidden="true"></div>
+    <div class="hero__scanlines" aria-hidden="true"></div>
+
+    <div class="pagehead__content">
+      <p class="dossier"><span class="dossier__dot"></span> CHANNEL / OPEN A LINE</p>
+      <h1 class="pagehead__title glitch" data-text="CONTACT">CONTACT</h1>
+      <p class="pagehead__sub mono">BOOKING · PRESS · FEATURES</p>
+    </div>
+  </section>
+
+  <!-- ===================== DIRECT LINES =====================
+       The routes that genuinely work today. Email is the only contact method
+       the client wanted published — his phone number and WhatsApp link were
+       deliberately removed on 2026-08-03 and must not be reintroduced.
+
+       NOTE: section IDs here are #channels / #message on purpose. The homepage
+       already styles #contact (background + centring), so reusing that ID on a
+       subpage would silently inherit it.
+  ================================================== -->
+  <section class="section section--fade section--center" id="channels">
+    <div class="section__inner contact">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / DIRECT LINES</p>
+      <h2 class="section__title glitch scale-in" data-text="REACH THE ORDER">REACH THE ORDER</h2>
+      <p class="lead lead--center scale-in">Booking, press, features and everything else — reach the Order directly.</p>
+
+      <div class="contact__grid contact__grid--three scale-in">
+        <a class="contact__card" href="mailto:Orderofthecrowofficial@gmail.com">
+          <span class="contact__label mono">EMAIL</span>
+          <span class="contact__value">Orderofthecrowofficial@gmail.com</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </a>
+        <a class="contact__card" href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">
+          <span class="contact__label mono">INSTAGRAM</span>
+          <span class="contact__value">@orderofthecrowofficial</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </a>
+        <a class="contact__card" href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">
+          <span class="contact__label mono">ALL LINKS</span>
+          <span class="contact__value">linktr.ee/Orderofthecrow</span>
+          <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+          <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SEND A TRANSMISSION =====================
+       PLACEHOLDER form — there is no backend on this site yet. Same open
+       question as the mailing-list signup: Mailchimp / ConvertKit /
+       GoHighLevel. Until one is chosen, js/main.js intercepts the submit so
+       nothing posts to "#", and the visitor still gets feedback.
+
+       TO GO LIVE: point action= at the chosen handler (or a Formspree-style
+       endpoint) and delete the wireDemoForm('contactForm', ...) call in
+       js/main.js. The field names are already sensible: name, email, subject,
+       message, list-optin.
+
+       The opt-in checkbox is how this page feeds website goal #3 (build the
+       email list) without putting a SECOND competing form on the page.
+  ================================================== -->
+  <section class="section section--deep section--center" id="message">
+    <!-- .signup__inner is reused purely as a layout utility here (640px, centred) -->
+    <div class="section__inner signup__inner">
+      <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / SEND A TRANSMISSION</p>
+      <h2 class="section__title glitch scale-in" data-text="OPEN A CHANNEL">OPEN A CHANNEL</h2>
+      <p class="lead lead--center scale-in">Or send it straight from here. Everything lands in the same inbox.</p>
+
+      <form class="signup__form form--contact scale-in" id="contactForm" action="#" method="post" novalidate>
+        <input type="text" name="name" placeholder="NAME" aria-label="Name" required />
+        <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
+        <select name="subject" aria-label="What is this about?">
+          <option value="">WHAT IS THIS ABOUT?</option>
+          <option>Booking</option>
+          <option>Press or interview</option>
+          <option>Feature or collaboration</option>
+          <option>Orders &amp; pre-orders</option>
+          <option>Something else</option>
+        </select>
+        <textarea name="message" placeholder="MESSAGE" aria-label="Message" rows="6" required></textarea>
+
+        <label class="form__opt">
+          <input type="checkbox" name="list-optin" value="yes" />
+          <span>Add me to the transmission list — new tracks, behind-the-scenes chaos and exclusive content.</span>
+        </label>
+
+        <button type="submit" class="btn btn--primary">TRANSMIT →</button>
+      </form>
+
+      <p class="placeholder-note mono scale-in">// placeholder form — connect a backend before launch</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
+      <nav class="footer__social mono">
+        <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">INSTAGRAM</a>
+        <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">YOUTUBE</a>
+        <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+        <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">APPLE MUSIC</a>
+        <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">BANDCAMP</a>
+        <a href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">LINKTREE</a>
+        <!-- NEEDS URL: client gave the Facebook page as a name only — "Chris Kreutz (Order of the Crow)" -->
+        <a href="#" data-placeholder="facebook" title="Facebook URL still needed">FACEBOOK</a>
+      </nav>
+      <p class="footer__contact mono">
+        <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
+      </p>
+      <nav class="footer__legal mono" aria-label="Legal">
+        <a href="terms.html">TERMS &amp; CONDITIONS</a>
+        <a href="privacy.html">PRIVACY POLICY</a>
+        <a href="cookies.html">COOKIE POLICY</a>
+      </nav>
+      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

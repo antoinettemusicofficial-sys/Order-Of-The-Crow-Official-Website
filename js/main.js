@@ -75,25 +75,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* ---- Scroll-scale (grow from bottom to center) ---- */
+  /* ---- Scroll-scale (grow from bottom to center) ----
+     Every section reveals to the SAME beat: the chapter number first, then the
+     title, then the content. Two rules make that hold everywhere.
+
+     1. Progress is anchored to each element's TOP edge, not its center. Anchored
+        to the center, a tall content block and a one-line label sitting right
+        next to each other cross the trigger at different scroll positions purely
+        because of their height — which is why the reveals used to look like they
+        fired in a different order from section to section.
+     2. Each element is then held back by a fixed scroll distance based on its
+        order within its own section, so the cascade is deliberate rather than
+        whatever the natural spacing happened to produce. Items sharing a row
+        cascade left-to-right for the same reason.
+
+     Anything with .scale-in participates; see the note in style.css about
+     keeping .scale-in on the CHILDREN of .section__inner, never the wrapper. */
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const items = Array.from(document.querySelectorAll('.scale-in'));
+  const REVEAL_WINDOW = 0.5;   // plays over the bottom half of the viewport
+  const STAGGER_PX    = 40;    // scroll distance between beats
+  const STAGGER_MAX   = 4;     // cap so long sections don't over-delay their tails
+
+  const nodes = Array.from(document.querySelectorAll('.scale-in'));
 
   if (reduceMotion) {
-    items.forEach((el) => { el.style.opacity = 1; el.style.transform = 'none'; });
+    nodes.forEach((el) => { el.style.opacity = 1; el.style.transform = 'none'; });
   } else {
+    // Stagger index = position among .scale-in siblings within the same section.
+    const seen = new Map();
+    const items = nodes.map((el) => {
+      // Match the TAG, not .section — the hero and the gate are <section> elements
+      // that don't carry the .section class, and anything falling through to
+      // <body> would share one ever-growing stagger with the whole page.
+      const group = el.closest('section, footer') || document.body;
+      const n = seen.get(group) || 0;
+      seen.set(group, n + 1);
+      return { el, hold: Math.min(n, STAGGER_MAX) * STAGGER_PX };
+    });
+
     let ticking = false;
 
     const update = () => {
       const vh = window.innerHeight;
-      for (const el of items) {
-        const rect = el.getBoundingClientRect();
-        const elCenter = rect.top + rect.height / 2;
-
-        // progress 0 -> 1 as the element's center travels from the
-        // bottom of the viewport up to the vertical middle.
-        let p = (vh - elCenter) / (vh * 0.5);
-        p = clamp(p, 0, 1);
+      for (const { el, hold } of items) {
+        // progress 0 -> 1 as the element's top travels from the bottom of the
+        // viewport up to the vertical middle, delayed by its beat in the section.
+        const top = el.getBoundingClientRect().top + hold;
+        const p = clamp((vh - top) / (vh * REVEAL_WINDOW), 0, 1);
 
         const scale = 0.82 + 0.18 * p;   // 0.82 -> 1
         const y = (1 - p) * 60;          // 60px -> 0
@@ -337,16 +365,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---- Demo signup (no backend yet) ---- */
-  const form = document.getElementById('signupForm');
-  if (form) {
+  /* ---- Demo forms (no backend yet) ----
+     Both the mailing-list signup and the contact form are placeholders until a
+     backend is picked (Mailchimp / ConvertKit / GoHighLevel). They intercept the
+     submit so nothing silently posts to "#", and the visitor still gets feedback.
+     TO GO LIVE: point the form's action= at the real handler and delete its
+     wireDemoForm(...) call below. */
+  const wireDemoForm = (id, note, doneLabel) => {
+    const form = document.getElementById(id);
+    if (!form) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log('[placeholder] signup submitted — connect Mailchimp / ConvertKit.');
+      console.log(`[placeholder] ${note}`);
       const btn = form.querySelector('button');
       const original = btn.textContent;
-      btn.textContent = '✔ TRANSMITTED (demo)';
+      btn.textContent = doneLabel;
       setTimeout(() => (btn.textContent = original), 2500);
     });
-  }
+  };
+
+  wireDemoForm('signupForm', 'signup submitted — connect Mailchimp / ConvertKit.', '✔ TRANSMITTED (demo)');
+  wireDemoForm('contactForm', 'contact form submitted — connect a form backend / inbox.', '✔ MESSAGE SENT (demo)');
 });

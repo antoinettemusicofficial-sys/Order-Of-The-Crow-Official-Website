@@ -1,0 +1,5 @@
+# PRE-LAUNCH. The site carries unreleased DEAD MAN details and a release
+# date of 23 October 2026, and must not be indexed before then.
+# DELETE THIS FILE ON LAUNCH DAY (and strip the noindex meta from every page).
+User-agent: *
+Disallow: /
