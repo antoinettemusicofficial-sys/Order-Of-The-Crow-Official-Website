@@ -1064,6 +1064,21 @@ body.is-gated .gated-content {
   text-shadow: var(--ink-art);
 }
 
+/* Hard black outline on the two hero lines. The dark pool above softens the
+   background but leaves the glyph edges themselves fuzzy over the bright parts
+   of the art; an outline gives them a definite edge. Client note, 2026-08-21.
+
+   paint-order draws the stroke BEFORE the fill, so the black sits OUTSIDE the
+   letterform. A plain -webkit-text-stroke centres on the path and eats half its
+   width out of the glyph, which thins mono type badly at this size. Browsers
+   without paint-order still get an outline, just a slightly lighter stroke.
+   Width is ~2.5px total = ~1.25px of visible outline — enough to read as an
+   outline without closing up the counters in 'e', 'a' and '0'. */
+.hero__eyebrow, .hero__sub {
+  -webkit-text-stroke: 2.5px #000;
+  paint-order: stroke fill;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .split, .split--reverse .split__media { grid-template-columns: 1fr; order: 0; }
