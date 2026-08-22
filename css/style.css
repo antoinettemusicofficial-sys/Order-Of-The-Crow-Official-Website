@@ -105,6 +105,9 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 }
 .nav.scrolled {
   background: rgba(4,6,13,.9);
+  /* -webkit- prefix for Samsung Internet and Android WebView, which need it.
+     Without it the scrolled nav is a flat translucent bar with no blur. */
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--line);
 }
@@ -161,8 +164,17 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 }
 
 /* ---------- Hero ---------- */
+/* ANDROID: 100vh is the viewport height with the URL bar HIDDEN, so on Android
+   Chrome the hero is ~60-110px taller than what is actually on screen while the
+   bar is showing — which pushes the CTAs and the scroll cue below the fold and
+   is the main reason the page reads differently there than on desktop. 100svh
+   is the small viewport (bar visible), so the hero always fits. svh, not dvh:
+   dvh re-resizes as the bar collapses and the hero would visibly jump mid-
+   scroll. The plain 100vh stays first as the fallback for older browsers. */
 .hero {
-  position: relative; min-height: 100vh;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex; align-items: center; justify-content: center; text-align: center;
   overflow: hidden;
 }
@@ -327,6 +339,7 @@ h1.glitch, h2.glitch { display: block; }
     radial-gradient(ellipse at 50% 50%, rgba(15,27,64,.55), rgba(4,6,13,.94) 70%),
     repeating-linear-gradient(0deg, transparent 0 3px, rgba(79,139,255,.07) 3px 4px);
   border: 0; cursor: pointer; color: var(--white); width: 100%;
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   transition: opacity .5s var(--ease), transform .5s var(--ease), filter .5s var(--ease);
 }
@@ -399,6 +412,7 @@ h1.glitch, h2.glitch { display: block; }
   padding: .6rem .4rem;
   border: 1px solid var(--line);
   background: rgba(4,6,13,.5);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   clip-path: polygon(0 0, 100% 0, 100% 76%, calc(100% - 10px) 100%, 0 100%);
 }
@@ -1064,20 +1078,40 @@ body.is-gated .gated-content {
   text-shadow: var(--ink-art);
 }
 
-/* Hard black outline on the two hero lines. The dark pool above softens the
+/* Hard black outline on the three hero lines. The dark pool above softens the
    background but leaves the glyph edges themselves fuzzy over the bright parts
    of the art; an outline gives them a definite edge. Client note, 2026-08-21.
 
-   paint-order draws the stroke BEFORE the fill, so the black sits OUTSIDE the
-   letterform. A plain -webkit-text-stroke centres on the path and eats half its
-   width out of the glyph, which thins mono type badly at this size. Browsers
-   without paint-order still get an outline, just a slightly lighter stroke.
-   Width is ~2.5px total = ~1.25px of visible outline — enough to read as an
-   outline without closing up the counters in 'e', 'a' and '0'. */
-.hero__eyebrow, .hero__sub {
-  -webkit-text-stroke: 2.5px #000;
-  paint-order: stroke fill;
+   Two layers on purpose, because -webkit-text-stroke ALONE is unsafe here:
+   without paint-order the stroke centres on the glyph path and eats half its
+   width out of the letterform, which at .7rem mono closes up the counters in
+   'e', 'a' and '0' into black blobs. Samsung Internet — the default browser on
+   Samsung Android phones — only got paint-order in v14, so that is a real
+   audience, not a theoretical one.
+
+   So: every browser gets the 8-way shadow ring, which needs no feature support
+   at all. Browsers that DO have paint-order additionally get a true stroke on
+   top, which is crisper. Where both apply the stroke simply covers the ring. */
+.hero__hint, .hero__eyebrow, .hero__sub {
+  text-shadow:
+    /* hard 1px black ring, 8 directions — the universal outline */
+    1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+    1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    /* and keep the soft pool that separates the block from the artwork */
+    0 0 8px rgba(4,6,13,.95), 0 0 24px rgba(4,6,13,.9), 0 0 48px rgba(4,6,13,.7);
 }
+
+@supports (paint-order: stroke) {
+  .hero__hint, .hero__eyebrow, .hero__sub {
+    -webkit-text-stroke: 3.5px #000;
+    paint-order: stroke fill;   /* stroke sits OUTSIDE the glyph, not through it */
+  }
+}
+
+/* DRAG THROUGH THE VOID is the one line the client singled out. It was --muted
+   (#93a1cd) at .7rem sitting on the brightest part of the art, so the outline
+   alone would not carry it — lifting the fill to full white does. */
+.hero__hint { color: var(--white); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
