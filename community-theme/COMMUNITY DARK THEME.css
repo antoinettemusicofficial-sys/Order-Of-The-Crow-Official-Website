@@ -1,0 +1,417 @@
+/* =========================================================================
+   THE CULT OF THE CROW — GoHighLevel Communities dark theme
+   Matches orderofthecrow.com. Built 2026-08-21.
+
+   WHERE THIS GOES
+   In GoHighLevel, open the Community group, then look for:
+       Community  >  Settings  >  Customize  /  Custom CSS
+   Paste this whole file into that box and save. If your plan shows no
+   Custom CSS field on the group itself, the sub-account level field at
+       Settings  >  Company  >  Custom CSS
+   applies to the same UI. Either works; the group-level one is tidier.
+
+   WHY IT IS WRITTEN THIS WAY
+   GoHighLevel's Community is a React app built on Tailwind, and its
+   component class names are auto-generated and change between releases.
+   Chasing those names produces a theme that breaks on the next update. So
+   this file overrides two stable things instead:
+     1. the Tailwind utility classes (.bg-white, .text-gray-900 ...), which
+        are part of Tailwind itself and do not churn, and
+     2. the CSS custom properties GHL sets for its own theming.
+   That is why nearly everything below is broad and uses !important — in an
+   injected stylesheet you are always fighting inline styles and a later
+   cascade, and specificity games are the thing that rots.
+
+   IF SOMETHING STAYS LIGHT
+   See the TUNING note at the very bottom of this file.
+   ========================================================================= */
+
+
+/* ---------- 1. Fonts — the same three the website uses ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap');
+
+
+/* ---------- 2. The palette, lifted verbatim from css/style.css ---------- */
+:root,
+:root[data-theme],
+html,
+body {
+  --ootc-black:  #04060d;   /* page ground */
+  --ootc-deep:   #070c1c;   /* raised surface: cards, posts */
+  --ootc-blue:   #0f1b40;   /* higher surface: modals, menus */
+  --ootc-blue-2: #1b2c66;   /* hover / pressed */
+  --ootc-glow:   #4f8bff;   /* the luminous blue accent */
+  --ootc-cyan:   #64e6ff;
+  --ootc-white:  #eaf0ff;   /* body text */
+  --ootc-muted:  #93a1cd;   /* secondary text */
+  --ootc-line:   rgba(79,139,255,.22);
+
+  /* Overwrite GHL's own theme tokens where they exist. Harmless if a given
+     name is absent in your release — an unused custom property costs nothing. */
+  --primary:            #4f8bff !important;
+  --primary-color:      #4f8bff !important;
+  --secondary:          #1b2c66 !important;
+  --background:         #04060d !important;
+  --background-color:   #04060d !important;
+  --surface:            #070c1c !important;
+  --card-background:    #070c1c !important;
+  --text-color:         #eaf0ff !important;
+  --text-primary:       #eaf0ff !important;
+  --text-secondary:     #93a1cd !important;
+  --border-color:       rgba(79,139,255,.22) !important;
+
+  color-scheme: dark !important;   /* makes native controls + scrollbars dark */
+}
+
+
+/* ---------- 3. Force dark, whatever the toggle says ----------
+   Some builds ship a light/dark switch, and a member landing in light mode
+   would see a half-themed page. These neutralise the light class so the
+   result is the same either way. */
+html.light, html[data-theme="light"],
+body.light, body[data-theme="light"],
+.light-mode, .theme-light {
+  background: var(--ootc-black) !important;
+  color: var(--ootc-white) !important;
+}
+
+
+/* ---------- 4. The page ground ---------- */
+html, body,
+#app, #root, .app, main,
+[class*="app-container"], [class*="page-container"],
+[class*="layout"], [class*="Layout"] {
+  background: var(--ootc-black) !important;
+  color: var(--ootc-white) !important;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-weight: 300 !important;
+}
+
+/* Headings carry the site's display face. */
+h1, h2, h3, h4, h5, h6,
+[class*="title"], [class*="Title"],
+[class*="heading"], [class*="Heading"] {
+  font-family: "Rajdhani", sans-serif !important;
+  color: var(--ootc-white) !important;
+  letter-spacing: .02em;
+}
+
+
+/* ---------- 5. Tailwind utility overrides ----------
+   This is the section doing most of the work. Every light background and
+   dark-text utility Tailwind ships gets remapped into the palette. */
+
+/* white + grey surfaces -> the dark ground */
+.bg-white, .bg-gray-50, .bg-gray-100, .bg-slate-50, .bg-slate-100,
+.bg-neutral-50, .bg-neutral-100, .bg-zinc-50, .bg-zinc-100,
+[class*="bg-white"], [class*="bg-gray-5"], [class*="bg-gray-1"] {
+  background-color: var(--ootc-deep) !important;
+}
+
+.bg-gray-200, .bg-gray-300, .bg-slate-200, .bg-slate-300,
+.bg-neutral-200, .bg-zinc-200 {
+  background-color: var(--ootc-blue) !important;
+}
+
+/* dark text -> light text */
+.text-black, .text-gray-900, .text-gray-800, .text-gray-700,
+.text-slate-900, .text-slate-800, .text-slate-700,
+.text-neutral-900, .text-zinc-900,
+[class*="text-gray-9"], [class*="text-gray-8"], [class*="text-gray-7"] {
+  color: var(--ootc-white) !important;
+}
+
+/* mid greys -> the muted blue */
+.text-gray-600, .text-gray-500, .text-gray-400,
+.text-slate-600, .text-slate-500, .text-slate-400,
+.text-neutral-500, .text-zinc-500,
+[class*="text-gray-6"], [class*="text-gray-5"], [class*="text-gray-4"] {
+  color: var(--ootc-muted) !important;
+}
+
+/* every border -> the site's hairline blue */
+.border, .border-t, .border-b, .border-l, .border-r,
+.border-gray-100, .border-gray-200, .border-gray-300,
+.border-slate-200, .border-neutral-200,
+[class*="border-gray-"], [class*="divide-gray-"] {
+  border-color: var(--ootc-line) !important;
+}
+
+/* Tailwind's shadows are tuned for white backgrounds and turn into grey
+   smudges on black. Replace with a real shadow plus a hairline edge. */
+.shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl,
+[class*="shadow"] {
+  box-shadow: 0 2px 18px rgba(0,0,0,.55) !important;
+}
+
+
+/* ---------- 6. Posts, cards, feed items ---------- */
+[class*="card"], [class*="Card"],
+[class*="post"], [class*="Post"],
+[class*="feed-item"], [class*="FeedItem"],
+[class*="comment"], [class*="Comment"],
+article {
+  background: var(--ootc-deep) !important;
+  border: 1px solid var(--ootc-line) !important;
+  border-radius: 0 !important;      /* the site is hard-cornered throughout */
+  color: var(--ootc-white) !important;
+}
+
+[class*="card"]:hover, [class*="post"]:hover {
+  border-color: rgba(79,139,255,.45) !important;
+}
+
+
+/* ---------- 7. Sidebar, nav, channel list ---------- */
+aside, nav, header,
+[class*="sidebar"], [class*="Sidebar"],
+[class*="navbar"], [class*="Navbar"],
+[class*="channel-list"], [class*="group-list"] {
+  background: var(--ootc-black) !important;
+  border-color: var(--ootc-line) !important;
+  color: var(--ootc-white) !important;
+}
+
+/* nav items */
+nav a, aside a,
+[class*="nav-item"], [class*="menu-item"], [class*="channel-item"] {
+  color: var(--ootc-muted) !important;
+  font-family: "Rajdhani", sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  border-radius: 0 !important;
+}
+
+nav a:hover, aside a:hover,
+[class*="nav-item"]:hover, [class*="menu-item"]:hover,
+[class*="channel-item"]:hover {
+  color: var(--ootc-white) !important;
+  background: rgba(79,139,255,.10) !important;
+}
+
+/* the active channel gets the accent, mirroring .is-current on the site */
+[class*="nav-item"][class*="active"],
+[class*="menu-item"][class*="active"],
+[class*="channel-item"][class*="active"],
+[aria-current="page"] {
+  color: var(--ootc-glow) !important;
+  background: rgba(79,139,255,.14) !important;
+  border-left: 2px solid var(--ootc-glow) !important;
+}
+
+
+/* ---------- 8. Buttons ---------- */
+button, .btn, [class*="button"], [class*="Button"], [role="button"] {
+  font-family: "Rajdhani", sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  border-radius: 0 !important;
+  transition: background .25s, color .25s, box-shadow .25s;
+}
+
+/* primary / filled */
+.btn-primary, [class*="primary"],
+button[type="submit"],
+.bg-blue-500, .bg-blue-600, .bg-indigo-600 {
+  background: var(--ootc-glow) !important;
+  color: var(--ootc-black) !important;
+  border: 1px solid var(--ootc-glow) !important;
+}
+
+.btn-primary:hover, [class*="primary"]:hover,
+button[type="submit"]:hover {
+  box-shadow: 0 0 26px -6px var(--ootc-glow) !important;
+  transform: translateY(-1px);
+}
+
+/* secondary / ghost */
+.btn-secondary, [class*="secondary"], [class*="outline"], [class*="ghost"] {
+  background: transparent !important;
+  color: var(--ootc-white) !important;
+  border: 1px solid var(--ootc-line) !important;
+}
+
+.btn-secondary:hover, [class*="outline"]:hover, [class*="ghost"]:hover {
+  border-color: var(--ootc-glow) !important;
+  color: var(--ootc-glow) !important;
+}
+
+
+/* ---------- 9. Inputs, the post composer, the rich-text editor ----------
+   These are the fields most likely to stay stubbornly white, because editors
+   often set a background inline. */
+input, textarea, select,
+[contenteditable="true"],
+[class*="editor"], [class*="Editor"],
+[class*="input"], [class*="Input"],
+[class*="composer"], [class*="textbox"],
+.ql-editor, .ql-container, .ProseMirror {
+  background: var(--ootc-black) !important;
+  color: var(--ootc-white) !important;
+  border: 1px solid var(--ootc-line) !important;
+  border-radius: 0 !important;
+  font-family: "Share Tech Mono", monospace !important;
+}
+
+input:focus, textarea:focus, select:focus,
+[contenteditable="true"]:focus,
+.ql-editor:focus, .ProseMirror:focus {
+  border-color: var(--ootc-glow) !important;
+  box-shadow: 0 0 0 1px var(--ootc-glow) !important;
+  outline: none !important;
+}
+
+::placeholder,
+.ql-editor.ql-blank::before {
+  color: var(--ootc-muted) !important;
+  opacity: 1 !important;
+}
+
+/* editor toolbars */
+.ql-toolbar, [class*="toolbar"], [class*="Toolbar"] {
+  background: var(--ootc-deep) !important;
+  border-color: var(--ootc-line) !important;
+}
+
+.ql-stroke  { stroke: var(--ootc-muted) !important; }
+.ql-fill    { fill:   var(--ootc-muted) !important; }
+.ql-picker-label { color: var(--ootc-muted) !important; }
+
+
+/* ---------- 10. Links, mentions, hashtags ---------- */
+a, [class*="link"] {
+  color: var(--ootc-glow) !important;
+  text-decoration: none !important;
+}
+
+a:hover { color: var(--ootc-cyan) !important; }
+
+[class*="mention"], [class*="hashtag"] {
+  color: var(--ootc-cyan) !important;
+  background: rgba(100,230,255,.10) !important;
+  border-radius: 0 !important;
+}
+
+
+/* ---------- 11. Modals, dropdowns, popovers, tooltips ----------
+   These sit above everything, so a white one is the most jarring miss. */
+[class*="modal"], [class*="Modal"],
+[class*="dialog"], [class*="Dialog"],
+[class*="dropdown"], [class*="Dropdown"],
+[class*="popover"], [class*="Popover"],
+[class*="menu"], [class*="Menu"],
+[class*="tooltip"], [class*="Tooltip"],
+[role="dialog"], [role="menu"], [role="listbox"], [role="tooltip"] {
+  background: var(--ootc-blue) !important;
+  color: var(--ootc-white) !important;
+  border: 1px solid var(--ootc-line) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 10px 44px rgba(0,0,0,.75) !important;
+}
+
+/* the dim behind a modal */
+[class*="overlay"], [class*="Overlay"], [class*="backdrop"] {
+  background: rgba(4,6,13,.86) !important;
+}
+
+[role="menuitem"]:hover, [role="option"]:hover {
+  background: rgba(79,139,255,.16) !important;
+  color: var(--ootc-white) !important;
+}
+
+
+/* ---------- 12. Tables and dividers ---------- */
+table, th, td {
+  background: transparent !important;
+  color: var(--ootc-white) !important;
+  border-color: var(--ootc-line) !important;
+}
+
+thead, th {
+  background: var(--ootc-deep) !important;
+  font-family: "Rajdhani", sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+hr, [class*="divider"], [class*="separator"] {
+  border-color: var(--ootc-line) !important;
+  background: var(--ootc-line) !important;
+}
+
+
+/* ---------- 13. Badges, pills, counters, tags ---------- */
+[class*="badge"], [class*="Badge"],
+[class*="pill"], [class*="tag"], [class*="chip"] {
+  background: rgba(79,139,255,.16) !important;
+  color: var(--ootc-glow) !important;
+  border: 1px solid var(--ootc-line) !important;
+  border-radius: 0 !important;
+  font-family: "Share Tech Mono", monospace !important;
+}
+
+/* unread / notification dots keep the accent */
+[class*="unread"], [class*="notification-dot"], [class*="indicator"] {
+  background: var(--ootc-glow) !important;
+}
+
+
+/* ---------- 14. Avatars ---------- */
+[class*="avatar"], [class*="Avatar"] {
+  border: 1px solid var(--ootc-line) !important;
+  background: var(--ootc-blue) !important;
+}
+
+
+/* ---------- 15. Loading skeletons ----------
+   Default skeletons are pale grey and flash white on a black page. */
+[class*="skeleton"], [class*="Skeleton"], [class*="placeholder-glow"] {
+  background: linear-gradient(90deg,
+              var(--ootc-deep) 0%, var(--ootc-blue) 50%, var(--ootc-deep) 100%) !important;
+}
+
+
+/* ---------- 16. Scrollbars ---------- */
+::-webkit-scrollbar            { width: 10px; height: 10px; }
+::-webkit-scrollbar-track      { background: var(--ootc-black); }
+::-webkit-scrollbar-thumb      { background: var(--ootc-blue-2); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover{ background: var(--ootc-glow); }
+
+* { scrollbar-color: var(--ootc-blue-2) var(--ootc-black); }
+
+
+/* ---------- 17. Text selection ---------- */
+::selection {
+  background: var(--ootc-glow);
+  color: var(--ootc-black);
+}
+
+
+/* =========================================================================
+   TUNING — if one element stays light after pasting this
+
+   Do not add more !important on top; find the real class instead.
+
+   1. In Chrome on a desktop, right-click the stubborn element > Inspect.
+   2. In the Elements panel, read the class list on the highlighted node and
+      on its parent.
+   3. Send me that class list (a screenshot of the panel is enough) and I
+      will add a targeted rule to this file.
+
+   Two known limits, so they are not a surprise:
+
+   - Anything GoHighLevel renders inside an IFRAME cannot be reached by this
+     stylesheet. That is a browser security boundary, not a gap in the CSS.
+     The same constraint applies to the two GHL forms embedded on the website
+     — those are styled in the GHL form builder instead. If part of the
+     Community turns out to be iframed, it has to be themed in GHL's own
+     settings.
+
+   - GoHighLevel ships UI changes without notice. If the Community looks
+     half-themed one morning, a release has renamed something. Send a
+     screenshot and it is a quick fix, not a rebuild.
+   ========================================================================= */
