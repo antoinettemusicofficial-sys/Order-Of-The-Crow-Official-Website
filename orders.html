@@ -99,18 +99,25 @@
             <h2 class="order__name">CLAIM YOUR MARK</h2>
             <p class="order__desc">Create your account. Nothing reaches you until you do — the door is open, but it does not open itself.</p>
             <!-- The GHL Communities portal for sub-account J2rBUDBuEVDLM9oRkoBi.
-                 USE THE BARE URL. This briefly pointed at /signup, on the
-                 reasoning that the root renders a page titled "Sign in" and
-                 that is the wrong door for someone with no account. That was
-                 wrong in practice — /signup landed in the wrong place, and the
-                 portal root prompts you to create an account if you don't have
-                 one. Confirmed by the client, who knows the platform, 2026-08-23.
-                 Don't "fix" this back to /signup off the page title alone.
+                 This is the GROUP HOME. Resolves to "About Cult Of The Crow"
+                 and prompts for login/signup first if you don't have an account,
+                 which is what ORDER 01 needs.
+
+                 ⚠️ NEVER PUT AN /auth?token=... URL HERE. The client supplied one
+                 on 2026-08-23 — GHL magic-link URLs carry a personal login token,
+                 and this page is public and goes to every new member, so that
+                 would log every visitor in as the token's owner. This URL is that
+                 link's `redirect=` destination with the credential stripped; it
+                 reaches the same place and carries nothing private.
+
+                 It also briefly pointed at /signup, guessed from the portal root's
+                 page title. That was wrong — a GHL SPA 200s on any path with a
+                 plausible title, so the title proves nothing about a route.
 
                  This is the ONLY place the community URL appears. The email
                  does not link here directly on purpose; its single call to
                  action is DECRYPT, which brings people to this letter. -->
-            <a class="btn btn--primary btn--small" href="https://j2rbudbuevdlm9orkobi.app.clientclub.net/" target="_blank" rel="noopener">CREATE YOUR ACCOUNT →</a>
+            <a class="btn btn--primary btn--small" href="https://j2rbudbuevdlm9orkobi.app.clientclub.net/communities/groups/cult-of-the-crow/home" target="_blank" rel="noopener">CREATE YOUR ACCOUNT →</a>
           </li>
 
           <li class="order">
