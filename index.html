@@ -35,7 +35,7 @@
     <a href="#hero" class="nav__logo">HOME</a>
 
     <nav class="nav__links" aria-label="Main navigation">
-      <a href="#video">Video</a>
+      <a href="#video">Decrypt</a>
       <a href="music.html">Music</a>
       <a href="merch.html">Merch</a>
       <a href="community.html" class="nav__cta">The Cult</a>
@@ -82,26 +82,39 @@
     </div>
   </section>
 
-  <!-- ===================== VIDEO — CLICK TO DECRYPT =====================
+  <!-- ===================== TRANSMISSION — CLICK TO DECRYPT =====================
        The opener. Locked until the visitor clicks, then the panel "decrypts"
-       and the video plays. Doubles as the top of the Cult funnel.
+       and the transmission plays. Doubles as the top of the Cult funnel.
 
-       TO DROP IN THE REAL VIDEO: put the YouTube ID in data-youtube below
-       (e.g. data-youtube="dQw4w9WgXcQ"), or point data-src at a local .mp4.
-       Leave both empty and it shows the standby panel you see now.
+       The client supplied AUDIO, not video (2026-08-23), so data-audio below
+       drives it and main.js builds the transport. The source master was a
+       12.7s 48kHz/24-bit stereo WAV on the GHL media CDN:
+         assets.cdn.filesafe.space/J2rBUDBuEVDLM9oRkoBi/media/6a8b1951a7056fdd97761c4d.wav
+       It is served here as AAC/m4a instead — 3.6MB down to 313KB, and 24-bit
+       PCM WAV is not something every browser will decode.
+
+       IF A VIDEO ARRIVES LATER: clear data-audio and put the YouTube ID in
+       data-youtube (e.g. data-youtube="dQw4w9WgXcQ"), or point data-src at a
+       local .mp4. All three empty shows the standby panel.
+
+       The section id stays #video so the nav links on all 11 pages and any
+       link already shared keep working; only the visible label changed.
   ===================================================================== -->
   <section class="section" id="video">
     <div class="section__inner">
       <p class="dossier scale-in"><span class="dossier__dot"></span> 00 / CLASSIFIED TRANSMISSION</p>
       <h2 class="section__title glitch scale-in" data-text="DECRYPT THE FILE">DECRYPT THE FILE</h2>
 
-      <div class="vault scale-in" id="vault" data-youtube="" data-src="">
+      <div class="vault scale-in" id="vault"
+           data-audio="assets/transmission-001.m4a"
+           data-audio-title="TRANSMISSION 001"
+           data-youtube="" data-src="">
         <!-- the decrypted content lands here -->
         <div class="vault__stage" id="vaultStage">
           <div class="vault__standby mono">
             <span class="vault__standby-eye">◈</span>
             <span>TRANSMISSION 001</span>
-            <span class="vault__standby-sub">// VIDEO FILE PENDING UPLOAD</span>
+            <span class="vault__standby-sub">// SIGNAL PENDING UPLOAD</span>
           </div>
         </div>
 

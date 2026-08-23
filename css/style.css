@@ -323,6 +323,69 @@ h1.glitch, h2.glitch { display: block; }
 .vault__stage { position: absolute; inset: 0; display: grid; place-items: center; }
 .vault__stage iframe, .vault__stage video { width: 100%; height: 100%; border: 0; display: block; }
 
+/* ---------- The decrypted audio transport ----------
+   Built by mountAudio() in main.js when #vault carries data-audio. We draw our
+   own transport because the native <audio controls> chrome is a light pill
+   that cannot be restyled to sit inside this panel. Square everything: same
+   radius-0 language as the buttons and the GHL forms. */
+.vaudio { position: absolute; inset: 0; }
+.vaudio__viz {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: block; pointer-events: none;
+}
+.vaudio__ui {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: space-between; padding: clamp(1rem, 3.6vw, 2rem);
+}
+.vaudio__title {
+  margin: 0; display: flex; align-items: center; gap: .6rem;
+  font-size: .72rem; letter-spacing: .3em; color: var(--muted);
+}
+.vaudio__eye { color: var(--glow); text-shadow: 0 0 18px var(--glow); }
+.vaudio.is-playing .vaudio__eye { animation: heroPulse 2.4s ease-in-out infinite; }
+
+.vaudio__transport { display: flex; align-items: center; gap: clamp(.75rem, 2.6vw, 1.3rem); }
+
+.vaudio__play {
+  flex: none; width: 54px; height: 54px; display: grid; place-items: center;
+  background: rgba(4,6,13,.72); border: 1px solid rgba(79,139,255,.55);
+  color: var(--glow); cursor: pointer;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: color .3s, border-color .3s, box-shadow .3s;
+}
+.vaudio__play:hover { color: var(--white); border-color: var(--glow); box-shadow: 0 0 30px -6px var(--glow); }
+/* play / pause drawn in CSS — no icon font, no SVG, nothing else to load */
+.vaudio__play::before {
+  content: ''; box-sizing: border-box; width: 0; height: 0; margin-left: 4px;
+  border-left: 15px solid currentColor;
+  border-top: 9px solid transparent; border-bottom: 9px solid transparent;
+}
+.vaudio.is-playing .vaudio__play::before {
+  width: 15px; height: 17px; margin-left: 0;
+  border: 0; border-left: 5px solid currentColor; border-right: 5px solid currentColor;
+}
+
+.vaudio__seek {
+  flex: 1 1 auto; min-width: 0; -webkit-appearance: none; appearance: none;
+  height: 3px; border: 0; background: rgba(79,139,255,.22); cursor: pointer;
+}
+.vaudio__seek::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 12px; height: 12px; border: 0; border-radius: 0;
+  background: var(--glow); box-shadow: 0 0 16px var(--glow); cursor: pointer;
+}
+.vaudio__seek::-moz-range-track { height: 3px; border: 0; background: rgba(79,139,255,.22); }
+.vaudio__seek::-moz-range-thumb {
+  width: 12px; height: 12px; border: 0; border-radius: 0;
+  background: var(--glow); box-shadow: 0 0 16px var(--glow); cursor: pointer;
+}
+.vaudio__seek:focus-visible { outline: 1px solid var(--glow); outline-offset: 6px; }
+
+.vaudio__time {
+  flex: none; font-size: .7rem; letter-spacing: .16em; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
 /* standby panel shown until a real video is dropped in */
 .vault__standby {
   display: flex; flex-direction: column; align-items: center; gap: .5rem;
@@ -1056,6 +1119,7 @@ body.is-gated .gated-content {
 .hero__hint, .hero__sub, .hero__scroll,
 .dossier, .lead, .credits, .placeholder-note,
 .vault__standby, .vault__action, .vault__hint,
+.vaudio__title, .vaudio__time,
 .ph-label, .countdown__label,
 .release__meta, .release__links a,
 .facts dt, .facts dd,

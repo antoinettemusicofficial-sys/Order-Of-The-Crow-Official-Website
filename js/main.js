@@ -2,7 +2,7 @@
    ORDER OF THE CROW — main.js (v2)
    - scroll-scale: elements enter small from the bottom and grow
      to full size as they reach the center of the screen (Alan Walker)
-   - click-to-decrypt video vault
+   - click-to-decrypt vault (audio transport / video)
    - sticky nav, countdown, year, placeholder guards, demo form
    ========================================================= */
 
@@ -146,10 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
   onNavScroll();
   window.addEventListener('scroll', onNavScroll, { passive: true });
 
-  /* ---- Click-to-decrypt video vault ----
+  /* ---- Click-to-decrypt vault ----
      Click the lock -> the cipher line scrambles for a beat -> the panel
-     "resolves" and whatever video is configured starts playing.
-     Configure via the #vault element's data-youtube or data-src attribute. */
+     "resolves" and whatever media is configured starts playing.
+     Configure via the #vault element's data-audio (an audio file, which is
+     what the client supplied), data-youtube (a YouTube ID) or data-src (a
+     local video file). Checked in that order; all empty keeps the standby
+     panel. */
   const vault = document.getElementById('vault');
   const vaultLock = document.getElementById('vaultLock');
   const vaultCipher = document.getElementById('vaultCipher');
@@ -157,13 +160,180 @@ document.addEventListener('DOMContentLoaded', () => {
   if (vault && vaultLock) {
     const PLAIN = 'ORDER OF THE CROW';
 
-    const mountVideo = () => {
-      const stage = document.getElementById('vaultStage');
-      const yt = vault.dataset.youtube?.trim();
-      const src = vault.dataset.src?.trim();
-      if (!stage || (!yt && !src)) return;   // no video yet — keep the standby panel
+    const el = (tag, cls) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      return n;
+    };
 
-      if (yt) {
+    const clock = (secs) => {
+      if (!isFinite(secs) || secs < 0) secs = 0;
+      return `${Math.floor(secs / 60)}:${String(Math.floor(secs % 60)).padStart(2, '0')}`;
+    };
+
+    /* Live spectrum behind the transport. Kept entirely optional: if WebAudio
+       is missing, blocked, or the file can't be read cross-origin, we bail and
+       the track still plays — never let the decoration take the audio down.
+       The rAF loop only runs while the track is actually playing, so this
+       can't sit and burn the main thread the way liquid-hero.js once did. */
+    const wireVisualiser = (audio, canvas) => {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      const g = canvas.getContext && canvas.getContext('2d');
+      if (!AC || !g) return () => {};
+
+      let ctx, source, analyser;
+      try {
+        ctx = new AC();
+        source = ctx.createMediaElementSource(audio);
+      } catch (e) {
+        return () => {};             // element never rerouted — plays normally
+      }
+      try {
+        analyser = ctx.createAnalyser();
+        analyser.fftSize = 128;
+        analyser.smoothingTimeConstant = 0.75;
+        source.connect(analyser);
+        analyser.connect(ctx.destination);
+      } catch (e) {
+        // the source IS rerouted now, so it must reach the speakers somehow
+        try { source.connect(ctx.destination); } catch (e2) { /* nothing left to try */ }
+        return () => {};
+      }
+
+      const size = () => {
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+        canvas.width  = Math.max(1, Math.round(canvas.clientWidth  * dpr));
+        canvas.height = Math.max(1, Math.round(canvas.clientHeight * dpr));
+      };
+      size();
+      window.addEventListener('resize', size, { passive: true });
+
+      const bins = new Uint8Array(analyser.frequencyBinCount);
+      const GAP = 2;               // device px between bars
+      let raf = 0;
+
+      const draw = () => {
+        const w = canvas.width, h = canvas.height;
+        g.clearRect(0, 0, w, h);
+        analyser.getByteFrequencyData(bins);
+
+        const n = bins.length;
+        const bw = w / n;
+        for (let i = 0; i < n; i++) {
+          const bh = (bins[i] / 255) * h * 0.82;
+          // every seventh bar in cyan, the same two-channel language as .glitch
+          g.fillStyle = i % 7 === 0 ? 'rgba(100,230,255,.5)' : 'rgba(79,139,255,.34)';
+          g.fillRect(i * bw, h - bh, Math.max(1, bw - GAP), bh);
+        }
+        raf = requestAnimationFrame(draw);
+      };
+
+      return (on) => {
+        if (on) {
+          if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+          if (reduceMotion) return;  // player works, the bars just stay still
+          if (!raf) { size(); raf = requestAnimationFrame(draw); }
+        } else {
+          if (raf) { cancelAnimationFrame(raf); raf = 0; }
+          // don't leave the bars frozen mid-height — a paused panel goes quiet
+          g.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      };
+    };
+
+    /* The audio transport. Deliberately NOT <audio controls>: the native
+       chrome is an unstyleable light pill and there is no way to make it read
+       as part of this panel. */
+    const mountAudio = (stage, src) => {
+      const audio = new Audio();
+      /* Same-origin today (assets/), so this is a no-op — it's here so the
+         analyser still works if data-audio is ever pointed back at the GHL
+         media CDN, which does send access-control-allow-origin: *. */
+      audio.crossOrigin = 'anonymous';
+      audio.preload = 'auto';
+      audio.src = src;
+      audio.hidden = true;
+
+      const wrap = el('div', 'vaudio');
+      const viz  = el('canvas', 'vaudio__viz');
+      viz.setAttribute('aria-hidden', 'true');
+
+      const ui    = el('div', 'vaudio__ui');
+      const title = el('p', 'vaudio__title mono');
+      const eye   = el('span', 'vaudio__eye');
+      eye.textContent = '◈';
+      eye.setAttribute('aria-hidden', 'true');
+      title.append(eye, vault.dataset.audioTitle?.trim() || 'TRANSMISSION 001');
+
+      const bar  = el('div', 'vaudio__transport');
+      const play = el('button', 'vaudio__play');
+      play.type = 'button';
+      play.setAttribute('aria-label', 'Play');
+
+      const seek = el('input', 'vaudio__seek');
+      seek.type = 'range';
+      seek.min = '0'; seek.max = '1000'; seek.step = '1'; seek.value = '0';
+      seek.setAttribute('aria-label', 'Seek through the transmission');
+
+      const time = el('span', 'vaudio__time mono');
+      time.textContent = '0:00 / 0:00';
+
+      bar.append(play, seek, time);
+      ui.append(title, bar);
+      wrap.append(viz, ui, audio);
+      stage.replaceChildren(wrap);
+
+      const setViz = wireVisualiser(audio, viz);
+
+      const setPlaying = (on) => {
+        wrap.classList.toggle('is-playing', on);
+        play.setAttribute('aria-label', on ? 'Pause' : 'Play');
+        setViz(on);
+      };
+
+      audio.addEventListener('play',  () => setPlaying(true));
+      audio.addEventListener('pause', () => setPlaying(false));
+      audio.addEventListener('ended', () => {
+        setPlaying(false);
+        seek.value = '0';
+        time.textContent = `0:00 / ${clock(audio.duration)}`;
+      });
+      audio.addEventListener('error', () => {
+        title.textContent = '// TRANSMISSION UNAVAILABLE';
+        bar.remove();
+      });
+
+      audio.addEventListener('loadedmetadata', () => {
+        time.textContent = `${clock(0)} / ${clock(audio.duration)}`;
+      });
+      audio.addEventListener('timeupdate', () => {
+        time.textContent = `${clock(audio.currentTime)} / ${clock(audio.duration)}`;
+        if (audio.duration) seek.value = String((audio.currentTime / audio.duration) * 1000);
+      });
+
+      play.addEventListener('click', () => {
+        if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+      });
+      seek.addEventListener('input', () => {
+        if (audio.duration) audio.currentTime = (Number(seek.value) / 1000) * audio.duration;
+      });
+
+      /* The decrypt click is ~1.4s back, but user activation is sticky, so this
+         is normally allowed. If a browser refuses we simply sit on the play
+         button rather than showing an error. */
+      audio.play().catch(() => {});
+    };
+
+    const mountMedia = () => {
+      const stage = document.getElementById('vaultStage');
+      const aud = vault.dataset.audio?.trim();
+      const yt  = vault.dataset.youtube?.trim();
+      const src = vault.dataset.src?.trim();
+      if (!stage || (!aud && !yt && !src)) return;   // nothing yet — keep standby
+
+      if (aud) {
+        mountAudio(stage, aud);
+      } else if (yt) {
         const frame = document.createElement('iframe');
         frame.src = `https://www.youtube-nocookie.com/embed/${yt}?autoplay=1&rel=0&modestbranding=1`;
         frame.title = 'Order of the Crow — video';
@@ -192,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (action) action.textContent = 'DECRYPTED';
           vault.classList.remove('is-decrypting');
           vault.classList.add('is-open');
-          mountVideo();
+          mountMedia();
         });
     };
 
