@@ -98,11 +98,16 @@
             <p class="order__n mono">ORDER 01</p>
             <h2 class="order__name">CLAIM YOUR MARK</h2>
             <p class="order__desc">Create your account. Nothing reaches you until you do — the door is open, but it does not open itself.</p>
-            <!-- NEEDS URL: the GoHighLevel Communities group invite link. The
-                 platform was confirmed 2026-08-21 but no group URL exists yet.
-                 Put the real link in BOTH places: here and in the matching
-                 button in email/community-welcome.html. -->
-            <a class="btn btn--primary btn--small" href="#" data-placeholder="community-invite" title="Community invite URL still needed">CREATE YOUR ACCOUNT →</a>
+            <!-- The GHL Communities portal for sub-account J2rBUDBuEVDLM9oRkoBi.
+                 /signup DELIBERATELY, not the bare domain: the root resolves to
+                 "Sign in", which is the wrong door for someone who has no
+                 account yet. Verified 2026-08-23 — /signup is a real route (its
+                 title changes), while an unknown path falls back to sign-in.
+
+                 This is the ONLY place the community URL appears. The email
+                 does not link here directly on purpose; its single call to
+                 action is DECRYPT, which brings people to this letter. -->
+            <a class="btn btn--primary btn--small" href="https://j2rbudbuevdlm9orkobi.app.clientclub.net/signup" target="_blank" rel="noopener">CREATE YOUR ACCOUNT →</a>
           </li>
 
           <li class="order">
