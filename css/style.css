@@ -1111,6 +1111,96 @@ body.is-gated .gated-content {
 .footer__legal a { color: var(--muted); opacity: .8; transition: color .3s, opacity .3s; }
 .footer__legal a:hover { color: var(--glow); opacity: 1; }
 
+/* ================= SEALED ORDERS (orders.html) =================
+   The private welcome letter the community email links to. Arrives sealed;
+   #sealBtn decrypts it. body.is-sealed is added by main.js, so with script
+   off the seal never appears and the letter just reads as a document —
+   that is why .letter is collapsed by .is-sealed rather than by [hidden].
+   ============================================================== */
+.orders { padding-top: clamp(7rem, 14vw, 10rem); }
+.orders .section__inner { max-width: 820px; }
+
+/* ---- the seal ---- */
+.seal { display: none; }
+body.is-sealed .seal {
+  display: block; position: relative; text-align: center;
+  padding: clamp(2.4rem, 7vw, 4.4rem) clamp(1.2rem, 5vw, 3rem);
+  background: linear-gradient(135deg, var(--blue), var(--black) 70%);
+  border: 1px solid var(--line);
+  clip-path: polygon(0 0, 100% 0, 100% 95%, calc(100% - 26px) 100%, 0 100%);
+}
+body.is-sealed .letter { display: none; }
+
+.seal__tag { font-size: .68rem; letter-spacing: .3em; color: var(--muted); margin: 0 0 clamp(1.6rem, 5vw, 2.6rem); }
+.seal__wax { position: relative; display: grid; place-items: center; width: 108px; height: 108px; margin: 0 auto clamp(1.4rem, 4vw, 2rem); }
+.seal__ring {
+  position: absolute; inset: 0; border: 1px solid rgba(79,139,255,.5);
+  border-radius: 50%; border-top-color: var(--glow);
+  animation: vaultSpin 7s linear infinite;
+}
+.seal__ring--2 { inset: 16px; border-top-color: transparent; border-left-color: var(--cyan); animation-duration: 4.5s; animation-direction: reverse; }
+.seal__mark { font-size: 2.3rem; color: var(--glow); text-shadow: 0 0 26px var(--glow); animation: heroPulse 3s ease-in-out infinite; }
+
+.seal__cipher { display: block; font-size: clamp(.8rem, 2.6vw, 1.2rem); letter-spacing: .3em; color: var(--glow); opacity: .85; min-height: 1.4em; margin: 0 0 clamp(1.4rem, 4vw, 2rem); }
+.seal__btn { margin-bottom: clamp(1.2rem, 3.5vw, 1.8rem); }
+.seal__note { font-size: .64rem; letter-spacing: .28em; color: var(--muted); opacity: .75; margin: 0; }
+body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinite; }
+
+/* ---- the letter ---- */
+.letter {
+  position: relative; overflow: hidden; outline: none;
+  padding: clamp(1.8rem, 6vw, 3.6rem) clamp(1.3rem, 5vw, 3.2rem);
+  background: linear-gradient(160deg, var(--deep), var(--black) 75%);
+  border: 1px solid var(--line);
+  clip-path: polygon(0 0, 100% 0, 100% 97%, calc(100% - 34px) 100%, 0 100%);
+}
+/* Lines stagger in behind the decrypt. --i is set per child by main.js.
+   Scoped to .is-open ONLY — deliberately not to body.is-sealed, because
+   main.js takes .is-sealed off to uncollapse the letter in the same beat
+   it adds .is-open. Requiring both would mean the animation never matches.
+   With script off neither class exists and the letter is plain and static. */
+.letter.is-open > * {
+  animation: letterIn .5s cubic-bezier(.2,.7,.3,1) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+@keyframes letterIn { from { opacity: 0; transform: translateY(14px); } }
+
+.letter__meta {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: .5rem clamp(1rem, 3vw, 2rem); margin: 0 0 clamp(1.6rem, 5vw, 2.6rem);
+  padding-bottom: clamp(1.2rem, 4vw, 1.8rem); border-bottom: 1px solid var(--line);
+}
+.letter__meta > div { display: flex; gap: .7rem; align-items: baseline; }
+.letter__meta dt { font-size: .6rem; letter-spacing: .28em; color: var(--glow); opacity: .8; flex: none; }
+.letter__meta dd { margin: 0; font-size: .68rem; letter-spacing: .16em; color: var(--muted); }
+
+.letter__title {
+  font-family: "Rajdhani", sans-serif; font-weight: 700; text-transform: uppercase;
+  font-size: clamp(1.45rem, 5.2vw, 2.5rem); line-height: 1.12; letter-spacing: .02em;
+  color: var(--white); margin: 0 0 clamp(1.4rem, 4vw, 2rem);
+}
+.letter__body p { color: var(--muted); line-height: 1.8; margin: 0 0 1.1rem; }
+.letter__body p:first-child { color: var(--white); }
+
+.orders__list { list-style: none; margin: clamp(2rem, 6vw, 3.2rem) 0 0; padding: 0; }
+.order {
+  position: relative; padding: clamp(1.2rem, 4vw, 1.8rem) 0 clamp(1.2rem, 4vw, 1.8rem) clamp(1rem, 4vw, 1.6rem);
+  border-top: 1px solid var(--line); border-left: 2px solid rgba(79,139,255,.35);
+  transition: border-left-color .3s;
+}
+.order:hover { border-left-color: var(--glow); }
+.order__n { font-size: .62rem; letter-spacing: .34em; color: var(--glow); margin: 0 0 .5rem; }
+.order__name {
+  font-family: "Rajdhani", sans-serif; font-weight: 600; text-transform: uppercase;
+  font-size: clamp(1rem, 3.4vw, 1.3rem); letter-spacing: .1em; color: var(--white); margin: 0 0 .6rem;
+}
+.order__desc { color: var(--muted); line-height: 1.75; margin: 0 0 1rem; font-size: .95rem; }
+.order .btn { margin-top: .2rem; }
+
+.letter__sign { margin: clamp(2.2rem, 6vw, 3.2rem) 0 .5rem; font-size: clamp(.85rem, 2.8vw, 1.05rem); letter-spacing: .3em; color: var(--white); text-shadow: 0 0 22px rgba(79,139,255,.5); }
+.letter__from { margin: 0 0 clamp(2rem, 5vw, 2.8rem); font-size: .7rem; letter-spacing: .26em; color: var(--muted); }
+.letter__foot { font-size: .6rem; letter-spacing: .2em; color: var(--muted); opacity: .65; margin: 0 0 clamp(1.8rem, 5vw, 2.4rem); }
+
 /* ---------- Legibility pass on small blue/grey type ----------
    One grouped rule so the treatment can never drift between pages the way the
    reveal timing did. Every selector here is one that sets color: var(--muted)
@@ -1121,6 +1211,7 @@ body.is-gated .gated-content {
 .vault__standby, .vault__action, .vault__hint,
 .vaudio__title, .vaudio__time,
 .ph-label, .countdown__label,
+.seal__tag, .seal__note, .letter__foot, .order__desc, .letter__body p,
 .release__meta, .release__links a,
 .facts dt, .facts dd,
 .merch__veil-sub, .card__img--ph, .slot__kind, .slot__name,

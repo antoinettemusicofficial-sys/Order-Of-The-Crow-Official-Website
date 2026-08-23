@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>SEALED ORDERS — CULT OF THE CROW</title>
+
+<!-- ============================================================
+     ORDER OF THE CROW — CULT WELCOME EMAIL
+     Sent when someone JOINS THE COMMUNITY (form 0iibq33VGDnsYRiI5zt5),
+     not when they join the mailing list — that one is welcome.html.
+     Paste the WHOLE file into GoHighLevel's custom HTML email block.
+
+     ⚠️ WHY THE LETTER IS NOT IN THIS EMAIL
+     The brief was "click decrypt and a letter opens." JavaScript does
+     not run in email — not in Gmail, not in Outlook, not in Apple Mail.
+     There is no version of this that animates inside the inbox. The
+     CSS-checkbox trick that people reach for is stripped by Gmail,
+     which is most of the list, so it would half-work and look broken.
+
+     So the decrypt happens on the SITE: this email is the sealed
+     envelope, and the button opens orders.html, which runs the real
+     cipher animation and unrolls the letter. Same experience, and it
+     works in every client instead of some of them.
+
+     ⚠️ orders.html carries a PERMANENT noindex. Do not "fix" that.
+
+     THIS IS EMAIL HTML, NOT WEB HTML — same rules as welcome.html:
+       - Tables for layout. Outlook renders with Word's engine.
+       - Every style inlined; <style> is enhancement only.
+       - Web-safe fonts only. Courier New carries the terminal feel.
+       - 600px wide. Absolute URLs only.
+
+     BEFORE SENDING, four things:
+       1. Fill the postal address in the footer. CAN-SPAM requires it.
+       2. Put the real community invite URL in ORDER 01's button. It is
+          marked NEEDS URL below and appears in orders.html too.
+       3. Check whether GHL appends its own unsubscribe footer; if it
+          does, delete ours so there aren't two.
+       4. Send a test and read it in Gmail AND on a phone.
+     ============================================================ -->
+
+<meta name="color-scheme" content="dark" />
+<meta name="supported-color-schemes" content="dark" />
+
+<style type="text/css">
+  :root { color-scheme: dark; supported-color-schemes: dark; }
+  body { margin:0 !important; padding:0 !important; width:100% !important; }
+  table { border-collapse:collapse !important; }
+  img { -ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; }
+  a { text-decoration:none; }
+  /* Phone: let the padded shell breathe a little */
+  @media only screen and (max-width:620px) {
+    .shell { width:100% !important; }
+    .pad { padding-left:22px !important; padding-right:22px !important; }
+    .h1 { font-size:26px !important; line-height:32px !important; }
+    .stack { display:block !important; width:100% !important; }
+  }
+</style>
+</head>
+
+<body style="margin:0; padding:0; background-color:#04060d; -webkit-font-smoothing:antialiased;">
+
+<!-- Preheader: the grey preview line next to the subject in the inbox.
+     Gmail shows the first text it finds, so if this is missing it shows
+     "// SECTOR 03" or whatever else lands first. Hidden in the body. -->
+<div style="display:none; font-size:1px; color:#04060d; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden;">
+  Your orders are sealed. Decrypt them.
+  &#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#04060d;">
+  <tr>
+    <td align="center" style="padding:0;">
+
+      <table role="presentation" class="shell" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background-color:#04060d;">
+
+        <!-- ============ TOP RULE / CLASSIFICATION SLUG ============ -->
+        <tr>
+          <td style="padding:0; border-top:2px solid #4f8bff; font-size:0; line-height:0;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="pad" align="center" style="padding:18px 40px 0; font-family:'Courier New', Courier, monospace; font-size:11px; letter-spacing:3px; color:#93a1cd; text-transform:uppercase;">
+            // EYES ONLY &middot; SECTOR 03 &middot; CULT OF THE CROW
+          </td>
+        </tr>
+
+        <!-- ============ MARK ============ -->
+        <tr>
+          <td align="center" style="padding:26px 40px 0; font-family:Arial, Helvetica, sans-serif; font-size:34px; line-height:34px; color:#4f8bff;">
+            &#9672;
+          </td>
+        </tr>
+
+        <!-- ============ HEADLINE ============ -->
+        <tr>
+          <td class="pad" align="center" style="padding:18px 40px 0;">
+            <h1 class="h1" style="margin:0; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:30px; line-height:36px; letter-spacing:1px; color:#eaf0ff; text-transform:uppercase;">
+              You&rsquo;re Inside
+            </h1>
+          </td>
+        </tr>
+
+        <!-- ============ SALUTATION ============ -->
+        <tr>
+          <td class="pad" align="center" style="padding:22px 40px 0; font-family:'Courier New', Courier, monospace; font-size:13px; letter-spacing:2px; color:#4f8bff; text-transform:uppercase;">
+            <!-- {{contact.first_name}} is GoHighLevel's merge field. CHECK IT
+                 RENDERS in a test send before this goes anywhere, and make sure
+                 the form actually collects a first name — a blank here reads as
+                 a mistake. -->
+            &gt; HELLO {{contact.first_name}}
+          </td>
+        </tr>
+
+        <!-- ============ BODY ============ -->
+        <tr>
+          <td class="pad" align="center" style="padding:22px 40px 0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:26px; color:#eaf0ff;">
+            You went looking, and you kept going after the point where most people stop. The door is open.
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" align="center" style="padding:16px 40px 0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:26px; color:#93a1cd;">
+            Your standing orders came with this transmission. They arrived sealed.
+          </td>
+        </tr>
+
+        <!-- ============ THE SEALED BLOCK ============
+             Redaction bars are bgcolor table cells, NOT block characters.
+             A row of █ depends on the font having that glyph and on the
+             client not re-wrapping it; a filled table cell is the same
+             black bar in every client including Outlook. -->
+        <tr>
+          <td class="pad" align="center" style="padding:34px 40px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#070c1c; border:1px solid #142342;">
+              <tr>
+                <td style="padding:26px 26px 8px;">
+
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="padding:0 0 9px; font-family:'Courier New', Courier, monospace; font-size:10px; letter-spacing:3px; color:#4f8bff;">
+                        ORDER 01
+                      </td>
+                    </tr>
+                    <tr><td height="11" bgcolor="#1b2c66" style="font-size:0; line-height:0; height:11px;">&nbsp;</td></tr>
+                    <tr><td height="7" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+                    <tr>
+                      <td>
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="72%"><tr>
+                          <td height="11" bgcolor="#142342" style="font-size:0; line-height:0; height:11px;">&nbsp;</td>
+                        </tr></table>
+                      </td>
+                    </tr>
+                    <tr><td height="20" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <tr>
+                      <td style="padding:0 0 9px; font-family:'Courier New', Courier, monospace; font-size:10px; letter-spacing:3px; color:#4f8bff;">
+                        ORDER 02
+                      </td>
+                    </tr>
+                    <tr><td height="11" bgcolor="#1b2c66" style="font-size:0; line-height:0; height:11px;">&nbsp;</td></tr>
+                    <tr><td height="7" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+                    <tr>
+                      <td>
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="55%"><tr>
+                          <td height="11" bgcolor="#142342" style="font-size:0; line-height:0; height:11px;">&nbsp;</td>
+                        </tr></table>
+                      </td>
+                    </tr>
+                    <tr><td height="20" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <tr>
+                      <td style="padding:0 0 9px; font-family:'Courier New', Courier, monospace; font-size:10px; letter-spacing:3px; color:#4f8bff;">
+                        ORDER 03
+                      </td>
+                    </tr>
+                    <tr><td height="11" bgcolor="#1b2c66" style="font-size:0; line-height:0; height:11px;">&nbsp;</td></tr>
+                    <tr><td height="7" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+                    <tr>
+                      <td>
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="64%"><tr>
+                          <td height="11" bgcolor="#142342" style="font-size:0; line-height:0; height:11px;">&nbsp;</td>
+                        </tr></table>
+                      </td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="padding:14px 26px 24px; font-family:'Courier New', Courier, monospace; font-size:10px; letter-spacing:2px; color:#93a1cd;">
+                  + 02 MORE &middot; ENCRYPTED
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ============ THE DECRYPT BUTTON ============
+             Bulletproof: padding on the <a> for everyone, mso-padding-alt
+             on the <td> because Outlook ignores padding on inline elements. -->
+        <tr>
+          <td class="pad" align="center" style="padding:34px 40px 0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="center" bgcolor="#4f8bff" style="mso-padding-alt:16px 40px;">
+                  <a href="https://orderofthecrow.com/orders.html" target="_blank"
+                     style="display:inline-block; padding:16px 40px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:14px; letter-spacing:3px; color:#04060d; text-transform:uppercase; text-decoration:none;">
+                    Click to Decrypt
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" align="center" style="padding:16px 40px 0; font-family:'Courier New', Courier, monospace; font-size:10px; letter-spacing:2px; color:#93a1cd;">
+            OR PASTE THIS: orderofthecrow.com/orders.html
+          </td>
+        </tr>
+
+        <!-- ============ SIGN-OFF ============ -->
+        <tr>
+          <td class="pad" align="center" style="padding:44px 40px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr><td height="1" bgcolor="#142342" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" align="center" style="padding:30px 40px 0; font-family:'Courier New', Courier, monospace; font-size:15px; letter-spacing:5px; color:#eaf0ff; text-transform:uppercase;">
+            You Are Not Alone.
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" align="center" style="padding:12px 40px 0; font-family:'Courier New', Courier, monospace; font-size:11px; letter-spacing:3px; color:#93a1cd; text-transform:uppercase;">
+            &mdash; Order of the Crow
+          </td>
+        </tr>
+
+        <!-- ============ FOOTER ============ -->
+        <tr>
+          <td class="pad" align="center" style="padding:44px 40px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr><td height="1" bgcolor="#142342" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" align="center" style="padding:24px 40px 0; font-family:'Courier New', Courier, monospace; font-size:10px; letter-spacing:2px;">
+            <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" style="color:#93a1cd; text-decoration:none;">INSTAGRAM</a>
+            <span style="color:#142342;">&nbsp;&middot;&nbsp;</span>
+            <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" style="color:#93a1cd; text-decoration:none;">YOUTUBE</a>
+            <span style="color:#142342;">&nbsp;&middot;&nbsp;</span>
+            <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" style="color:#93a1cd; text-decoration:none;">BANDCAMP</a>
+            <span style="color:#142342;">&nbsp;&middot;&nbsp;</span>
+            <a href="https://linktr.ee/Orderofthecrow" target="_blank" style="color:#93a1cd; text-decoration:none;">ALL LINKS</a>
+          </td>
+        </tr>
+
+        <!-- CAN-SPAM: a real physical address is legally required, and its
+             absence is also a live spam-filter signal. This is the same
+             address still outstanding on the legal pages. -->
+        <tr>
+          <td class="pad" align="center" style="padding:26px 40px 0; font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:18px; color:#6b7ba8;">
+            Order of the Crow &middot; [[ POSTAL ADDRESS REQUIRED ]] &middot; Seattle, WA
+          </td>
+        </tr>
+        <tr>
+          <td class="pad" align="center" style="padding:10px 40px 0; font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:18px; color:#6b7ba8;">
+            You&rsquo;re getting this because you joined the Cult of the Crow.
+          </td>
+        </tr>
+
+        <!-- If GHL appends its own unsubscribe block, DELETE this row rather
+             than shipping two. {{unsubscribe_link}} is GHL's merge field —
+             confirm it is the one this sub-account actually uses. -->
+        <tr>
+          <td class="pad" align="center" style="padding:14px 40px 40px; font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:18px; color:#6b7ba8;">
+            <a href="{{unsubscribe_link}}" target="_blank" style="color:#93a1cd; text-decoration:underline;">Unsubscribe</a>
+            <span style="color:#142342;">&nbsp;&middot;&nbsp;</span>
+            <a href="https://orderofthecrow.com/privacy.html" target="_blank" style="color:#93a1cd; text-decoration:underline;">Privacy Policy</a>
+            <span style="color:#142342;">&nbsp;&middot;&nbsp;</span>
+            <a href="https://orderofthecrow.com/community-terms.html" target="_blank" style="color:#93a1cd; text-decoration:underline;">Community Terms</a>
+            <span style="color:#142342;">&nbsp;&middot;&nbsp;</span>
+            <a href="https://orderofthecrow.com/code-of-conduct.html" target="_blank" style="color:#93a1cd; text-decoration:underline;">Code of Conduct</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:0; border-bottom:2px solid #4f8bff; font-size:0; line-height:0;">&nbsp;</td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -554,6 +554,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  /* ---- Sealed orders (orders.html) ----
+     The private welcome letter the community email links to. Same cipher
+     language as the vault and the community gate.
+
+     body.is-sealed is added HERE rather than sitting in the markup, so a
+     visitor with JS off never gets a seal they can't open — they just read
+     the letter. Everything below is a no-op on the other 11 pages. */
+  const seal = document.getElementById('seal');
+  const sealBtn = document.getElementById('sealBtn');
+  const sealCipher = document.getElementById('sealCipher');
+  const letter = document.getElementById('letter');
+
+  if (seal && sealBtn && letter) {
+    document.body.classList.add('is-sealed');
+
+    // stagger index for the line-by-line unroll; CSS reads it as --i
+    Array.from(letter.children).forEach((node, i) => {
+      node.style.setProperty('--i', String(i));
+    });
+
+    let opened = false;
+    sealBtn.addEventListener('click', () => {
+      if (opened) return;
+      opened = true;
+      seal.classList.add('is-decrypting');
+      sealBtn.disabled = true;
+      sealBtn.textContent = 'DECRYPTING…';
+
+      cipherResolve('ORDERS RECEIVED', 1500,
+        (txt) => { if (sealCipher) sealCipher.textContent = txt; },
+        () => {
+          seal.classList.remove('is-decrypting');
+          document.body.classList.remove('is-sealed');
+          letter.classList.add('is-open');
+          /* Send focus into the letter so a screen reader lands on the thing
+             that just appeared instead of on the button that vanished.
+             .letter carries tabindex="-1" purely to receive this. */
+          letter.focus();
+        });
+    });
+  }
+
   wireDemoForm('signupForm', 'signup submitted — connect Mailchimp / ConvertKit.', '✔ TRANSMITTED (demo)');
   wireDemoForm('contactForm', 'contact form submitted — connect a form backend / inbox.', '✔ MESSAGE SENT (demo)');
 });

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ⚠️ THIS noindex IS PERMANENT — DO NOT STRIP IT ON LAUNCH DAY.
+       Every other page carries a temporary pre-launch noindex that gets
+       removed when DEAD MAN is out. This one does not. These are the
+       standing orders sent privately to people who joined the Cult; the
+       whole point is that you arrive here from the email and nowhere else.
+       A letter that says "eyes only" and then ranks in Google is a joke. -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>SEALED ORDERS · ORDER OF THE CROW</title>
+  <meta name="description" content="Standing orders for the Cult of the Crow." />
+  <!-- No og: tags on purpose. There is nothing here to preview in a share card. -->
+
+  <!-- Tab icon: plain luminous-blue disc on near-black (no star glyphs anywhere) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060d'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%234f8bff'/%3E%3C/svg%3E" />
+
+  <!-- Fonts: Rajdhani = wide techy HUD display / Share Tech Mono = terminal labels / Inter = body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="nav__logo">HOME</a>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a href="index.html#video">Decrypt</a>
+      <a href="music.html">Music</a>
+      <a href="merch.html">Merch</a>
+      <a href="community.html" class="nav__cta">The Cult</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===================== SEALED ORDERS =====================
+       Arrives sealed. The DECRYPT button runs the same cipherResolve
+       helper as the homepage vault and the community gate, then the
+       letter unrolls line by line.
+
+       NO JS FALLBACK IS NEEDED: #letter is NOT hidden in the markup. CSS
+       collapses it while body has .is-sealed, and .is-sealed is added by
+       main.js. Script off -> no .is-sealed -> the letter simply reads as
+       a plain document. Never put hidden="" on #letter; that would make
+       the whole thing unreadable for anyone without JS.
+  ================================================== -->
+  <main class="section orders">
+    <div class="section__inner">
+
+      <div class="seal" id="seal" aria-hidden="true">
+        <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+
+        <p class="seal__tag mono">// EYES ONLY · SECTOR 03 · CULT OF THE CROW</p>
+
+        <div class="seal__wax" aria-hidden="true">
+          <span class="seal__ring"></span>
+          <span class="seal__ring seal__ring--2"></span>
+          <span class="seal__mark">◈</span>
+        </div>
+
+        <p class="seal__cipher mono" id="sealCipher">██████ ██████</p>
+        <button type="button" class="btn btn--primary seal__btn" id="sealBtn">CLICK TO DECRYPT</button>
+        <p class="seal__note mono">THIS FILE WAS ADDRESSED TO YOU</p>
+      </div>
+
+      <article class="letter" id="letter" tabindex="-1">
+        <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span><span class="frame-corner br"></span>
+        <span class="hero__scanlines" aria-hidden="true"></span>
+
+        <!-- The brief's header block: a dossier slug, not a mail header -->
+        <dl class="letter__meta mono">
+          <div><dt>FROM</dt><dd>ORDER OF THE CROW</dd></div>
+          <div><dt>TO</dt><dd>THE MARKED</dd></div>
+          <div><dt>SECTOR</dt><dd>03 · CULT OF THE CROW</dd></div>
+          <div><dt>CLASS</dt><dd>EYES ONLY</dd></div>
+        </dl>
+
+        <h1 class="letter__title glitch" data-text="WELCOME TO THE MOST CLASSIFIED SECTOR OF ORDER OF THE CROW">WELCOME TO THE MOST CLASSIFIED SECTOR OF ORDER OF THE CROW</h1>
+
+        <div class="letter__body">
+          <p>You were not recruited. You went looking, and you kept going after the point where most people stop. That is the only qualification that has ever mattered here.</p>
+          <p>What follows is not a newsletter. It is a standing order. Read it once, then carry it out.</p>
+        </div>
+
+        <ol class="orders__list">
+          <li class="order">
+            <p class="order__n mono">ORDER 01</p>
+            <h2 class="order__name">CLAIM YOUR MARK</h2>
+            <p class="order__desc">Create your account. Nothing reaches you until you do — the door is open, but it does not open itself.</p>
+            <!-- NEEDS URL: the GoHighLevel Communities group invite link. The
+                 platform was confirmed 2026-08-21 but no group URL exists yet.
+                 Put the real link in BOTH places: here and in the matching
+                 button in email/community-welcome.html. -->
+            <a class="btn btn--primary btn--small" href="#" data-placeholder="community-invite" title="Community invite URL still needed">CREATE YOUR ACCOUNT →</a>
+          </li>
+
+          <li class="order">
+            <p class="order__n mono">ORDER 02</p>
+            <h2 class="order__name">ANNOUNCE YOURSELF</h2>
+            <p class="order__desc">Post once in the intro thread. Your name, where you're transmitting from, and the track that put you here. Say it plainly — everyone inside arrived the same way you did.</p>
+          </li>
+
+          <li class="order">
+            <p class="order__n mono">ORDER 03</p>
+            <h2 class="order__name">KNOW THE MURDER</h2>
+            <!-- "a murder of crows" is the real collective noun, not invented
+                 lore — see the note printed at the foot of the letter. -->
+            <p class="order__desc">Read back through what's already there before you add to it. These are the people who found the same door. Learn who they are.</p>
+          </li>
+
+          <li class="order">
+            <p class="order__n mono">ORDER 04</p>
+            <h2 class="order__name">HOLD THE SEAL</h2>
+            <p class="order__desc">What is posted inside stays inside. Unreleased material leaves this sector through nobody. This is the one order with consequences.</p>
+          </li>
+
+          <li class="order">
+            <p class="order__n mono">ORDER 05</p>
+            <h2 class="order__name">WATCH THE SIGNAL</h2>
+            <p class="order__desc">Turn your notifications on and leave them on. Everything lands here first, and some of it will not be repeated.</p>
+          </li>
+        </ol>
+
+        <p class="letter__sign mono">YOU ARE NOT ALONE.</p>
+        <p class="letter__from mono">— ORDER OF THE CROW</p>
+
+        <p class="letter__foot mono">◈ A GROUP OF CROWS IS CALLED A MURDER. THAT IS NOT OURS — IT IS JUST TRUE.</p>
+
+        <!-- The consent point, same treatment as under every form on the site -->
+        <div class="form-legal">
+          <p class="form-legal__note mono">YOUR CONDUCT INSIDE IS GOVERNED BY</p>
+          <div class="form-legal__links">
+            <a href="community-terms.html" class="btn btn--ghost btn--small">COMMUNITY TERMS</a>
+            <a href="code-of-conduct.html" class="btn btn--ghost btn--small">CODE OF CONDUCT</a>
+            <a href="privacy.html" class="btn btn--ghost btn--small">PRIVACY POLICY</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__brand glitch glitch--sm" data-text="ORDER OF THE CROW">ORDER OF THE CROW</p>
+      <nav class="footer__social mono">
+        <a href="https://www.instagram.com/orderofthecrowofficial/" target="_blank" rel="noopener">INSTAGRAM</a>
+        <a href="https://www.youtube.com/@chriskreutz1442" target="_blank" rel="noopener">YOUTUBE</a>
+        <a href="https://open.spotify.com/artist/657ETkYc49BzLTSOCnd9Es" target="_blank" rel="noopener">SPOTIFY</a>
+        <a href="https://music.apple.com/us/artist/order-of-the-crow/1723488780" target="_blank" rel="noopener">APPLE MUSIC</a>
+        <a href="https://orderofthecrow.bandcamp.com/music" target="_blank" rel="noopener">BANDCAMP</a>
+        <a href="https://linktr.ee/Orderofthecrow" target="_blank" rel="noopener">LINKTREE</a>
+        <!-- NEEDS URL: client gave the Facebook page as a name only — "Chris Kreutz (Order of the Crow)" -->
+        <a href="#" data-placeholder="facebook" title="Facebook URL still needed">FACEBOOK</a>
+      </nav>
+      <p class="footer__contact mono">
+        <a href="mailto:Orderofthecrowofficial@gmail.com">Orderofthecrowofficial@gmail.com</a>
+      </p>
+      <nav class="footer__legal mono" aria-label="Legal">
+        <a href="terms.html">TERMS &amp; CONDITIONS</a>
+        <a href="privacy.html">PRIVACY POLICY</a>
+        <a href="cookies.html">COOKIE POLICY</a>
+        <a href="community-terms.html">COMMUNITY TERMS</a>
+        <a href="code-of-conduct.html">CODE OF CONDUCT</a>
+      </nav>
+      <p class="footer__copy mono">© <span id="year"></span> ORDER OF THE CROW · CHRIS KREUTZ · ALL RIGHTS RESERVED</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
