@@ -97,61 +97,36 @@
   </section>
 
   <!-- ===================== SEND A TRANSMISSION =====================
-       PLACEHOLDER form — there is no backend on this site yet. Same open
-       question as the mailing-list signup: Mailchimp / ConvertKit /
-       GoHighLevel. Until one is chosen, js/main.js intercepts the submit so
-       nothing posts to "#", and the visitor still gets feedback.
+       The placeholder contact form was REMOVED 2026-08-26 at the client's
+       request. No backend was ever connected to it and none is coming — this
+       is a plain mailto: instead, so a message lands directly in the client's
+       inbox with the subject already filled in.
 
-       TO GO LIVE: point action= at the chosen handler (or a Formspree-style
-       endpoint) and delete the wireDemoForm('contactForm', ...) call in
-       js/main.js. The field names are already sensible: name, email, subject,
-       message, list-optin.
+       The address is ALSO printed in plain text under the button on purpose:
+       mailto: does nothing at all for a visitor on webmail with no default
+       mail client set, and a button that appears to do nothing reads as broken.
+       Don't "tidy" that line away.
 
-       The opt-in checkbox is how this page feeds website goal #3 (build the
-       email list) without putting a SECOND competing form on the page.
+       The .form-legal consent block went with the form. Nothing on this page
+       collects data any more, so there is no consent point to mark — the
+       legal pages are still reachable from the footer's 5-link row.
+
+       Section id stays #message so any existing link to it still lands.
   ================================================== -->
   <section class="section section--deep section--center" id="message">
     <!-- .signup__inner is reused purely as a layout utility here (640px, centred) -->
     <div class="section__inner signup__inner">
       <p class="dossier scale-in"><span class="dossier__dot"></span> 02 / SEND A TRANSMISSION</p>
       <h2 class="section__title glitch scale-in" data-text="OPEN A CHANNEL">OPEN A CHANNEL</h2>
-      <p class="lead lead--center scale-in">Or send it straight from here. Everything lands in the same inbox.</p>
+      <p class="lead lead--center scale-in">One line, straight to the Order. Opens in your mail app with the subject already set.</p>
 
-      <form class="signup__form form--contact scale-in" id="contactForm" action="#" method="post" novalidate>
-        <input type="text" name="name" placeholder="NAME" aria-label="Name" required />
-        <input type="email" name="email" placeholder="EMAIL" aria-label="Email" required />
-        <select name="subject" aria-label="What is this about?">
-          <option value="">WHAT IS THIS ABOUT?</option>
-          <option>Booking</option>
-          <option>Press or interview</option>
-          <option>Feature or collaboration</option>
-          <option>Orders &amp; pre-orders</option>
-          <option>Something else</option>
-        </select>
-        <textarea name="message" placeholder="MESSAGE" aria-label="Message" rows="6" required></textarea>
+      <p class="contact__cta scale-in">
+        <a class="btn btn--primary" href="mailto:Orderofthecrowofficial@gmail.com?subject=Inquiry">CONTACT ORDER OF THE CROW</a>
+      </p>
 
-        <label class="form__opt">
-          <input type="checkbox" name="list-optin" value="yes" />
-          <span>Add me to the transmission list — new tracks, behind-the-scenes chaos and exclusive content.</span>
-        </label>
-
-        <button type="submit" class="btn btn--primary">TRANSMIT →</button>
-      </form>
-
-      <!-- Legal links, deliberately prominent. GoHighLevel's own in-form
-           privacy/terms links were switched off in the form builder — links
-           inside that iframe can't be styled or pointed at our pages.
-           RELATIVE hrefs: they follow the site to orderofthecrow.com with
-           no edit. Don't turn these into full https:// addresses. -->
-      <div class="form-legal">
-        <p class="form-legal__note mono">BY JOINING YOU AGREE TO THE FOLLOWING</p>
-        <div class="form-legal__links">
-          <a href="privacy.html" class="btn btn--ghost btn--small">PRIVACY POLICY</a>
-          <a href="terms.html" class="btn btn--ghost btn--small">TERMS &amp; CONDITIONS</a>
-        </div>
-      </div>
-
-      <p class="placeholder-note mono scale-in">// placeholder form — connect a backend before launch</p>
+      <p class="contact__fallback mono scale-in">
+        Or write to <a href="mailto:Orderofthecrowofficial@gmail.com?subject=Inquiry">Orderofthecrowofficial@gmail.com</a>
+      </p>
     </div>
   </section>
 

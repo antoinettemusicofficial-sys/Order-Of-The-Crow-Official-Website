@@ -535,25 +535,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---- Demo forms (no backend yet) ----
-     Both the mailing-list signup and the contact form are placeholders until a
-     backend is picked (Mailchimp / ConvertKit / GoHighLevel). They intercept the
-     submit so nothing silently posts to "#", and the visitor still gets feedback.
-     TO GO LIVE: point the form's action= at the real handler and delete its
-     wireDemoForm(...) call below. */
-  const wireDemoForm = (id, note, doneLabel) => {
-    const form = document.getElementById(id);
-    if (!form) return;
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      console.log(`[placeholder] ${note}`);
-      const btn = form.querySelector('button');
-      const original = btn.textContent;
-      btn.textContent = doneLabel;
-      setTimeout(() => (btn.textContent = original), 2500);
-    });
-  };
-
   /* ---- Sealed orders (orders.html) ----
      The private welcome letter the community email links to. Same cipher
      language as the vault and the community gate.
@@ -595,7 +576,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
   }
-
-  wireDemoForm('signupForm', 'signup submitted — connect Mailchimp / ConvertKit.', '✔ TRANSMITTED (demo)');
-  wireDemoForm('contactForm', 'contact form submitted — connect a form backend / inbox.', '✔ MESSAGE SENT (demo)');
 });

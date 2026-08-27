@@ -658,16 +658,10 @@ h1.glitch, h2.glitch { display: block; }
 .signup__form input:focus, .signup__form select:focus, .signup__form textarea:focus { outline: none; border-color: var(--glow); box-shadow: 0 0 0 3px rgba(79,139,255,.15); }
 .signup__form textarea { min-height: 9.5rem; resize: vertical; line-height: 1.6; }
 
-/* The contact form carries a message body, so its fields read left-aligned even
-   though .signup__inner centres everything around them. */
-.form--contact { text-align: left; }
-.form__opt {
-  display: flex; align-items: flex-start; gap: .7rem; cursor: pointer;
-  font-family: "Share Tech Mono", monospace;
-  font-size: .74rem; line-height: 1.6; letter-spacing: .04em; color: var(--muted);
-}
-.form__opt input { flex: none; width: 1rem; height: 1rem; margin-top: .18rem; accent-color: var(--glow); }
-.form__opt:hover { color: var(--white); }
+/* NOTE: .form--contact and .form__opt lived here for contact.html's placeholder
+   form. That form was removed 2026-08-26 in favour of a mailto: button, so both
+   rules went with it. .signup__form above is kept as the house field styling for
+   whenever a real form is wired up. */
 
 /* ---------- GoHighLevel form embed ----------
    The mailing-list form on index/music/about/merch/community is a real GHL
@@ -681,8 +675,8 @@ h1.glitch, h2.glitch { display: block; }
      focus + button bg #4F8BFF · button text #04060D · radius 0
      fields "Share Tech Mono" · button "Rajdhani" 600 · label "TRANSMIT →"
 
-   contact.html still carries the old placeholder form — that GHL form has not
-   been built yet, so .signup__form below is still live on that one page. */
+   contact.html no longer has a form at all — its placeholder was replaced by a
+   mailto: button on 2026-08-26, so no GHL contact form needs building. */
 .ghl-form { width: 100%; max-width: 640px; margin: 1.6rem auto 0; }
 .ghl-form iframe { display: block; width: 100%; }
 
@@ -722,6 +716,16 @@ h1.glitch, h2.glitch { display: block; }
 .footer__contact a { color: var(--muted); transition: color .3s; }
 .footer__contact a:hover { color: var(--glow); }
 .footer__copy { color: var(--muted); font-size: .72rem; }
+
+/* ---------- Contact CTA (contact.html) ----------
+   The contact form was replaced by a single mailto: button on 2026-08-26.
+   .contact__fallback repeats the address in plain text under it, because
+   mailto: is inert for anyone on webmail with no default mail client — the
+   button would look broken with nothing else to copy. */
+.contact__cta { margin-top: 2rem; }
+.contact__fallback { margin-top: 1.5rem; font-size: .78rem; color: var(--muted); }
+.contact__fallback a { color: var(--muted); border-bottom: 1px solid var(--line); transition: color .3s, border-color .3s; }
+.contact__fallback a:hover { color: var(--glow); border-color: var(--glow); }
 
 /* ---------- Placeholder note ---------- */
 .placeholder-note { margin-top: 1.4rem; font-size: .72rem; color: var(--muted); opacity: .65; }
@@ -1216,7 +1220,7 @@ body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinit
 .facts dt, .facts dd,
 .merch__veil-sub, .card__img--ph, .slot__kind, .slot__name,
 .perks li, .community__status, .perk__desc,
-.contact__label, .contact__value, .form__opt, .form-legal__note,
+.contact__label, .contact__value, .contact__fallback, .form-legal__note,
 .pagehead__sub, .prose p, .duality__desc,
 .gate__tag, .gate__line,
 .crew__role, .sealed__row, .sealed__note, .listen__sub,
