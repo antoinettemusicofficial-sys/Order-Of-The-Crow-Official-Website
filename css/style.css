@@ -1360,6 +1360,14 @@ body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinit
 /* Very narrow phones: drop the links onto their own row under the logo/JOIN
    so the tap targets stay comfortable, still with no menu button. */
 @media (max-width: 560px) {
+  /* Hero buttons on a phone: one column, one width. The release-day
+     LISTEN NOW is .btn--large, which at desktop padding ran almost edge to
+     edge and made the stack look stretched next to the narrower ghosts. */
+  .hero__listen { margin-top: 1.8rem; gap: .8rem; }
+  .hero__out { letter-spacing: .24em; }
+  .hero__listen .btn--large { padding: 1rem 1.6rem; font-size: .92rem; letter-spacing: .2em; }
+  .hero__cta { flex-direction: column; align-items: center; gap: .75rem; margin-top: 1rem; }
+  .hero__listen .btn, .hero__cta .btn { width: min(100%, 290px); justify-content: center; }
   .nav { flex-wrap: wrap; row-gap: .5rem; padding-bottom: .5rem; }
   .nav__logo { order: 1; }
   .nav__links { order: 2; flex-basis: 100%; }
