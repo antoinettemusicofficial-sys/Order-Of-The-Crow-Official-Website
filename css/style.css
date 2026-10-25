@@ -329,6 +329,31 @@ h1.glitch, h2.glitch { display: block; }
    that cannot be restyled to sit inside this panel. Square everything: same
    radius-0 language as the buttons and the GHL forms. */
 .vaudio { position: absolute; inset: 0; }
+/* The photo from data-image. It develops out of the black when the vault
+   opens, and sits under a bottom veil so the transport stays legible.
+   object-position keeps Chris's face in frame as the 16:9 panel crops it. */
+.vaudio__photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 32%;
+  animation: vaudioDevelop 1.6s var(--ease) both;
+  transition: filter 1.2s var(--ease);
+  filter: brightness(.82) saturate(.95);
+}
+.vaudio.is-playing .vaudio__photo { filter: brightness(1) saturate(1.05); }
+.vaudio:has(.vaudio__photo)::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(4,6,13,.55) 0%, rgba(4,6,13,0) 28%,
+                                      rgba(4,6,13,0) 55%, rgba(4,6,13,.85) 100%);
+}
+.vaudio:has(.vaudio__photo) .vaudio__viz,
+.vaudio:has(.vaudio__photo) .vaudio__ui { z-index: 1; }
+@keyframes vaudioDevelop {
+  0%   { opacity: 0; transform: scale(1.08); filter: brightness(2.2) contrast(1.6) blur(10px); }
+  12%  { opacity: .9; }
+  18%  { opacity: .25; }
+  30%  { opacity: 1; }
+  100% { opacity: 1; transform: scale(1); filter: brightness(.82) saturate(.95) blur(0); }
+}
 .vaudio__viz {
   position: absolute; inset: 0; width: 100%; height: 100%;
   display: block; pointer-events: none;

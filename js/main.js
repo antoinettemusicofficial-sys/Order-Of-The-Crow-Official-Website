@@ -256,6 +256,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const wrap = el('div', 'vaudio');
       const viz  = el('canvas', 'vaudio__viz');
+
+      /* Optional still behind the transport (data-image): the photo of Chris
+         that "develops" out of the dark as the file decrypts. Purely
+         decorative here, so an empty alt; if it fails to load it just goes. */
+      const imgSrc = vault.dataset.image?.trim();
+      let photo = null;
+      if (imgSrc) {
+        photo = el('img', 'vaudio__photo');
+        photo.alt = '';
+        photo.decoding = 'async';
+        photo.addEventListener('error', () => photo.remove());
+        photo.src = imgSrc;
+      }
       viz.setAttribute('aria-hidden', 'true');
 
       const ui    = el('div', 'vaudio__ui');
@@ -280,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       bar.append(play, seek, time);
       ui.append(title, bar);
-      wrap.append(viz, ui, audio);
+      wrap.append(...(photo ? [photo] : []), viz, ui, audio);
       stage.replaceChildren(wrap);
 
       const setViz = wireVisualiser(audio, viz);
