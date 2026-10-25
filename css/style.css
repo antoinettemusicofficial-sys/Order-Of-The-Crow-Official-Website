@@ -467,7 +467,7 @@ h1.glitch, h2.glitch { display: block; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,4rem); align-items: center; }
 .split--reverse .split__media { order: 2; }
 .split__media { position: relative; }
-.split__media img { width: 100%; filter: grayscale(.15) contrast(1.05); }
+.split__media img { width: 100%; height: auto; filter: grayscale(.15) contrast(1.05); }
 .split__media--ph {
   aspect-ratio: 4/3; display: grid; place-items: center;
   background: linear-gradient(135deg, var(--blue), var(--black));
@@ -1431,7 +1431,6 @@ body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinit
   .page-home #community .perks { display: none; }
 
   /* About: no empty "ARTIST IMAGE" box, no build note, no credits table. */
-  .page-home #about .split__media--ph,
   .page-home #about .placeholder-note,
   .page-home #about .facts,
   .page-home #about .lead + .lead { display: none; }
