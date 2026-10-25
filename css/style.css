@@ -654,6 +654,31 @@ h1.glitch, h2.glitch { display: block; }
 /* ---------- Merch page: product-slot cards ----------
    Deliberately NO prices and no invented product names — these are
    structural slots waiting on real product, not mock listings. */
+/* ---------- Live product cards (merch.html #drop) ----------
+   The photo is the link. A glowing blue frame, brighter on hover/focus.
+   The photos are light-grey studio shots, so the frame does the work of
+   seating them on the dark page. */
+.shop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.shop-card { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.shop-card__frame {
+  display: block; width: 100%; aspect-ratio: 1; overflow: hidden;
+  border: 1px solid rgba(79,139,255,.75);
+  box-shadow: 0 0 0 1px rgba(79,139,255,.25), 0 0 22px -2px rgba(79,139,255,.55),
+              inset 0 0 18px rgba(79,139,255,.18);
+  transition: box-shadow .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+}
+.shop-card__frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.shop-card__frame:hover, .shop-card__frame:focus-visible {
+  border-color: var(--glow); transform: translateY(-3px); outline: none;
+  box-shadow: 0 0 0 1px rgba(79,139,255,.5), 0 0 44px 2px rgba(79,139,255,.7),
+              inset 0 0 22px rgba(79,139,255,.25);
+}
+.shop-card__frame:hover img, .shop-card__frame:focus-visible img { transform: scale(1.04); }
+.shop-card__name {
+  font-size: 1.05rem; font-weight: 600; letter-spacing: .14em; margin-top: 1.3rem;
+}
+.shop-card__variant { font-size: .7rem; letter-spacing: .3em; color: var(--muted); margin: .35rem 0 1.1rem; }
+
 .slot { text-align: center; }
 .slot__frame {
   position: relative; aspect-ratio: 1; display: grid; place-items: center;
@@ -1310,6 +1335,7 @@ body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinit
   .lead { margin-left: auto; margin-right: auto; }
   .pills { justify-content: center; }
   .merch__grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .shop-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; gap: 2.6rem; }
   /* 2-across: 4 tracks = 6/2 columns wide each, orphan centres */
   .disco { grid-template-columns: repeat(4, 1fr); }
   .disco > .release { grid-column: span 2; }

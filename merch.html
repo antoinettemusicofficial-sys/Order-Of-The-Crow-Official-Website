@@ -8,10 +8,10 @@
        in Google early. REMOVE THIS LINE (and robots.txt) ON LAUNCH DAY. -->
   <meta name="robots" content="noindex, nofollow" />
   <title>MERCH · ORDER OF THE CROW</title>
-  <meta name="description" content="Order of the Crow merch — apparel and physical music. The first drop is being forged. Pre-order the debut album DEAD MAN now." />
+  <meta name="description" content="Order of the Crow merch — apparel and physical music. The first drop is here: Dead Man and Crystal Mirrors tees. Plus the debut album DEAD MAN, out now." />
   <meta property="og:title" content="MERCH — ORDER OF THE CROW" />
-  <meta property="og:description" content="Wear the mark. The first Order of the Crow drop is coming — and DEAD MAN is available to pre-order now." />
-  <meta property="og:image" content="assets/dead-man-album-art.jpg" />
+  <meta property="og:description" content="Wear the mark. The first Order of the Crow drop is here, and DEAD MAN is out now." />
+  <meta property="og:image" content="https://orderofthecrow.com/assets/dead-man-album-art.jpg" />
   <meta property="og:type" content="website" />
 
   <!-- Tab icon: plain luminous-blue disc on near-black (no star glyphs anywhere) -->
@@ -59,60 +59,48 @@
   </section>
 
   <!-- ===================== THE DROP =====================
-       The store is LIVE on Amaze (app.amazecommerce.com/shop/orderofthecrow,
-       2026-10-25), replacing the Spring plan. This page LINKS OUT to it; the
-       grid stays veiled until there are product photos, and the veil is the
-       shop CTA.
-
-       TO GO LIVE: delete the .merch--locked class and the .merch__veil block,
-       then replace each .slot with a real product card — photo, name, price,
-       and a link straight to that product in the store.
-
-       The slots below carry NO prices and NO product names on purpose. They
-       are structural placeholders, not mock listings.
+       LIVE on Amaze (2026-10-25). Photos are crops of the client's own
+       screenshots of the store listings, in assets/merch/.
+       Every card links to the store FRONT, not the product: Amaze product
+       URLs weren't supplied. Swap each pair of hrefs for the product's own
+       link when we have them. No prices on purpose: none were supplied, and
+       a wrong price on our page is worse than none.
+       ADDING A PRODUCT: copy one .shop-card, change the image, name, colour.
   ================================================== -->
   <section class="section section--fade" id="drop">
     <div class="section__inner">
       <p class="dossier scale-in"><span class="dossier__dot"></span> 01 / THE DROP</p>
 
-      <div class="merch__wrap merch--locked scale-in">
-        <div class="merch__grid" aria-hidden="true">
-          <article class="slot">
-            <div class="slot__frame"><span class="slot__kind">TEE</span></div>
-            <p class="slot__name">Awaiting artwork</p>
-          </article>
-          <article class="slot">
-            <div class="slot__frame"><span class="slot__kind">HOODIE</span></div>
-            <p class="slot__name">Awaiting artwork</p>
-          </article>
-          <article class="slot">
-            <div class="slot__frame"><span class="slot__kind">HEADWEAR</span></div>
-            <p class="slot__name">Awaiting artwork</p>
-          </article>
-          <article class="slot">
-            <div class="slot__frame"><span class="slot__kind">LONG SLEEVE</span></div>
-            <p class="slot__name">Awaiting artwork</p>
-          </article>
-          <article class="slot">
-            <div class="slot__frame"><span class="slot__kind">PRINT</span></div>
-            <p class="slot__name">Awaiting artwork</p>
-          </article>
-          <article class="slot">
-            <div class="slot__frame"><span class="slot__kind">ACCESSORY</span></div>
-            <p class="slot__name">Awaiting artwork</p>
-          </article>
-        </div>
-
-        <div class="merch__veil">
-          <div class="merch__veil-inner">
-            <p class="merch__veil-title glitch glitch--sm" data-text="THE STORE IS OPEN">THE STORE IS OPEN</p>
-            <p class="merch__veil-sub mono">// THE MARK HAS BEEN FORGED</p>
-            <a href="https://app.amazecommerce.com/shop/orderofthecrow" class="btn btn--primary btn--small" target="_blank" rel="noopener">SHOP THE MERCH →</a>
-          </div>
-        </div>
+      <div class="shop-grid scale-in">
+        <article class="shop-card">
+          <a href="https://app.amazecommerce.com/shop/orderofthecrow" class="shop-card__frame" target="_blank" rel="noopener" aria-label="Dead Man Logo Tee, black: shop it at the Order of the Crow store">
+            <img src="assets/merch/dead-man-logo-tee-black.jpg" alt="Dead Man Logo Tee in black: white feathered wings and the DEAD MAN wordmark, ORDER OF THE CROW beneath" width="722" height="722" loading="lazy" decoding="async" />
+          </a>
+          <h3 class="shop-card__name">Dead Man Logo Tee</h3>
+          <p class="shop-card__variant mono">BLACK</p>
+          <a href="https://app.amazecommerce.com/shop/orderofthecrow" class="btn btn--primary btn--small" target="_blank" rel="noopener">SHOP NOW →</a>
+        </article>
+        <article class="shop-card">
+          <a href="https://app.amazecommerce.com/shop/orderofthecrow" class="shop-card__frame" target="_blank" rel="noopener" aria-label="Dead Man Logo Tee, white: shop it at the Order of the Crow store">
+            <img src="assets/merch/dead-man-logo-tee-white.jpg" alt="Dead Man Logo Tee in white: black feathered wings and the DEAD MAN wordmark, ORDER OF THE CROW beneath" width="722" height="722" loading="lazy" decoding="async" />
+          </a>
+          <h3 class="shop-card__name">Dead Man Logo Tee</h3>
+          <p class="shop-card__variant mono">WHITE</p>
+          <a href="https://app.amazecommerce.com/shop/orderofthecrow" class="btn btn--primary btn--small" target="_blank" rel="noopener">SHOP NOW →</a>
+        </article>
+        <article class="shop-card">
+          <a href="https://app.amazecommerce.com/shop/orderofthecrow" class="shop-card__frame" target="_blank" rel="noopener" aria-label="Crystal Mirrors Tee, black: shop it at the Order of the Crow store">
+            <img src="assets/merch/crystal-mirrors-tee-black.jpg" alt="Crystal Mirrors Tee in black: a crow inside an ornate heart-shaped mirror frame, ORDER OF THE CROW beneath" width="722" height="722" loading="lazy" decoding="async" />
+          </a>
+          <h3 class="shop-card__name">Crystal Mirrors Tee</h3>
+          <p class="shop-card__variant mono">BLACK</p>
+          <a href="https://app.amazecommerce.com/shop/orderofthecrow" class="btn btn--primary btn--small" target="_blank" rel="noopener">SHOP NOW →</a>
+        </article>
       </div>
 
-
+      <div class="seeall scale-in">
+        <a href="https://app.amazecommerce.com/shop/orderofthecrow" target="_blank" rel="noopener">SEE THE WHOLE STORE →</a>
+      </div>
     </div>
   </section>
 
@@ -130,11 +118,11 @@
           <span class="frame-corner bl"></span><span class="frame-corner br"></span>
         </div>
         <div class="split__text">
-          <p class="mono accent">OUT 25 OCTOBER 2026</p>
+          <p class="mono accent">OUT NOW</p>
           <h2 class="glitch glitch--sm" data-text="DEAD MAN">DEAD MAN</h2>
-          <p class="lead">The debut album. Available to pre-order now on Bandcamp — the earliest way to own it, and the one that puts the most back into the next record.</p>
+          <p class="lead">The debut album. Out now on Bandcamp, the way to own it that puts the most back into the next record.</p>
           <div class="pills">
-            <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="pill pill--solid" target="_blank" rel="noopener">PRE-ORDER ON BANDCAMP</a>
+            <a href="https://orderofthecrow.bandcamp.com/album/dead-man" class="pill pill--solid" target="_blank" rel="noopener">GET IT ON BANDCAMP</a>
             <a href="music.html" class="pill">HEAR IT FIRST</a>
           </div>
           <!-- PLACEHOLDER: CDs. The client distributes through TuneCore, which
