@@ -1385,3 +1385,58 @@ body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinit
   *, *::before, *::after { animation: none !important; }
   .scale-in { opacity: 1; transform: none; }
 }
+
+/* =========================================================
+   HOMEPAGE ON A PHONE · the simple version (client, 2026-10-25)
+   "Too much text everywhere." Desktop keeps the full dossier; a phone gets
+   one title, one line and one action per section. Nothing is deleted from
+   the markup: it's all one tap away on the inner pages (each section ends
+   in a .seeall link), so this is display-only and desktop is untouched.
+   Scoped to body.page-home so the inner pages keep their copy.
+   ========================================================= */
+@media (max-width: 560px) {
+  /* Less scrolling: tighter sections, no HUD spine between them. */
+  .page-home .section { padding-top: 3.4rem; padding-bottom: 3.4rem; }
+  .page-home .section:not(:first-of-type)::before { display: none; }
+  .page-home .section__title { margin-bottom: 1.4rem; }
+  .page-home .seeall { margin-top: 1.8rem; }
+
+  /* Chapter labels ("00 / CLASSIFIED TRANSMISSION" etc.) are desktop garnish. */
+  .page-home .dossier { display: none; }
+
+  /* Hero: title, OUT NOW, LISTEN NOW, the Cult. The drag hint is a mouse
+     instruction, and the eyebrow + tagline crowd a 390px screen. */
+  .page-home .hero__hint,
+  .page-home .hero__eyebrow,
+  .page-home .hero__sub,
+  .page-home .hero__scroll { display: none; }
+  .page-home .hero__cta .btn--ghost:first-child { display: none; }   /* GET "DEAD MAN": the Music section has it */
+
+  /* Decrypt: the panel speaks for itself. */
+  .page-home .vault__hint { display: none; }
+
+  /* Music: art, title, three buttons, the player. */
+  .page-home #music .lead,
+  .page-home #music .credits { display: none; }
+  .page-home #music .pills .pill:nth-child(3),
+  .page-home #music .pills .pill:nth-child(4) { display: none; }   /* YouTube, Bandcamp: both in the footer */
+
+  /* Merch: drop the tall blurred grid; just the message and the button. */
+  .page-home .merch--locked .merch__grid { display: none; }
+  .page-home .merch__veil { position: static; padding: 2.2rem 1rem; border: 1px solid var(--line); }
+  .page-home .merch__veil-inner { position: static; min-height: 0; }
+
+  /* Cult: title, status, button. */
+  .page-home #community .lead,
+  .page-home #community .perks { display: none; }
+
+  /* About: no empty "ARTIST IMAGE" box, no build note, no credits table. */
+  .page-home #about .split__media--ph,
+  .page-home #about .placeholder-note,
+  .page-home #about .facts,
+  .page-home #about .lead + .lead { display: none; }
+
+  /* Sign-up + contact: the form and the cards say enough. */
+  .page-home #signup .lead,
+  .page-home #contact .lead { display: none; }
+}
