@@ -84,6 +84,11 @@ h1, h2, h3, .dossier, .nav__item, .btn, .footer__brand {
 .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 0 46px -4px var(--glow); }
 .btn--ghost { background: transparent; color: var(--white); border-color: var(--line); }
 .btn--ghost:hover { border-color: var(--glow); color: var(--glow); }
+/* The one big action — release-day LISTEN NOW (hero + music page). */
+.btn--large { padding: 1.15rem 3rem; font-size: 1.05rem; letter-spacing: .22em; }
+.hero__listen { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 2.2rem; }
+.hero__out { font-size: clamp(.72rem, 1.6vw, .9rem); letter-spacing: .34em; color: var(--glow); }
+.enc__listen { margin-top: 2rem; }
 .btn--small { padding: .55rem 1.4rem; font-size: .75rem; background: transparent; border-color: var(--line); }
 .btn--small:hover { border-color: var(--glow); color: var(--glow); }
 /* --small is a size modifier, but it also carries the ghost look — so it
@@ -1276,7 +1281,7 @@ body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinit
    So: every browser gets the 8-way shadow ring, which needs no feature support
    at all. Browsers that DO have paint-order additionally get a true stroke on
    top, which is crisper. Where both apply the stroke simply covers the ring. */
-.hero__hint, .hero__eyebrow, .hero__sub {
+.hero__hint, .hero__eyebrow, .hero__sub, .hero__out {
   text-shadow:
     /* hard 1px black ring, 8 directions — the universal outline */
     1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
@@ -1286,7 +1291,7 @@ body.is-sealed .seal.is-decrypting { animation: vaultShake .16s steps(2) infinit
 }
 
 @supports (paint-order: stroke) {
-  .hero__hint, .hero__eyebrow, .hero__sub {
+  .hero__hint, .hero__eyebrow, .hero__sub, .hero__out {
     -webkit-text-stroke: 3.5px #000;
     paint-order: stroke fill;   /* stroke sits OUTSIDE the glyph, not through it */
   }
